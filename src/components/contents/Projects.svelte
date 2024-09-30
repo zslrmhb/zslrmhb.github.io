@@ -2,7 +2,7 @@
 </script>
 
 <section id="projects">
-        <h2>
+        <h2 class="text-xl font-bold">
             Projects
         </h2>
 </section>
