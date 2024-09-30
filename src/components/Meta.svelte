@@ -1,5 +1,5 @@
 <script>
-	export let title = "Three Body Problem";
+	export let title = "Personal Website";
 	export let description = "Personal Website of Hongbin Miao";
 	export let url = "https://github.com/zslrmhb/zslrmhb.github.io";
 	export let keywords =

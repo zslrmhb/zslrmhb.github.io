@@ -5,9 +5,7 @@
 
 <Section>
         <H2>
-            Education
+            About Me
         </H2>
-        <ul>
-            <li>School, Year - Degree Received</li>
-        </ul>
+        <p>Hello, this is the about me section</p>
 </Section>

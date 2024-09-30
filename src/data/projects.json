@@ -1,0 +1,28 @@
+{
+        "Data Analysis": [
+                {
+                        "title": "Project 1",
+                        "description": "Short description of project 1.",
+                        "image": "path/to/image1.jpg"
+                },
+                {
+                        "title": "Project 2",
+                        "description": "Short description of project 2.",
+                        "image": "path/to/image2.jpg"
+                }
+        ],
+        "Machine Learning": [
+                {
+                        "title": "AI Project 1",
+                        "description": "Short description of AI project 1.",
+                        "image": "path/to/image3.jpg"
+                }
+        ],
+        "Software Engineering": [
+                {
+                        "title": "Software Project 1",
+                        "description": "Short description of software project 1.",
+                        "image": "path/to/image4.jpg"
+                }
+        ]
+}
