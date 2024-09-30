@@ -1,13 +1,9 @@
-<script>
-        import Section from "../decorators/Section.svelte";
-        import H2 from "../decorators/H2.svelte"
-</script>
+<section id="education">
+        <div class="flex min-h-0 flex-col gap-y-3">
 
-<Section>
-        <H2>
-            Education
-        </H2>
+        <h2 class="text-xl font-bold">Education</h2>
         <ul>
             <li>School, Year - Degree Received</li>
         </ul>
-</Section>
+        </div>
+</section>

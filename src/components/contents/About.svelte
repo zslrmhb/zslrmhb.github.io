@@ -1,11 +1,12 @@
 <script>
-        import Section from "../decorators/Section.svelte";
-        import H2 from "../decorators/H2.svelte"
+
 </script>
 
-<Section>
-        <H2>
-            About Me
-        </H2>
-        <p>Hello, this is the about me section</p>
-</Section>
+<section>
+        <h2 class="text-xl font-bold">
+            About
+        </h2>
+        <div class="prose max-w-full text-pretty font-sans text-sm text-muted-foreground">This is a about me section. This is a about me section.This is a about me section.This is a about me section.This is a about me section.This is a about me section.This is a about me section.This is a about me section.This is a about me section.
+
+        </div>
+</section>

@@ -7,8 +7,11 @@
 </script>
 
 
-<Hero />
-<About />
-<Education />
-<Experience />
-<Project />
+<!-- <Hero /> -->
+
+<main class="flex min-h-[100dvh] flex-col space-y-10">
+    <About />
+    <Education />
+    <Experience />
+    <Project />
+</main>
