@@ -19,4 +19,12 @@
 	<meta property="og:locale" content="en_US" />
 	<meta name="robots" content="max-image-preview:large" />
 	<link rel="canonical" href="{url}/" />
+
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-1BXPPS6M0S"></script>
+  	<script>
+    	    window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-1BXPPS6M0S');
+      </script>
 </svelte:head>
