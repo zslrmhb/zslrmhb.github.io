@@ -38,6 +38,7 @@
     "@threlte/extras": "^8.11.2",
     "@threlte/rapier": "^2.0.0",
     "d3": "^7.9.0",
+    "marked": "^14.1.2",
     "svelte-preprocess": "^6.0.0",
     "three": "^0.159.0",
     "vite-plugin-svgstring": "^1.0.0"
