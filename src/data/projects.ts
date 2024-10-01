@@ -5,7 +5,7 @@ export let PROJECTS = {
                         href: '',
                         dates: 'Dec 2022 - Jan 2023',
                         active: false,
-                        description: '',
+                        description: 'Something',
                         technologies: [],
                         links: [
                                 {
@@ -15,7 +15,7 @@ export let PROJECTS = {
                                 }
                         ],
                         image: '',
-                        video: 'src/data/Omniverse-Virtual-Assistant.mp4'
+                        video: '/omniverse-virtual-assistant.mp4'
                 },
                 {
                         title: 'i-Note-it',
@@ -32,7 +32,7 @@ export let PROJECTS = {
                                 }
                         ],
                         image: '',
-                        video: 'src/data/I-Note-It.mp4'
+                        video: '/i-note-it.mp4'
                 },
                  {
                         title: 'Three Body Problem',
@@ -49,7 +49,7 @@ export let PROJECTS = {
                                 }
                         ],
                         image: '',
-                        video: 'src/data/Three-Body-Problem.mp4'
+                        video: '/three-body-problem.mp4'
                 },
              
         ]
