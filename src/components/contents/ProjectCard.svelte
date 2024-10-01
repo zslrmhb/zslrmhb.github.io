@@ -35,7 +35,7 @@
                 <div class="hidden font-sans text-xs underline print:visible">
                         {link?.replace('https://', '').replace('www.', '').replace('/', '')}
                 </div>
-                <div class="prose dark:prose-invert max-w-full text-pretty font-sans text-xs text-muted-foreground">
+                <div class="prose  dark:prose-invert max-w-full text-pretty font-sans text-xs text-muted-foreground text-gray-500">
                       {@html marked(description)}
                 </div>
         </div>

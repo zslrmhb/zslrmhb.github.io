@@ -54,9 +54,9 @@ export let PROJECTS = {
                 {
                         title: 'Kunomennon',
                         href: '',
-                        dates: 'Feb 2024 - March 2024',
+                        dates: 'Feb 2024',
                         active: false,
-                        description: 'A visual explorable of the Three Body Problem inspired by Matrix Explorable',
+                        description: 'The trend behind top 3000+ Cai Xukun videos on Bilibili',
                         technologies: [],
                         links: [
                                 {
@@ -66,14 +66,14 @@ export let PROJECTS = {
                                 }
                         ],
                         image: '',
-                        video: '/three-body-problem.mp4'
+                        video: '/kunomenon.mp4'
                 },
                 {
                         title: 'Kun Classfier',
                         href: '',
-                        dates: 'Feb 2024 - March 2024',
+                        dates: 'OCt 2022 - Jan 2023',
                         active: false,
-                        description: 'A visual explorable of the Three Body Problem inspired by Matrix Explorable',
+                        description: 'A meme-inspired binary classifier',
                         technologies: [],
                         links: [
                                 {
@@ -83,14 +83,14 @@ export let PROJECTS = {
                                 }
                         ],
                         image: '',
-                        video: '/three-body-problem.mp4'
+                        video: '/kun-classifier.mp4'
                 },
                  {
                         title: 'TR Computer Vision',
                         href: '',
-                        dates: 'Feb 2024 - March 2024',
+                        dates: 'April 2023',
                         active: false,
-                        description: 'A visual explorable of the Three Body Problem inspired by Matrix Explorable',
+                        description: 'computer vision codebase for Triton Robotics @ UC San Diego',
                         technologies: [],
                         links: [
                                 {
@@ -100,7 +100,7 @@ export let PROJECTS = {
                                 }
                         ],
                         image: '',
-                        video: '/three-body-problem.mp4'
+                        video: '/TR-CV.mp4'
                 },
              
         ]

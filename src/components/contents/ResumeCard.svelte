@@ -28,7 +28,7 @@
 	            <h3 class="inline-flex items-center justify-center text-xs font-semibold leading-none sm:text-sm">
 			{company}
 		    </h3>
-		    <div class="text-right text-xs tabular-nums text-muted-foreground sm:text-sm">
+		    <div class="text-right text-xs tabular-nums text-muted-foreground sm:text-sm text-gray-500">
 		        {start} - {end || 'Present'}
 		    </div>
 	        </div>
