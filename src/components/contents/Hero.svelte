@@ -10,7 +10,7 @@
                     Hi, I'm Hongbin!
                 </h1>
                 <h2 class="max-w-[600px] md:text-xl">
-                    Currently a graduate student at UC Irvine.
+                    I LOVE crafting intuition though the art of data science.
                 </h2>
             </div>
         </div>
