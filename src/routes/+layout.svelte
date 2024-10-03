@@ -1,7 +1,11 @@
-<script lang="ts">
-    import "../styles/app.css"
+<script>
+	import '../app.pcss';
+	import Navbar from '$components/contents/Navbar.svelte';
 </script>
 
-<div class="relative mx-auto min-h-screen max-w-2xl bg-background px-6 py-12 fonts-sans antialiased sm:py-24">
-    <slot></slot>
+<div
+	class="bg-background fonts-sans relative mx-auto min-h-screen max-w-2xl px-6 py-12 antialiased sm:py-24"
+>
+	<Navbar />
+	<slot></slot>
 </div>

@@ -55,7 +55,7 @@
         {#if links && links.length > 0}
             <div class="flex flex-row flex-wrap items-start gap-1">
                 {#each links as link}
-                    <a href={link?.href} target="_blank">
+                    <a href={link?.href} target="_blank" rel="noopener noreferrer">
 
                     </a>
                 {/each}
@@ -63,3 +63,4 @@
         {/if}
     </div>
 </div>
+

@@ -2,7 +2,7 @@ export let PROJECTS = {
         projects: [
                 {
                         title: 'Omniverse Virtual Assistant',
-                        href: '',
+                        href: 'https://github.com/zslrmhb/Omniverse-Virtual-Assisstant',
                         dates: 'Dec 2022 - Jan 2023',
                         active: false,
                         description: 'Audio2Face Avatar with Riva SDK functionality',
@@ -19,7 +19,7 @@ export let PROJECTS = {
                 },
                 {
                         title: 'i-Note-it',
-                        href: '',
+                        href: 'https://github.com/zslrmhb/i-Note-It',
                         dates: 'Jan 2023',
                         active: false,
                         description: 'Enhanced Note-Taking Experience with Artificial Intelligence',
@@ -36,7 +36,7 @@ export let PROJECTS = {
                 },
                 {
                         title: 'Three Body Problem',
-                        href: '',
+                        href: 'https://github.com/zslrmhb/Three-Body-Problem',
                         dates: 'Feb 2024 - March 2024',
                         active: false,
                         description: 'A visual explorable of the Three Body Problem inspired by Matrix Explorable',
@@ -53,7 +53,7 @@ export let PROJECTS = {
                 },
                 {
                         title: 'Kunomennon',
-                        href: '',
+                        href: 'https://github.com/zslrmhb/Kunomenon',
                         dates: 'Feb 2024',
                         active: false,
                         description: 'The trend behind top 3000+ Cai Xukun videos on Bilibili',
@@ -70,7 +70,7 @@ export let PROJECTS = {
                 },
                 {
                         title: 'Kun Classfier',
-                        href: '',
+                        href: 'https://github.com/zslrmhb/Kun_Classifier',
                         dates: 'OCt 2022 - Jan 2023',
                         active: false,
                         description: 'A meme-inspired binary classifier',
@@ -87,7 +87,7 @@ export let PROJECTS = {
                 },
                  {
                         title: 'TR Computer Vision',
-                        href: '',
+                        href: 'https://github.com/zslrmhb/TRCV_2023',
                         dates: 'April 2023',
                         active: false,
                         description: 'computer vision codebase for Triton Robotics @ UC San Diego',
