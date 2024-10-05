@@ -52,7 +52,7 @@ export let PROJECTS = {
                         video: '/three-body-problem.mp4'
                 },
                 {
-                        title: 'Kunomennon',
+                        title: 'Kunomenon',
                         href: 'https://github.com/zslrmhb/Kunomenon',
                         dates: 'Feb 2024',
                         active: false,
