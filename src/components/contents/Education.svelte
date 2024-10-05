@@ -1,6 +1,6 @@
 <script lang="ts">
     import { EDUCATION } from '$data/education.ts';
-    import ResumeCard from '$components/contents/ResumeCard.svelte';
+    import ResumeCard from '$components/contents/ResumeCard.svelte';   
 </script>
 
 <section id="education">
@@ -12,7 +12,7 @@
                 logoUrl={edu.logoUrl}
                 company={edu.school}
                 title={edu.degree}
-                substitle={edu.degree}
+                subtitle={edu.degree}
                 start={edu.start}
                 end = {edu.end}
                 />

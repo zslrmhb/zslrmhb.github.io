@@ -4,7 +4,7 @@ export let EDUCATION = {
                         school: "UC Irvine",
                         href: "https://uci.edu",
                         degree: "Master of Data Science",
-                        logo_url: "",
+                        logoUrl: "imgs/uci.svg",
                         start: "Sep 2024",
                         end: ""
                 }, 
@@ -12,7 +12,7 @@ export let EDUCATION = {
                         school: "UC San Diego",
                         href: "https://ucsd.edu",
                         degree: "Bachelor of Science, Mathematics and Computer Science",
-                        logo_url: "",
+                        logoUrl: "imgs/ucsd.svg",
                         start: "Sep 2020",
                         end: "June 2024"
                 }, 

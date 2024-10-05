@@ -1,4 +1,6 @@
 <script lang="ts">
+	import * as Avatar from '$components/ui/avatar';
+
         export let logoUrl: string = '';
 	export let company: string = '';
 	export let title: string = '';
@@ -21,6 +23,10 @@
 <a href={href || '#'} on:click={handleClick}>
     <div class="flex rounded-lg bg-card text-card-foreground">
 	<div class="flex-none">
+	    <Avatar.Root class="bg-muted-background m-auto size-12 border dark:bg-foreground">
+                <Avatar.Image src={logoUrl} alt={company} class="object-fill" />
+		<!-- <Avatar.Fallback>{company[0]}</Avatar.Fallback> -->
+	    </Avatar.Root>
 	</div>
         <div class="group ml-4 flex-grow flex-col items-center">
 	    <div class="flex flex-col">

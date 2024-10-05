@@ -2,44 +2,44 @@ export let EXPERIENCE = {
         experience: [
                 {
                         company: 'Cognitive & Neural Computation Lab',
-                        href: '',
+                        href: 'https://faculty.sites.uci.edu/cnclab/',
                         badges: [],
                         location: 'UC Irvine',
                         title: 'Research Assistant',
-                        logoUrl: '',
+                        logoUrl: 'imgs/cnc.png',
                         start: 'Aug 2024',
                         end: '',
-                        description: '22'
+                        description: ''
                 },
                 {
                         company: 'Salk Institute for Biological Studies',
-                        href: '',
+                        href: 'https://www.salk.edu/',
                         badges: [],
                         location: 'UC San Diego',
                         title: 'Data Science Research Intern',
-                        logoUrl: '',
+                        logoUrl: 'imgs/salk-institute.png',
                         start: 'Jan 2024',
                         end: 'Aug 2024',
                         description: ''
                 },
                 {
                         company: 'Breakout Mentors',
-                        href: '',
+                        href: 'https://breakoutmentors.com/',
                         badges: [],
                         location: 'Remote',
                         title: 'Machine Learning / Data Science Mentor',
-                        logoUrl: '',
+                        logoUrl: 'imgs/breakout-mentors.png',
                         start: 'Jan 2023',
                         end: 'Apr 2024',
                         description: ''
                 },
                 {
                         company: 'Triton Robotics',
-                        href: '',
+                        href: 'https://tritonrobotics.ucsd.edu/',
                         badges: [],
                         location: 'UC San Diego',
                         title: 'Computer Vision Team Lead',
-                        logoUrl: '',
+                        logoUrl: 'imgs/triton-robotics.png',
                         start: 'Nov 2020',
                         end: 'Mar 2024',
                         description: ''

@@ -15,7 +15,7 @@ export let PROJECTS = {
                                 }
                         ],
                         image: '',
-                        video: '/omniverse-virtual-assistant.mp4'
+                        video: 'videos/omniverse-virtual-assistant.mp4'
                 },
                 {
                         title: 'i-Note-it',
@@ -32,7 +32,7 @@ export let PROJECTS = {
                                 }
                         ],
                         image: '',
-                        video: '/i-note-it.mp4'
+                        video: 'videos/i-note-it.mp4'
                 },
                 {
                         title: 'Three Body Problem',
@@ -49,7 +49,7 @@ export let PROJECTS = {
                                 }
                         ],
                         image: '',
-                        video: '/three-body-problem.mp4'
+                        video: 'videos/three-body-problem.mp4'
                 },
                 {
                         title: 'Kunomenon',
@@ -66,7 +66,7 @@ export let PROJECTS = {
                                 }
                         ],
                         image: '',
-                        video: '/kunomenon.mp4'
+                        video: 'videos/kunomenon.mp4'
                 },
                 {
                         title: 'Kun Classfier',
@@ -83,7 +83,7 @@ export let PROJECTS = {
                                 }
                         ],
                         image: '',
-                        video: '/kun-classifier.mp4'
+                        video: 'videos/kun-classifier.mp4'
                 },
                  {
                         title: 'TR Computer Vision',
@@ -100,7 +100,7 @@ export let PROJECTS = {
                                 }
                         ],
                         image: '',
-                        video: '/TR-CV.mp4'
+                        video: 'videos/TR-CV.mp4'
                 },
              
         ]
