@@ -1,17 +1,6 @@
 export let EXPERIENCE = {
         experience: [
                 {
-                        company: 'Cognitive & Neural Computation Lab',
-                        href: 'https://faculty.sites.uci.edu/cnclab/',
-                        badges: [],
-                        location: 'UC Irvine',
-                        title: 'Research Assistant',
-                        logoUrl: 'imgs/cnc.png',
-                        start: 'Aug 2024',
-                        end: '',
-                        description: ''
-                },
-                {
                         company: 'Salk Institute for Biological Studies',
                         href: 'https://www.salk.edu/',
                         badges: [],
