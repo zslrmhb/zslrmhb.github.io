@@ -10,7 +10,7 @@
                     Hi, I'm Hongbin!
                 </h1>
                 <h2 class="max-w-[600px] md:text-xl">
-                    I LOVE crafting intuition though the art of data science.
+                    I LOVE crafting intuition and learning new things!
                 </h2>
             </div>
         </div>
