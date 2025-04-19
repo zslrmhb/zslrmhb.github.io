@@ -24,7 +24,7 @@ export let EXPERIENCE = {
                 },
                 {
                         company: 'Triton Robotics',
-                        href: 'https://tritonrobotics.ucsd.edu/',
+                        href: 'https://tritonrobotics.org',
                         badges: [],
                         location: 'UC San Diego',
                         title: 'Computer Vision Team Lead',
