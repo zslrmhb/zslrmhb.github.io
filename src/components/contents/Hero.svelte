@@ -33,7 +33,7 @@
                     {currentMessage}
                 </h1>
                 <h2 class="max-w-[600px] md:text-xl">
-                    LOVE crafting intuition and learning new things!
+                    <p>LOVE crafting intuition and learning new things!  
                 </h2>
             </div>
             <div>
