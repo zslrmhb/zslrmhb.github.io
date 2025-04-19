@@ -29,7 +29,7 @@
     <div class="mx-auto w-full max-w-3xl space-y-8 px-4">
         <div class="flex justify-between gap-2">
             <div class="flex flex-1 flex-col space-y-1.5">
-                <h1 class="text-2xl font-bold tracking-tighter sm:text-3xl xl:text-4xl/none"> 
+                <h1 class="md:text-2xl font-bold tracking-tighter sm:text-xl xl:text-4xl/none"> 
                     {currentMessage}
                 </h1>
                 <h2 class="max-w-[600px] md:text-xl">
