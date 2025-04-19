@@ -1,0 +1,9 @@
+{
+    "grammarly.selectors": [
+        {
+            "language": "svelte",
+            "scheme": "file",
+            "pattern": "src/components/contents/About.svelte"
+        }
+    ]
+}

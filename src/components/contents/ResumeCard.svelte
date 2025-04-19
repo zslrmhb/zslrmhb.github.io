@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Avatar from '$components/ui/avatar';
 
-        export let logoUrl: string = '';
+    export let logoUrl: string = '';
 	export let company: string = '';
 	export let title: string = '';
 	export let subtitle: string = '';
