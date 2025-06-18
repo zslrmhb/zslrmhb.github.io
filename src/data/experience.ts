@@ -1,6 +1,17 @@
 export let EXPERIENCE = {
         experience: [
                 {
+                        company: 'Amazon Web Services',
+                        href: 'https://aws.amazon.com',
+                        badges: [],
+                        location: 'Seattle',
+                        title: 'Software Engineer Intern',
+                        logoUrl: 'imgs/aws.svg',
+                        start: 'June 2025',
+                        end: '',
+                        description: ''
+                },
+                {
                         company: 'Salk Institute for Biological Studies',
                         href: 'https://www.salk.edu/',
                         badges: [],
