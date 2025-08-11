@@ -26,6 +26,7 @@
 		"prettier-plugin-tailwindcss": "^0.6.5",
 		"svelte": "^4.2.7",
 		"tailwindcss": "^3.4.9",
+		"tsx": "^4.20.3",
 		"vite": "^5.0.3"
 	},
 	"type": "module",
@@ -39,6 +40,7 @@
 		"bits-ui": "^0.21.16",
 		"clsx": "^2.1.1",
 		"d3": "^7.9.0",
+		"dotenv": "^17.2.1",
 		"marked": "^14.1.2",
 		"svelte-preprocess": "^6.0.0",
 		"tailwind-merge": "^2.5.2",

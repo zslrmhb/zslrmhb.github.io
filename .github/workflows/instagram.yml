@@ -1,0 +1,47 @@
+# .github/workflows/instagram.yml
+name: Fetch Instagram
+
+on:
+  schedule:
+    - cron: "0 0 * * 1"  # Mondays 00:00 UTC
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install deps
+        run: |
+          npm i axios
+
+      - name: Fetch Instagram media -> photos.json
+        env:
+          IG_APP_ID: ${{ secrets.IG_APP_ID }}
+          IG_APP_SECRET: ${{ secrets.IG_APP_SECRET }}
+          IG_LONG_LIVED_TOKEN: ${{ secrets.IG_LONG_LIVED_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}       # numeric user id for Basic Display
+        run: npx tsx scripts/fetch-instagram.ts
+
+      - name: Commit changes
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -A
+            git commit -m "chore(photos): update Instagram feed"
+            git push
+          else
+            echo "No changes."
+          fi

@@ -8,10 +8,5 @@
     {#each PERSONAL_INFO.navbar as item}
     <a href={item.href}> {item.label}</a>
     {/each}
-    {#each Object.entries(PERSONAL_INFO.contact.social)
-			.filter(([_, social]) => social.navbar)
-			.map(([_, social]) => social) as social}
-        <a href={social.url}> {social.name}</a>
-        {/each}
     </div>
 </nav>
