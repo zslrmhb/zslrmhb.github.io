@@ -1,5 +1,5 @@
 <script>
-	export let title = "Personal Website";
+	export let title = "Hongbin's Personal Website";
 	export let description = "Personal Website of Hongbin Miao";
 	export let url = "https://github.com/zslrmhb/zslrmhb.github.io";
 	export let keywords =
@@ -8,6 +8,7 @@
 
 <svelte:head>
 	<title>{title}</title>
+	<meta name="google-site-verification" content="DgO6uBoYdTqm97InDaKhNH6SvJTv89dR9LuRhrDEIRg" />
 	<meta name="description" content={description} />
 	<meta name="author" content="Hongbin Miao" />
 	<meta name="news_keywords" content={keywords} />
