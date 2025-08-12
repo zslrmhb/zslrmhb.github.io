@@ -1,7 +1,6 @@
 <script>
 	import '../app.css';
 	import Navbar from '@/components/portfolio/Navbar.svelte';
-	
 	import { ModeWatcher, setMode } from 'mode-watcher';
 	setMode('light');
 

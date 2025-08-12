@@ -2,6 +2,8 @@
     import {onMount, onDestroy} from 'svelte';
     import * as Avatar from '../ui/avatar';
     import { PERSONAL_INFO } from '@/data/personal_info';
+    import BlurFade from '../custom/BlurFade.svelte';
+    let BLUR_FADE_DELAY = 0.04;
 
     let messages = [
         "Hongbin Miao | Hi!",
@@ -27,24 +29,26 @@
 
 
 <section id="hero">
-    <div class="mx-auto w-full max-w-3xl space-y-8 px-4">
+    <div class="mx-auto w-full max-w-2xl space-y-8">
         <div class="flex justify-between gap-2">
             <div class="flex flex-1 flex-col space-y-1.5">
-                <h1 class="md:text-2xl font-bold tracking-tighter sm:text-xl xl:text-4xl/none"> 
-                    {currentMessage}
-                </h1>
-                <h2 class="max-w-[600px] md:text-xl">
-                    <p>LOVE crafting intuition and learning new things!  
-                </h2>
+                <BlurFade
+						delay={BLUR_FADE_DELAY}
+						class="md:text-2xl font-bold tracking-tighter sm:text-xl xl:text-4xl/none"
+						yOffset={8}>{currentMessage}</BlurFade
+					>
+					<BlurFade class="max-w-[600px] md:text-xl" delay={BLUR_FADE_DELAY}
+						>LOVE crafting intuition and learning new things! </BlurFade
+					>
             </div>
-            <div>
+            <BlurFade delay={BLUR_FADE_DELAY}>
                 <Avatar.Root class="size-40">
                     <Avatar.Image 
                     alt="My Photo" 
                     src={PERSONAL_INFO.personal_portrait}
                     class="object-contain w-full h-full"/>
                 </Avatar.Root>
-            </div>
+            </BlurFade>
         </div>
     </div>
 </section>

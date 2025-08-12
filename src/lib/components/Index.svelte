@@ -4,9 +4,9 @@
     import Education from "./portfolio/Education.svelte";
     import Experience from "./portfolio/Experience.svelte";
     import Projects from "./portfolio/Projects.svelte";
+
+    
 </script>
-
-
 
 <main class="flex min-h-[100dvh] flex-col space-y-10">
      <Hero/>

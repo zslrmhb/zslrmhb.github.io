@@ -1,5 +1,6 @@
 <script lang="ts">
     import { marked } from 'marked';
+    import Badge from '../ui/badge/badge.svelte';
     export let title: string;
     export let href: string = '';
     export let description: string;
@@ -12,7 +13,9 @@
 </script>
 
 <!-- Card -->
-<div class="flex h-full flex-col overflow-hidden border transition-all duration-300 ease-out hover:shadow-lg rounded-lg bg-card text-card-foreground">
+<div
+	class="flex h-full flex-col overflow-hidden border transition-all duration-300 ease-out hover:shadow-lg rounded-lg bg-card text-card-foreground"
+>
     <a href={href || '#'} class="block cursor-pointer">
 	{#if video}
 		<video
@@ -23,7 +26,7 @@
                     muted
 		></video>
 	{:else}
-		<img class="object-cover overflow-hidden" src={image}  alt={title}/>
+		<img class="h-40 w-full overflow-hidden object-cover object-top" src={image}  alt={title}/>
 	{/if}
 	</a>
     <!-- Card Header  -->
@@ -35,7 +38,7 @@
                 <div class="hidden font-sans text-xs underline print:visible">
                         {link?.replace('https://', '').replace('www.', '').replace('/', '')}
                 </div>
-                <div class="prose  dark:prose-invert max-w-full text-pretty font-sans text-xs text-muted-foreground text-gray-500">
+                <div class="prose dark:prose-invert max-w-full text-pretty font-sans text-xs text-muted-foreground">
                       {@html marked(description)}
                 </div>
         </div>
@@ -45,7 +48,9 @@
         {#if tags && tags.length > 0}
             <div class="mt-2 flex flex-wrap gap-1">
                 {#each tags as tag}
-                    <div class="rounded-[4px] px-1 py-0 text-[10px]">{tag}</div>
+                <Badge class="rounded-[4px] px-1 py-0 text-[10px]" variant="secondary">
+                    {tag}
+                </Badge>
                 {/each}
             </div>
         {/if}
@@ -55,7 +60,11 @@
         {#if links && links.length > 0}
             <div class="flex flex-row flex-wrap items-start gap-1">
                 {#each links as link}
-                    <a href={link?.href} target="_blank" rel="noopener noreferrer">
+                    <a href={link?.href} target="_blank">
+                        <!-- <Badge class="flex gap-1 px-2 py-1 text-[10px] items-center justify-center">
+							<svelte:component this={link.icon} class="size-3 mb-px" strokeWidth={1.6} />
+							{link.type}
+						</Badge> -->
                     </a>
                 {/each}
             </div>

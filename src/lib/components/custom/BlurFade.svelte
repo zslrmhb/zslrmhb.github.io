@@ -14,6 +14,7 @@
       visible: { opacity: 1, y: 0, filter: `blur(0px)` },
     };
     let isInView = "hidden";
+    let hasPlayed = false;
   
     let className = "";
     export { className as class };
@@ -36,7 +37,12 @@
         use:inview={{ rootMargin: inViewMargin, unobserveOnEnter: once }}
         use:motion
         on:inview_change={({ detail }) => {
-          isInView = detail.inView ? "visible" : "hidden";
+          if (detail.inView) {
+            hasPlayed = true;
+            isInView = "visible";
+          } else if (!once && !hasPlayed) {
+            isInView = "hidden";
+          }
         }}
         class={cn(className)}
       >
@@ -44,4 +50,3 @@
       </div>
     </Motion>
   </AnimatePresence>
-  
