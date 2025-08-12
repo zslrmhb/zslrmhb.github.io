@@ -1,12 +1,15 @@
-<script lang="ts">
+<script>
 	import '../app.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import Navbar from '@/components/portfolio/Navbar.svelte';
+	
+	import { ModeWatcher, setMode } from 'mode-watcher';
+	setMode('light');
 
 	let { children } = $props();
 </script>
 
-<svelte:head>
-	<link rel="icon" href={favicon} />
-</svelte:head>
-
-{@render children?.()}
+<ModeWatcher />
+<div class="relative mx-auto min-h-screen max-w-2xl bg-background px-6 py-12 font-sans antialiased sm:py-24">
+	{@render children()}
+	<Navbar />
+</div>
