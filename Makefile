@@ -7,4 +7,4 @@ github:
 				touch docs/.nojekyll
 				git add -A 
 				git commit -m "update github pages"
-				git push
+				git push origin HEAD:svelte5
