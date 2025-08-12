@@ -5,8 +5,7 @@ on:
   schedule:
     - cron: "0 0 * * 1"  # Mondays 00:00 UTC
   push:
-    branches:
-      - main
+    branches: [svelte5]
   workflow_dispatch: {}
 
 permissions:
