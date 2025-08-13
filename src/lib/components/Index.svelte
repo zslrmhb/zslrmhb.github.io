@@ -4,7 +4,6 @@
     import Education from "./portfolio/Education.svelte";
     import Experience from "./portfolio/Experience.svelte";
     import Projects from "./portfolio/Projects.svelte";
-
     
 </script>
 

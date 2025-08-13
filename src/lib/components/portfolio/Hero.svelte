@@ -29,7 +29,7 @@
 
 
 <section id="hero">
-    <div class="mx-auto w-full max-w-2xl space-y-8">
+    <div class="mx-auto w-full max-w-2xl space-y-8 mt-10">
         <div class="flex justify-between gap-2">
             <div class="flex flex-1 flex-col space-y-1.5">
                 <BlurFade

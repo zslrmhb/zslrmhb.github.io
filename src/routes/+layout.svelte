@@ -9,6 +9,7 @@
 
 <ModeWatcher />
 <div class="relative mx-auto min-h-screen max-w-2xl bg-background px-6 py-12 font-sans antialiased sm:py-24">
+	<Navbar variant="top"/>
 	{@render children()}
-	<Navbar />
+	
 </div>
