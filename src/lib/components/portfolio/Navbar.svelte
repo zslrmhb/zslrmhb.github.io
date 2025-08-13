@@ -116,7 +116,7 @@
 				>
 				  <span class="inline-flex items-center gap-2">
 					<svelte:component this={item.icon} class="size-4" strokeWidth={1.75} />
-					<span class="text-sm">{item.label}</span>
+					<!-- <span class="text-sm">{item.label}</span> -->
 				  </span>
 				</Button>
 			  </Tooltip.Trigger>
