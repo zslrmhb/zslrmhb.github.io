@@ -3,7 +3,7 @@
   
     export let photo: Photo;
     /** optional: sm | md | lg (controls width) */
-    export let size: "sm" | "md" | "lg" = "md";
+    export let size: "sm" | "md" | "lg";
     /** pass extra classes if needed */
     export let className = "";
   

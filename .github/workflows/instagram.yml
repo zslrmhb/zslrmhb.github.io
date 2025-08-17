@@ -6,7 +6,7 @@ on:
     - cron: "0 0 * * 1"  # Mondays 00:00 UTC
   push:
     branches:
-      - main
+      - svelte5
   workflow_dispatch: {}
 
 permissions:
@@ -22,9 +22,6 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install deps
-        run: |
-          npm i axios
 
       - name: Fetch Instagram media -> photos.json
         env:
