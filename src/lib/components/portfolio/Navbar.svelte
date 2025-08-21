@@ -109,7 +109,6 @@
 			  <Tooltip.Trigger>
 				<Button
 				  href={item.href}
-				  data-sveltekit-preload-data
 				  variant="ghost"
 				  size="sm"
 				  class="h-9 rounded-full px-3"
@@ -132,7 +131,6 @@
 			  <Tooltip.Trigger>
 				<Button
 				  href={item.href}
-				  data-sveltekit-preload-data
 				  variant="ghost"
 				  size="icon"
 				  class="size-10 rounded-full"
