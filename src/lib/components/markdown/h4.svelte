@@ -13,6 +13,11 @@
 	} = $props();
 </script>
 
-<h4 class={cn('text-xl font-medium mt-3', className)} {...restprops}>
+<h4 class={cn(
+		'mt-8 scroll-m-20 text-lg font-semibold tracking-tight', 
+		`group relative mb-2 mt-6 w-fit cursor-pointer before:absolute before:-left-4 hover:before:content-['#']`,
+		'scroll-mt-16 font-semibold slashed-zero tracking-tighter lg:scroll-mt-8',
+		className)} 
+		{...restprops}>
 	{@render children()}
 </h4>

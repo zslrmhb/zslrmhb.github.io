@@ -6,13 +6,13 @@
 	let {
 		class: className = undefined,
 		children,
-		...restprops
-	}: HTMLAttributes<HTMLHeadingElement> & {
+		...restProps
+	}: HTMLAttributes<HTMLParagraphElement> & {
 		class: string | undefined | null;
 		children: Snippet;
 	} = $props();
 </script>
 
-<h1 class={cn('mt-2 scroll-m-20 text-4xl font-bold', className)} {...restprops}>
+<p class={cn('mb-4 leading-slacker last:mb-0', className)} {...restProps}>
 	{@render children()}
-</h1>
+</p>

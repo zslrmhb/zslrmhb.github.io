@@ -7,18 +7,18 @@ summary: A comprehensive example showcasing the enhanced blog layout with sticky
 categories: ["Web Development", "SvelteKit", "Tutorial"]
 ---
 
-# Introduction to Advanced Blog Features
+## Introduction to Advanced Blog Features
 
 This blog post demonstrates the enhanced layout system that provides a rich reading experience similar to top technical blogs. The layout includes several key features that improve navigation and readability.
 
-## Key Features Overview
+### Key Features Overview
 
 Our enhanced blog layout incorporates several modern design patterns that have become standard in technical writing platforms.
 
 
 
 
-### Sticky Navigation Bar
+#### Sticky Navigation Bar
 
 The navigation bar remains accessible at all times, positioned in the top-left corner of the viewport. It includes:
 
@@ -26,49 +26,49 @@ The navigation bar remains accessible at all times, positioned in the top-left c
 - **Mode Toggle**: Switch between light and dark themes
 - **Compact Design**: Minimal visual footprint with backdrop blur
 
-### Dynamic Table of Contents
+#### Dynamic Table of Contents
 
 The table of contents system provides excellent navigation for long-form content:
 
-#### Collapsible Design
+##### Collapsible Design
 - Hidden by default to maximize reading space
 - Expandable via the right-side chevron button
 - Smooth animations for showing/hiding
 
-#### Smart Content Shifting
+##### Smart Content Shifting
 - Content automatically shifts left when TOC is visible
 - Maintains optimal reading width
 - Smooth transitions prevent jarring layout changes
 
-#### Hierarchical Structure
+##### Hierarchical Structure
 - Supports all heading levels (H1-H6)
 - Proper indentation for nested sections
 - Smooth scrolling to target sections
 
-## Typography and Content Structure
+### Typography and Content Structure
 
 The blog layout uses carefully crafted typography settings that enhance readability across different content types.
 
-### Heading Hierarchy
+#### Heading Hierarchy
 
 The heading system follows a clear visual hierarchy:
 
-#### Primary Headings (H1)
+# Primary Headings (H1)
 Used for the main title and major section breaks.
 
-#### Secondary Headings (H2)  
+## Secondary Headings (H2)  
 Perfect for main topic divisions within an article.
 
-#### Tertiary Headings (H3)
+### Tertiary Headings (H3)
 Ideal for subsections and detailed topic exploration.
 
-##### Fourth Level (H4)
+#### Fourth Level (H4)
 Useful for detailed breakdowns and specific points.
 
-###### Fifth Level (H5)
+##### Fifth Level (H5)
 For fine-grained organization of complex topics.
 
-####### Sixth Level (H6)
+###### Sixth Level (H6)
 The most specific level of organization available.
 
 ### Content Formatting
@@ -200,5 +200,3 @@ This enhanced blog layout system provides a modern, accessible, and user-friendl
 The system successfully balances functionality with aesthetics, ensuring that content remains the focus while providing powerful navigation and customization tools. Whether you're writing technical tutorials, personal essays, or comprehensive guides, this layout system adapts to support your content goals.
 
 The implementation demonstrates how modern web technologies can create reading experiences that rival traditional publishing platforms while maintaining the flexibility and performance advantages of static site generation.
-
-# Other point
