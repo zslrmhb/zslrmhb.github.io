@@ -8,7 +8,8 @@ categories: ["Deep Learning"]
 ---
 
 ## Youtube channels
-
+- [DeepLearning.AI](https://www.youtube.com/@Deeplearningai)
+> This is superb!
 - [3Blue1Brown](https://www.youtube.com/@3blue1brown)
 > Highly Recommended, very intuitive explaination!
 - [Andrej Karpathy](https://www.youtube.com/@AndrejKarpathy)
