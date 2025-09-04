@@ -1,8 +1,8 @@
 <script module>
 	import './markdown.pcss';
-	import { h1, h2, h3, h4, h5, h6, li, ul, p, a} from '$lib/components/markdown';
+	import { h1, h2, h3, h4, h5, h6, blockquote, li, ul, p, a } from '$lib/components/markdown';
 
-	export { h1, h2, h3, h4, h5, h6, li, ul, p, a};
+	export { h1, h2, h3, h4, h5, h6, blockquote, li, ul, p, a };
 </script>
 
 <script lang="ts">

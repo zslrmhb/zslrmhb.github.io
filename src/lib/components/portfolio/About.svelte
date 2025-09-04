@@ -17,7 +17,7 @@
             through my projects (and hopefully through my blogs) 😃!</p>
             <br/>
             <p>Currently Learning: 
-                <a href="https://csdiy.wiki/en/计算机系统基础/CSAPP/"><u>CSAPP</u></a>,
+                <a href="https://www.amazon.com/AI-Engineering-Building-Applications-Foundation/dp/1098166302"><u>AI Engineering</u></a>,
                 <a href="https://mml-book.github.io"><u>Mathematics for Machine Learning</u></a> 
             </p>
             <p>Currently Exploring: 

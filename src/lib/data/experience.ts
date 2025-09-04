@@ -14,7 +14,7 @@ export let EXPERIENCE = {
                     title: 'Software Engineer Intern',
                     logoUrl: AwsSvg,
                     start: 'June 2025',
-                    end: '',
+                    end: 'Sep 2025',
                     description: ''
             },
             {

@@ -21,7 +21,8 @@ function rehypeCustomComponents() {
 			'Components.h3',
 			'Components.h4',
 			'Components.h5',
-			'Components.h6'
+			'Components.h6',
+			'Components.blockquote'
 		];
 
 		visit(tree, (node) => {
