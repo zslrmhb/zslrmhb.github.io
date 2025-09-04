@@ -41,7 +41,7 @@ categories: ["Deep Learning"]
 > Taken verbatim from the book description "An authoritative, accessible, and up-to-date treatment of deep learning that strikes a pragmatic middle ground between theory and practice"
 - [Deep Learning: Foundations and Concepts](https://www.bishopbook.com)
 > Latest book by the author of the famous book: [Pattern Recognition and Machine Learning](https://www.microsoft.com/en-us/research/wp-content/uploads/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf)
-- [Deep Learning (Adaptive Computation and Machine Learning series)](https://www.google.com/search?client=safari&rls=en&q=deep+learning+adative&ie=UTF-8&oe=UTF-8)
+- [Deep Learning (Adaptive Computation and Machine Learning series)](https://www.deeplearningbook.org)
 > The "Bible" of Deep Learning (theory-heavy)
 - [Probabilistic Machine Learning: An Introduction](https://probml.github.io/pml-book/book1.html)
 > Machine Learning Encyclopedia Vol. 1
