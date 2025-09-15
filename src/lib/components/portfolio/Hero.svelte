@@ -46,7 +46,7 @@
                     <Avatar.Image 
                     alt="My Photo" 
                     src={PERSONAL_INFO.personal_portrait}
-                    class="object-contain w-full h-full"/>
+                    class="object-cover "/>
                 </Avatar.Root>
             </BlurFade>
         </div>
