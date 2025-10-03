@@ -33,7 +33,7 @@ export let EXPERIENCE = {
                     href: 'https://breakoutmentors.com/',
                     badges: [],
                     location: 'Remote',
-                    title: 'Machine Learning / Data Science Mentor',
+                    title: 'Machine Learning Intern',
                     logoUrl: BmPng,
                     start: 'Jan 2023',
                     end: 'Apr 2024',
