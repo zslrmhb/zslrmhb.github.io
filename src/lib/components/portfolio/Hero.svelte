@@ -42,7 +42,7 @@
 					>
             </div>
             <BlurFade delay={BLUR_FADE_DELAY}>
-                <Avatar.Root class="size-40">
+                <Avatar.Root class="size-30">
                     <Avatar.Image 
                     alt="My Photo" 
                     src={PERSONAL_INFO.personal_portrait}
