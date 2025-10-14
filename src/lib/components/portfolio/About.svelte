@@ -23,7 +23,7 @@
             <p>Research Interest: 
                 <a href="https://github.com/leofan90/Awesome-World-Models?tab=readme-ov-file#foundation-paper-of-world-model"><u>World Models</u></a>,
                 <a href="https://transformer-circuits.pub"><u>Mechanistic Interpretability</u></a>,
-                <a href="https://github.com/GMvandeVen/continual-learning"><u>Continual Learning</u></a>
+                <a href="https://youtu.be/gEbbGyNkR2U?si=UDOyahWRNr8Bu3KS"><u>Continual Learning</u></a>
             </p>
         </div>
     </BlurFade>
