@@ -9,7 +9,7 @@ export let EDUCATION = {
                     degree: "Master of Data Science",
                     logoUrl: UciSvg,
                     start: "Sep 2024",
-                    end: ""
+                    end: "Dec 2026"
             }, 
             {
                     school: "UC San Diego",
