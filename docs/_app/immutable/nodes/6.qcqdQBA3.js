@@ -1,1 +1,241 @@
-import"../chunks/DsnmJJEf.js";import"../chunks/CRJC6bhr.js";import{p as N,f as b,c as k,s as H,d as t,u as l,r as _,t as j,a as c,b as S,e as R,aI as Q,F as C,G as F,aH as U,g as G}from"../chunks/BfTMFq0c.js";import{s as A,b as P,e as q,g as I,i as M,c as z}from"../chunks/DrzAit6R.js";import{i as T}from"../chunks/CuHUdPRB.js";import{p as u,i as O}from"../chunks/BPV7WAZE.js";import{s as V}from"../chunks/Dzs_ntad.js";const W=!0;async function X({fetch:m}){return{photos:await(await m("/photos.json")).json()}}const ve=Object.freeze(Object.defineProperty({__proto__:null,load:X,prerender:W},Symbol.toStringTag,{value:"Module"}));var Y=b('<div class="line-clamp-2 text-xs leading-snug"> </div>'),Z=b('<div class="mt-0.5 text-[10px] uppercase tracking-wide text-white/80"> </div>'),$=b('<div class="pointer-events-none absolute inset-x-0 bottom-0 p-2 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"><!> <!></div>'),ee=b('<a target="_blank" rel="noreferrer"><img class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]" loading="lazy" decoding="async"/> <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div> <!></a>');function L(m,a){N(a,!1);let e=u(a,"photo",8),i=u(a,"size",8),w=u(a,"className",8,"");function x(r){return r?new Date(r).toLocaleDateString(void 0,{year:"numeric",month:"short"}):""}const f={sm:"w-48",md:"w-64",lg:"w-80"};T();var n=ee(),v=k(n),d=H(v,4);{var o=r=>{var s=$(),p=k(s);{var y=g=>{var h=Y(),D=k(h,!0);_(h),j(()=>R(D,(t(e()),l(()=>e().caption)))),c(g,h)};O(p,g=>{t(e()),l(()=>e().caption)&&g(y)})}var E=H(p,2);{var J=g=>{var h=Z(),D=k(h,!0);_(h),j(K=>R(D,K),[()=>(t(e()),l(()=>x(e().takenAt)))]),c(g,h)};O(E,g=>{t(e()),l(()=>e().takenAt)&&g(J)})}_(s),c(r,s)};O(d,r=>{t(e()),l(()=>e().caption||e().takenAt)&&r(o)})}_(n),j(()=>{A(n,"href",(t(e()),l(()=>e().permalink))),P(n,1,(t(i()),t(w()),l(()=>`group relative block ${f[i()]} aspect-[3/2] overflow-hidden rounded-lg ${w()}`))),A(n,"title",(t(e()),l(()=>e().caption))),A(v,"src",(t(e()),l(()=>e().thumb))),A(v,"alt",(t(e()),l(()=>e().caption||"Photo")))}),c(m,n),S()}var te=b("<div><!></div>"),ae=b("<div></div>");function B(m,a){N(a,!1);let e=u(a,"pauseOnHover",8,!1),i=u(a,"vertical",8,!1),w=u(a,"repeat",8,4),x=u(a,"reverse",8,!1),f=u(a,"class",8,"");T();var n=ae();q(n,5,()=>({length:w()}),M,(v,d)=>{var o=te(),r=k(o);V(r,a,"default",{},s=>{var p=Q("Default");c(s,p)}),_(o),j(s=>P(o,1,s),[()=>I((t(z),t(i()),t(e()),t(x()),l(()=>z("flex shrink-0 justify-around [gap:var(--gap)]",{"animate-marquee flex-row":!i(),"animate-marquee-vertical flex-col":i(),"group-hover:[animation-play-state:paused]":e(),"[animation-direction:reverse]":x()}))))]),c(v,o)}),_(n),j(v=>P(n,1,v),[()=>I((t(z),t(i()),t(f()),l(()=>z("group flex overflow-hidden p-2 [--duration:2s] [--gap:1rem] [gap:var(--gap)]",{"flex-row":!i(),"flex-col":i()},f()))))]),c(m,n),S()}var re=b('<div class="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-background py-20"><!> <!> <div class="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white dark:from-background"></div> <div class="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white dark:from-background"></div></div>');function ue(m,a){N(a,!1);const i=[...u(a,"data",8)().photos].sort((d,o)=>{const r=d.takenAt?new Date(d.takenAt).getTime():0;return(o.takenAt?new Date(o.takenAt).getTime():0)-r}),w=i.filter((d,o)=>o%2===0),x=i.filter((d,o)=>o%2===1);T();var f=re(),n=k(f);B(n,{pauseOnHover:!0,class:"[--duration:50s]",children:(d,o)=>{var r=C(),s=F(r);q(s,1,()=>w,M,(p,y)=>{L(p,{get photo(){return G(y)},size:"lg"})}),c(d,r)},$$slots:{default:!0}});var v=H(n,2);B(v,{reverse:!0,pauseOnHover:!0,class:"[--duration:50s]",children:(d,o)=>{var r=C(),s=F(r);q(s,1,()=>x,M,(p,y)=>{L(p,{get photo(){return G(y)},size:"lg"})}),c(d,r)},$$slots:{default:!0}}),U(4),_(f),c(m,f),S()}export{ue as component,ve as universal};
+import '../chunks/DsnmJJEf.js';
+import '../chunks/CRJC6bhr.js';
+import {
+	p as N,
+	f as b,
+	c as k,
+	s as H,
+	d as t,
+	u as l,
+	r as _,
+	t as j,
+	a as c,
+	b as S,
+	e as R,
+	aI as Q,
+	F as C,
+	G as F,
+	aH as U,
+	g as G
+} from '../chunks/BfTMFq0c.js';
+import { s as A, b as P, e as q, g as I, i as M, c as z } from '../chunks/DrzAit6R.js';
+import { i as T } from '../chunks/CuHUdPRB.js';
+import { p as u, i as O } from '../chunks/BPV7WAZE.js';
+import { s as V } from '../chunks/Dzs_ntad.js';
+const W = !0;
+async function X({ fetch: m }) {
+	return { photos: await (await m('/photos.json')).json() };
+}
+const ve = Object.freeze(
+	Object.defineProperty({ __proto__: null, load: X, prerender: W }, Symbol.toStringTag, {
+		value: 'Module'
+	})
+);
+var Y = b('<div class="line-clamp-2 text-xs leading-snug"> </div>'),
+	Z = b('<div class="mt-0.5 text-[10px] uppercase tracking-wide text-white/80"> </div>'),
+	$ = b(
+		'<div class="pointer-events-none absolute inset-x-0 bottom-0 p-2 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"><!> <!></div>'
+	),
+	ee = b(
+		'<a target="_blank" rel="noreferrer"><img class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]" loading="lazy" decoding="async"/> <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div> <!></a>'
+	);
+function L(m, a) {
+	N(a, !1);
+	let e = u(a, 'photo', 8),
+		i = u(a, 'size', 8),
+		w = u(a, 'className', 8, '');
+	function x(r) {
+		return r ? new Date(r).toLocaleDateString(void 0, { year: 'numeric', month: 'short' }) : '';
+	}
+	const f = { sm: 'w-48', md: 'w-64', lg: 'w-80' };
+	T();
+	var n = ee(),
+		v = k(n),
+		d = H(v, 4);
+	{
+		var o = (r) => {
+			var s = $(),
+				p = k(s);
+			{
+				var y = (g) => {
+					var h = Y(),
+						D = k(h, !0);
+					(_(h), j(() => R(D, (t(e()), l(() => e().caption)))), c(g, h));
+				};
+				O(p, (g) => {
+					(t(e()), l(() => e().caption) && g(y));
+				});
+			}
+			var E = H(p, 2);
+			{
+				var J = (g) => {
+					var h = Z(),
+						D = k(h, !0);
+					(_(h), j((K) => R(D, K), [() => (t(e()), l(() => x(e().takenAt)))]), c(g, h));
+				};
+				O(E, (g) => {
+					(t(e()), l(() => e().takenAt) && g(J));
+				});
+			}
+			(_(s), c(r, s));
+		};
+		O(d, (r) => {
+			(t(e()), l(() => e().caption || e().takenAt) && r(o));
+		});
+	}
+	(_(n),
+		j(() => {
+			(A(n, 'href', (t(e()), l(() => e().permalink))),
+				P(
+					n,
+					1,
+					(t(i()),
+					t(w()),
+					l(() => `group relative block ${f[i()]} aspect-[3/2] overflow-hidden rounded-lg ${w()}`))
+				),
+				A(n, 'title', (t(e()), l(() => e().caption))),
+				A(v, 'src', (t(e()), l(() => e().thumb))),
+				A(v, 'alt', (t(e()), l(() => e().caption || 'Photo'))));
+		}),
+		c(m, n),
+		S());
+}
+var te = b('<div><!></div>'),
+	ae = b('<div></div>');
+function B(m, a) {
+	N(a, !1);
+	let e = u(a, 'pauseOnHover', 8, !1),
+		i = u(a, 'vertical', 8, !1),
+		w = u(a, 'repeat', 8, 4),
+		x = u(a, 'reverse', 8, !1),
+		f = u(a, 'class', 8, '');
+	T();
+	var n = ae();
+	(q(
+		n,
+		5,
+		() => ({ length: w() }),
+		M,
+		(v, d) => {
+			var o = te(),
+				r = k(o);
+			(V(r, a, 'default', {}, (s) => {
+				var p = Q('Default');
+				c(s, p);
+			}),
+				_(o),
+				j(
+					(s) => P(o, 1, s),
+					[
+						() =>
+							I(
+								(t(z),
+								t(i()),
+								t(e()),
+								t(x()),
+								l(() =>
+									z('flex shrink-0 justify-around [gap:var(--gap)]', {
+										'animate-marquee flex-row': !i(),
+										'animate-marquee-vertical flex-col': i(),
+										'group-hover:[animation-play-state:paused]': e(),
+										'[animation-direction:reverse]': x()
+									})
+								))
+							)
+					]
+				),
+				c(v, o));
+		}
+	),
+		_(n),
+		j(
+			(v) => P(n, 1, v),
+			[
+				() =>
+					I(
+						(t(z),
+						t(i()),
+						t(f()),
+						l(() =>
+							z(
+								'group flex overflow-hidden p-2 [--duration:2s] [--gap:1rem] [gap:var(--gap)]',
+								{ 'flex-row': !i(), 'flex-col': i() },
+								f()
+							)
+						))
+					)
+			]
+		),
+		c(m, n),
+		S());
+}
+var re = b(
+	'<div class="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-background py-20"><!> <!> <div class="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white dark:from-background"></div> <div class="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white dark:from-background"></div></div>'
+);
+function ue(m, a) {
+	N(a, !1);
+	const i = [...u(a, 'data', 8)().photos].sort((d, o) => {
+			const r = d.takenAt ? new Date(d.takenAt).getTime() : 0;
+			return (o.takenAt ? new Date(o.takenAt).getTime() : 0) - r;
+		}),
+		w = i.filter((d, o) => o % 2 === 0),
+		x = i.filter((d, o) => o % 2 === 1);
+	T();
+	var f = re(),
+		n = k(f);
+	B(n, {
+		pauseOnHover: !0,
+		class: '[--duration:50s]',
+		children: (d, o) => {
+			var r = C(),
+				s = F(r);
+			(q(
+				s,
+				1,
+				() => w,
+				M,
+				(p, y) => {
+					L(p, {
+						get photo() {
+							return G(y);
+						},
+						size: 'lg'
+					});
+				}
+			),
+				c(d, r));
+		},
+		$$slots: { default: !0 }
+	});
+	var v = H(n, 2);
+	(B(v, {
+		reverse: !0,
+		pauseOnHover: !0,
+		class: '[--duration:50s]',
+		children: (d, o) => {
+			var r = C(),
+				s = F(r);
+			(q(
+				s,
+				1,
+				() => x,
+				M,
+				(p, y) => {
+					L(p, {
+						get photo() {
+							return G(y);
+						},
+						size: 'lg'
+					});
+				}
+			),
+				c(d, r));
+		},
+		$$slots: { default: !0 }
+	}),
+		U(4),
+		_(f),
+		c(m, f),
+		S());
+}
+export { ue as component, ve as universal };

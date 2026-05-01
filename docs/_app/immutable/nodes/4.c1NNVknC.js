@@ -1,0 +1,112 @@
+import '../chunks/DsnmJJEf.js';
+import '../chunks/B5_alTbJ.js';
+import {
+	q as F,
+	r as d,
+	v as G,
+	w as n,
+	x as J,
+	$ as K,
+	y as _,
+	z as m,
+	A as b,
+	e as t,
+	B as i,
+	C as a,
+	D as w,
+	E as y
+} from '../chunks/7lH0bu5J.js';
+import { p as L, i as k } from '../chunks/CwxTF5KJ.js';
+import { e as O, s as A, f as D } from '../chunks/0UGGdwXT.js';
+import { i as P } from '../chunks/Cm3kWbeN.js';
+var Q = d(
+		'<meta name="description" content="Notes and resources from Hongbin Miao on AI, engineering, and learning."/>'
+	),
+	R = d('<time class="shrink-0 text-xs text-muted-foreground"> </time>'),
+	S = d('<p class="mt-2 max-w-xl text-sm leading-6 text-muted-foreground"> </p>'),
+	T = d(
+		'<li><a class="group block py-5"><div class="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between"><h2 class="text-base leading-6 font-medium group-hover:underline"> </h2> <!></div> <!></a></li>'
+	),
+	U = d('<ul class="divide-y divide-border/70"></ul>'),
+	V = d('<p class="text-sm text-muted-foreground">No published posts yet.</p>'),
+	X = d(
+		'<section class="mx-auto w-full max-w-2xl pt-16 pb-24 sm:pt-10"><header class="mb-10"><h1 class="text-3xl leading-tight font-semibold">Blog</h1> <p class="mt-3 max-w-xl text-sm leading-6 text-muted-foreground">Writing notes, technical references, and things worth revisiting.</p></header> <!></section>'
+	);
+function re(N, B) {
+	F(B, !1);
+	let v = L(B, 'data', 8);
+	P();
+	var c = X();
+	G((r) => {
+		var o = Q();
+		((K.title = 'Blog'), n(r, o));
+	});
+	var j = _(m(c), 2);
+	{
+		var q = (r) => {
+				var o = U();
+				(O(
+					o,
+					5,
+					() => (b(v()), t(() => v().posts)),
+					(u) => u.slug,
+					(u, e) => {
+						var f = T(),
+							g = m(f),
+							x = m(g),
+							p = m(x),
+							C = m(p, !0);
+						i(p);
+						var E = _(p, 2);
+						{
+							var H = (l) => {
+								var s = R(),
+									h = m(s, !0);
+								(i(s),
+									w(
+										(W) => {
+											(A(s, 'datetime', (a(e), t(() => a(e).date))), y(h, W));
+										},
+										[() => (b(D), a(e), t(() => D(a(e).date)))]
+									),
+									n(l, s));
+							};
+							k(E, (l) => {
+								(a(e), t(() => a(e).date) && l(H));
+							});
+						}
+						i(x);
+						var I = _(x, 2);
+						{
+							var M = (l) => {
+								var s = S(),
+									h = m(s, !0);
+								(i(s), w(() => y(h, (a(e), t(() => a(e).summary ?? a(e).description)))), n(l, s));
+							};
+							k(I, (l) => {
+								(a(e), t(() => a(e).summary || a(e).description) && l(M));
+							});
+						}
+						(i(g),
+							i(f),
+							w(() => {
+								(A(g, 'href', `/blog/${(a(e), t(() => a(e).slug) ?? '')}`),
+									y(C, (a(e), t(() => a(e).title))));
+							}),
+							n(u, f));
+					}
+				),
+					i(o),
+					n(r, o));
+			},
+			z = (r) => {
+				var o = V();
+				n(r, o);
+			};
+		k(j, (r) => {
+			(b(v()), t(() => v().posts.length > 0) ? r(q) : r(z, !1));
+		});
+	}
+	(i(c), n(N, c), J());
+}
+export { re as component };

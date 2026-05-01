@@ -3,7 +3,7 @@ name: Fetch Instagram + Build Site
 
 on:
   schedule:
-    - cron: "0 0 * * 1" # Mondays 00:00 UTC
+    - cron: '0 0 * * 1' # Mondays 00:00 UTC
   push:
     branches:
       - svelte5
@@ -31,7 +31,7 @@ jobs:
           IG_APP_SECRET: ${{ secrets.IG_APP_SECRET }}
           IG_LONG_LIVED_TOKEN: ${{ secrets.IG_LONG_LIVED_TOKEN }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
-        run: npx tsx scripts/fetch-instagram.ts
+        run: npm run photos:fetch
 
       - name: Build site
         run: |

@@ -1,1 +1,38 @@
-import{L as c,M as f,N as _,W as d,X as l,Y as u,O as h,Q as m,H as v,Z as y,U as o,_ as g}from"./BfTMFq0c.js";function E(r,s,...n){var t=r,e=v,a;c(()=>{e!==(e=s())&&(a&&(y(a),a=null),a=m(()=>e(t,...n)))},h),f&&(t=o)}function N(r){return(s,...n)=>{var t=r(...n),e;if(f)e=o,_();else{var a=t.render().trim(),p=d(a);e=g(p),s.before(e)}const i=t.setup?.(e);l(e,e),typeof i=="function"&&u(i)}}export{N as c,E as s};
+import {
+	L as c,
+	M as f,
+	N as _,
+	W as d,
+	X as l,
+	Y as u,
+	O as h,
+	Q as m,
+	H as v,
+	Z as y,
+	U as o,
+	_ as g
+} from './BfTMFq0c.js';
+function E(r, s, ...n) {
+	var t = r,
+		e = v,
+		a;
+	(c(() => {
+		e !== (e = s()) && (a && (y(a), (a = null)), (a = m(() => e(t, ...n))));
+	}, h),
+		f && (t = o));
+}
+function N(r) {
+	return (s, ...n) => {
+		var t = r(...n),
+			e;
+		if (f) ((e = o), _());
+		else {
+			var a = t.render().trim(),
+				p = d(a);
+			((e = g(p)), s.before(e));
+		}
+		const i = t.setup?.(e);
+		(l(e, e), typeof i == 'function' && u(i));
+	};
+}
+export { N as c, E as s };

@@ -3,7 +3,7 @@
 	import About from './portfolio/About.svelte';
 	import Education from './portfolio/Education.svelte';
 	import Experience from './portfolio/Experience.svelte';
-    import Skills from './portfolio/Skills.svelte';
+	import Skills from './portfolio/Skills.svelte';
 	import Projects from './portfolio/Projects.svelte';
 </script>
 
@@ -12,6 +12,6 @@
 	<About />
 	<Education />
 	<Experience />
-    <!-- <Skills /> -->
+	<!-- <Skills /> -->
 	<Projects />
 </main>

@@ -9,57 +9,46 @@
 	<title>{data.meta.title}</title>
 	<meta property="og:type" content="article" />
 	<meta property="og:title" content={data.meta.title} />
+	{#if data.meta.summary}
+		<meta name="description" content={data.meta.summary} />
+		<meta property="og:description" content={data.meta.summary} />
+	{/if}
 </svelte:head>
 
+<article class="relative mx-auto max-w-3xl px-1 pt-14 pb-24 sm:pt-20">
+	<hgroup class="mb-8">
+		<h1 class="mb-4 text-3xl leading-tight font-semibold md:text-4xl">
+			{data.meta.title}
+		</h1>
 
-<article class="relative pt-20 px-6 max-w-4xl mx-auto">
-	<!-- Title + meta info -->
-	<hgroup class="mb-6">
-	  <h1 class="mb-4 text-4xl font-bold tracking-tight">
-		{data.meta.title}
-	  </h1>
-	  
-	  <!-- Meta line similar to Lilian Weng's blog -->
-	  <div class="mb-4 text-sm text-muted-foreground">
-		<span>Date: {formatDate(data.meta.date, 'long')}</span>
-		{#if data.meta.author}
-		  <span class="mx-2">|</span>
-		  <span>Author: {data.meta.author}</span>
-		{:else}
-		  <span class="mx-2">|</span>
-		  <span>Author: Your Name</span>
+		<div class="mb-5 flex flex-wrap gap-x-3 gap-y-1 text-sm text-muted-foreground">
+			<span>{formatDate(data.meta.date, 'long')}</span>
+			<span aria-hidden="true">/</span>
+			<span>{data.meta.author ?? 'Hongbin Miao'}</span>
+		</div>
+
+		{#if data.meta.summary}
+			<p class="max-w-2xl text-base leading-7 text-muted-foreground md:text-lg">
+				{data.meta.summary}
+			</p>
 		{/if}
-	  </div>
-	  
-	  <!-- Summary if available -->
-	  {#if data.meta.summary}
-		<p class="mb-4 text-lg text-muted-foreground leading-relaxed">
-		  {data.meta.summary}
-		</p>
-	  {/if}
 	</hgroup>
 
-	<!-- Tags -->
 	{#if data.meta?.categories && data.meta.categories.length > 0}
-	<div class="tags mb-6 flex flex-wrap gap-2">
-	 {#each data.meta.categories as category}
-		<Badge variant="outline" class="rounded-full">{category}</Badge>
-	 {/each}
-	</div>
+		<div class="tags mb-8 flex flex-wrap gap-2">
+			{#each data.meta.categories as category (category)}
+				<Badge variant="outline" class="rounded-md px-2 py-0.5 text-xs font-normal">
+					{category}
+				</Badge>
+			{/each}
+		</div>
 	{/if}
-	
-	
 
-	<Separator class="mb-8" />
+	<Separator class="mb-10" />
 
-	<!-- Content area -->
 	<div
-	  class="markdown prose prose-lg dark:prose-invert max-w-none"
+		class="markdown prose prose-neutral dark:prose-invert prose-headings:tracking-normal prose-p:leading-7 prose-li:leading-7 prose-a:underline-offset-4 max-w-none"
 	>
-	  <data.content />
+		<data.content />
 	</div>
-
 </article>
-
-
-

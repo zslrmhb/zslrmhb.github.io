@@ -1,7 +1,7 @@
 <script>
-	import Index from "@/components/Index.svelte";
-	import Meta from "@/components/Meta.svelte";
+	import Index from '@/components/Index.svelte';
+	import Meta from '@/components/Meta.svelte';
 </script>
 
-<Meta/>
-<Index/>
+<Meta />
+<Index />

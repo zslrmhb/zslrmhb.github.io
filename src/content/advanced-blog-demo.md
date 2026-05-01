@@ -4,7 +4,7 @@ date: 2025-08-19
 published: false
 author: Your Name
 summary: A comprehensive example showcasing the enhanced blog layout with sticky navigation, collapsible table of contents, and improved typography. This post demonstrates all the key features inspired by modern technical blogs.
-categories: ["Web Development", "SvelteKit", "Tutorial"]
+categories: ['Web Development', 'SvelteKit', 'Tutorial']
 ---
 
 ## Introduction to Advanced Blog Features
@@ -14,9 +14,6 @@ This blog post demonstrates the enhanced layout system that provides a rich read
 ### Key Features Overview
 
 Our enhanced blog layout incorporates several modern design patterns that have become standard in technical writing platforms.
-
-
-
 
 #### Sticky Navigation Bar
 
@@ -31,16 +28,19 @@ The navigation bar remains accessible at all times, positioned in the top-left c
 The table of contents system provides excellent navigation for long-form content:
 
 ##### Collapsible Design
+
 - Hidden by default to maximize reading space
 - Expandable via the right-side chevron button
 - Smooth animations for showing/hiding
 
 ##### Smart Content Shifting
+
 - Content automatically shifts left when TOC is visible
 - Maintains optimal reading width
 - Smooth transitions prevent jarring layout changes
 
 ##### Hierarchical Structure
+
 - Supports all heading levels (H1-H6)
 - Proper indentation for nested sections
 - Smooth scrolling to target sections
@@ -54,21 +54,27 @@ The blog layout uses carefully crafted typography settings that enhance readabil
 The heading system follows a clear visual hierarchy:
 
 # Primary Headings (H1)
+
 Used for the main title and major section breaks.
 
-## Secondary Headings (H2)  
+## Secondary Headings (H2)
+
 Perfect for main topic divisions within an article.
 
 ### Tertiary Headings (H3)
+
 Ideal for subsections and detailed topic exploration.
 
 #### Fourth Level (H4)
+
 Useful for detailed breakdowns and specific points.
 
 ##### Fifth Level (H5)
+
 For fine-grained organization of complex topics.
 
 ###### Sixth Level (H6)
+
 The most specific level of organization available.
 
 ### Content Formatting
@@ -77,7 +83,7 @@ The layout supports various content types with appropriate styling:
 
 **Bold text** for emphasis and **important concepts**.
 
-*Italic text* for subtle emphasis and *foreign terms*.
+_Italic text_ for subtle emphasis and _foreign terms_.
 
 `Inline code` for technical terms and short code snippets.
 
@@ -89,9 +95,9 @@ Code blocks receive special formatting with syntax highlighting:
 
 ```javascript
 function calculateReadingTime(text) {
-  const wordsPerMinute = 200;
-  const words = text.trim().split(/\s+/).length;
-  return Math.ceil(words / wordsPerMinute);
+	const wordsPerMinute = 200;
+	const words = text.trim().split(/\s+/).length;
+	return Math.ceil(words / wordsPerMinute);
 }
 ```
 
@@ -118,7 +124,7 @@ The system automatically calculates reading time based on content length, using 
 The layout adapts to different screen sizes while maintaining functionality:
 
 - **Desktop**: Full TOC sidebar experience
-- **Tablet**: Collapsible TOC with content shifting  
+- **Tablet**: Collapsible TOC with content shifting
 - **Mobile**: Optimized navigation and typography
 
 ### Meta Information Display
@@ -146,7 +152,7 @@ Proper heading structure serves multiple purposes:
 Breaking content into digestible sections improves reader engagement:
 
 - **Short Paragraphs**: Easier to scan and read
-- **Logical Grouping**: Related concepts stay together  
+- **Logical Grouping**: Related concepts stay together
 - **Visual Breaks**: Whitespace and separators prevent fatigue
 - **Progressive Disclosure**: TOC allows jumping to relevant sections
 
@@ -157,12 +163,15 @@ Breaking content into digestible sections improves reader engagement:
 The blog system leverages SvelteKit's powerful features:
 
 #### File-Based Routing
+
 Each blog post is a separate `.svx` file that combines Svelte components with Markdown content.
 
 #### Automatic Processing
+
 The build system automatically processes frontmatter, generates routes, and optimizes content delivery.
 
 #### Component Integration
+
 Svelte components can be embedded directly in Markdown for interactive content.
 
 ### Performance Optimizations
@@ -179,16 +188,19 @@ Several performance considerations are built into the system:
 The current system provides a solid foundation for additional features:
 
 ### Enhanced Navigation
+
 - **Progress Indicator**: Show reading progress through the article
 - **Next/Previous**: Links to adjacent posts
 - **Related Posts**: Algorithmic content suggestions
 
 ### Interactive Elements
+
 - **Comment System**: Reader engagement and discussion
 - **Social Sharing**: Easy sharing to social platforms
 - **Bookmark System**: Save articles for later reading
 
 ### Analytics Integration
+
 - **Reading Analytics**: Track engagement metrics
 - **Popular Sections**: Identify most-read content
 - **User Behavior**: Optimize layout based on usage patterns

@@ -13,7 +13,7 @@ export let PROJECTS = {
 			dates: 'Feb 2024 - March 2024',
 			active: false,
 			description: 'A visual explorable of the Three Body Problem inspired by Matrix Explorable',
-			technologies: ["Javascript", "Threlte", "GSAP", "Skeleton UI", "Katex"],
+			technologies: ['Javascript', 'Threlte', 'GSAP', 'Skeleton UI', 'Katex'],
 			links: [
 				{
 					type: '',
@@ -24,13 +24,13 @@ export let PROJECTS = {
 			image: '',
 			video: TbpVid
 		},
-                {
+		{
 			title: 'Kunomenon',
 			href: 'https://github.com/zslrmhb/Kunomenon',
 			dates: 'Feb 2024',
 			active: false,
 			description: 'The trend behind top 3000+ Cai Xukun videos on Bilibili',
-			technologies: ["Javascript", "Svelte", "D3.js"],
+			technologies: ['Javascript', 'Svelte', 'D3.js'],
 			links: [
 				{
 					type: '',
@@ -41,13 +41,13 @@ export let PROJECTS = {
 			image: '',
 			video: KVid
 		},
-                {
+		{
 			title: 'TR Computer Vision',
 			href: 'https://github.com/zslrmhb/TRCV_2023',
 			dates: 'April 2023',
 			active: false,
 			description: 'computer vision codebase for Triton Robotics @ UC San Diego',
-			technologies: ["C++", "OpenCV", "ROS2", "CUDA", "Tensor-RT"],
+			technologies: ['C++', 'OpenCV', 'ROS2', 'CUDA', 'Tensor-RT'],
 			links: [
 				{
 					type: '',
@@ -64,7 +64,7 @@ export let PROJECTS = {
 			dates: 'Dec 2022 - Jan 2023',
 			active: false,
 			description: 'Audio2Face Avatar with Riva SDK functionality',
-			technologies: ["Python", "Nvidia Riva", "Audio2Face", "Wikipedia API"],
+			technologies: ['Python', 'Nvidia Riva', 'Audio2Face', 'Wikipedia API'],
 			links: [
 				{
 					type: '',
@@ -81,7 +81,7 @@ export let PROJECTS = {
 			dates: 'Jan 2023',
 			active: false,
 			description: 'Enhanced Note-Taking Experience with Artificial Intelligence',
-			technologies: ["Python", "Streamlit", "AI21 Labs API"],
+			technologies: ['Python', 'Streamlit', 'AI21 Labs API'],
 			links: [
 				{
 					type: '',
@@ -93,14 +93,13 @@ export let PROJECTS = {
 			video: IniVid
 		},
 
-		
 		{
 			title: 'Kun Classfier',
 			href: 'https://github.com/zslrmhb/Kun_Classifier',
 			dates: 'Oct 2022 - Nov 2022',
 			active: false,
 			description: 'A meme-inspired binary classifier',
-			technologies: ["Python", "PyTorch", "OpenCV", "Streamlit"],
+			technologies: ['Python', 'PyTorch', 'OpenCV', 'Streamlit'],
 			links: [
 				{
 					type: '',
@@ -110,7 +109,6 @@ export let PROJECTS = {
 			],
 			image: '',
 			video: KcVid
-		},
-		
+		}
 	]
 };

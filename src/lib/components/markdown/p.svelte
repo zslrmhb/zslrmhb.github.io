@@ -13,6 +13,6 @@
 	} = $props();
 </script>
 
-<p class={cn('mb-4 leading-slacker last:mb-0', className)} {...restProps}>
+<p class={cn('mb-4 leading-7 last:mb-0', className)} {...restProps}>
 	{@render children()}
 </p>

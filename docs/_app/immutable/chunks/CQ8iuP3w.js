@@ -1,0 +1,1243 @@
+import './DsnmJJEf.js';
+import './B5_alTbJ.js';
+import {
+	q as A,
+	r as d,
+	w as s,
+	x as I,
+	z as H,
+	B,
+	G as P,
+	ag as n,
+	y as a,
+	af as o
+} from './7lH0bu5J.js';
+import { h as $e } from './BEfl0AYo.js';
+import { p as O, r as M, l as me, s as Pe } from './CwxTF5KJ.js';
+import { B as ke, H as S, P as v, b as m, U as k, L as u, a as xe } from './Cajbuw0W.js';
+import { s as E } from './Dm31YeMj.js';
+import { a as L, c as D } from './0UGGdwXT.js';
+var ye = d('<h1><!></h1>');
+function be(b, g) {
+	A(g, !0);
+	let w = O(g, 'class', 3, void 0),
+		T = M(g, ['$$slots', '$$events', '$$legacy', 'class', 'children']);
+	var _ = ye();
+	L(_, (y) => ({ class: y, ...T }), [() => D('mt-2 scroll-m-20 text-4xl font-bold', w())]);
+	var x = H(_);
+	(E(x, () => g.children), B(_), s(b, _), I());
+}
+var we = d('<h4><!></h4>');
+function C(b, g) {
+	A(g, !0);
+	let w = O(g, 'class', 3, void 0),
+		T = M(g, ['$$slots', '$$events', '$$legacy', 'class', 'children']);
+	var _ = we();
+	L(_, (y) => ({ class: y, ...T }), [
+		() =>
+			D(
+				'mt-8 scroll-m-20 text-lg font-semibold tracking-normal',
+				"group relative mt-6 mb-2 w-fit cursor-pointer before:absolute before:-left-4 hover:before:content-['#']",
+				'scroll-mt-20 font-semibold tracking-normal slashed-zero',
+				w()
+			)
+	]);
+	var x = H(_);
+	(E(x, () => g.children), B(_), s(b, _), I());
+}
+var Te = d('<h5><!></h5>');
+function z(b, g) {
+	A(g, !0);
+	let w = O(g, 'class', 3, void 0),
+		T = M(g, ['$$slots', '$$events', '$$legacy', 'class', 'children']);
+	var _ = Te();
+	L(_, (y) => ({ class: y, ...T }), [
+		() =>
+			D(
+				'mt-8 scroll-m-20 text-lg font-semibold tracking-normal',
+				"group relative mt-6 mb-2 w-fit cursor-pointer before:absolute before:-left-4 hover:before:content-['#']",
+				'scroll-mt-20 font-semibold tracking-normal slashed-zero',
+				w()
+			)
+	]);
+	var x = H(_);
+	(E(x, () => g.children), B(_), s(b, _), I());
+}
+var Se = d('<h6><!></h6>');
+function Ce(b, g) {
+	A(g, !0);
+	let w = O(g, 'class', 3, void 0),
+		T = M(g, ['$$slots', '$$events', '$$legacy', 'class', 'children']);
+	var _ = Se();
+	L(_, (y) => ({ class: y, ...T }), [
+		() =>
+			D(
+				'mt-8 scroll-m-20 text-base font-semibold tracking-normal',
+				"group relative mt-6 mb-2 w-fit cursor-pointer before:absolute before:-left-4 hover:before:content-['#']",
+				'scroll-mt-20 font-semibold tracking-normal slashed-zero',
+				w()
+			)
+	]);
+	var x = H(_);
+	(E(x, () => g.children), B(_), s(b, _), I());
+}
+const ve = {
+		title: 'Advanced Blog Layout with Table of Contents',
+		date: '2025-08-19T00:00:00.000Z',
+		published: !1,
+		author: 'Your Name',
+		summary:
+			'A comprehensive example showcasing the enhanced blog layout with sticky navigation, collapsible table of contents, and improved typography. This post demonstrates all the key features inspired by modern technical blogs.',
+		categories: ['Web Development', 'SvelteKit', 'Tutorial']
+	},
+	{ title: Bs, date: zs, published: As, author: Is, summary: Os, categories: Ms } = ve;
+var He = d('<strong>Back Button</strong>: Quick navigation to the blog index', 1),
+	Be = d('<strong>Mode Toggle</strong>: Switch between light and dark themes', 1),
+	ze = d('<strong>Compact Design</strong>: Minimal visual footprint with backdrop blur', 1),
+	Ae = d('<!> <!> <!>', 1),
+	Ie = d('<!> <!> <!>', 1),
+	Oe = d('<!> <!> <!>', 1),
+	Me = d('<!> <!> <!>', 1),
+	Ee = d('<strong>Bold text</strong> for emphasis and <strong>important concepts</strong>.', 1),
+	Le = d('<em>Italic text</em> for subtle emphasis and <em>foreign terms</em>.', 1),
+	De = d('<code>Inline code</code> for technical terms and short code snippets.', 1),
+	Fe = d('<strong>Desktop</strong>: Full TOC sidebar experience', 1),
+	Re = d('<strong>Tablet</strong>: Collapsible TOC with content shifting', 1),
+	Ne = d('<strong>Mobile</strong>: Optimized navigation and typography', 1),
+	Ue = d('<!> <!> <!>', 1),
+	je = d('<strong>Publication Date</strong>: Formatted for readability', 1),
+	qe = d('<strong>Reading Time</strong>: Automatically calculated', 1),
+	Ke = d('<strong>Author Information</strong>: Customizable per post', 1),
+	Ge = d('<strong>Categories</strong>: Tag-based organization system', 1),
+	We = d('<!> <!> <!> <!>', 1),
+	Qe = d(
+		'<strong>SEO Optimization</strong>: Search engines use heading hierarchy for content understanding',
+		1
+	),
+	Ve = d('<strong>Accessibility</strong>: Screen readers navigate via heading structure', 1),
+	Ye = d('<strong>User Experience</strong>: Clear visual hierarchy aids comprehension', 1),
+	Ze = d('<strong>Table of Contents</strong>: Automatic generation from heading structure', 1),
+	Je = d('<strong>Short Paragraphs</strong>: Easier to scan and read', 1),
+	Xe = d('<strong>Logical Grouping</strong>: Related concepts stay together', 1),
+	ts = d('<strong>Visual Breaks</strong>: Whitespace and separators prevent fatigue', 1),
+	es = d('<strong>Progressive Disclosure</strong>: TOC allows jumping to relevant sections', 1),
+	ss = d('<!> <!> <!> <!>', 1),
+	as = d(
+		'Each blog post is a separate <code>.svx</code> file that combines Svelte components with Markdown content.',
+		1
+	),
+	os = d('<strong>Lazy Loading</strong>: TOC generation occurs only when needed', 1),
+	rs = d('<strong>Smooth Animations</strong>: Hardware-accelerated transitions', 1),
+	ns = d('<strong>Backdrop Blur</strong>: Modern CSS effects with fallbacks', 1),
+	ls = d('<strong>Efficient Re-rendering</strong>: Minimal DOM updates for state changes', 1),
+	is = d('<!> <!> <!> <!>', 1),
+	ds = d('<strong>Progress Indicator</strong>: Show reading progress through the article', 1),
+	cs = d('<strong>Next/Previous</strong>: Links to adjacent posts', 1),
+	us = d('<strong>Related Posts</strong>: Algorithmic content suggestions', 1),
+	ps = d('<!> <!> <!>', 1),
+	$s = d('<strong>Comment System</strong>: Reader engagement and discussion', 1),
+	vs = d('<strong>Social Sharing</strong>: Easy sharing to social platforms', 1),
+	hs = d('<strong>Bookmark System</strong>: Save articles for later reading', 1),
+	fs = d('<!> <!> <!>', 1),
+	gs = d('<strong>Reading Analytics</strong>: Track engagement metrics', 1),
+	_s = d('<strong>Popular Sections</strong>: Identify most-read content', 1),
+	ms = d('<strong>User Behavior</strong>: Optimize layout based on usage patterns', 1),
+	Ps = d('<!> <!> <!>', 1),
+	ks = d(
+		'<!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <pre class="language-javascript"><!></pre> <pre class="language-python"><!></pre> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <ol><!> <!> <!> <!></ol> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!>',
+		1
+	);
+function Es(b, g) {
+	const w = me(g, ['children', '$$slots', '$$events', '$$legacy']);
+	ke(
+		b,
+		Pe(
+			() => w,
+			() => ve,
+			{
+				children: (T, _) => {
+					var x = ks(),
+						y = P(x);
+					S(y, {
+						children: (e, r) => {
+							o();
+							var t = n('Introduction to Advanced Blog Features');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var U = a(y, 2);
+					v(U, {
+						children: (e, r) => {
+							o();
+							var t = n(
+								'This blog post demonstrates the enhanced layout system that provides a rich reading experience similar to top technical blogs. The layout includes several key features that improve navigation and readability.'
+							);
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var j = a(U, 2);
+					m(j, {
+						children: (e, r) => {
+							o();
+							var t = n('Key Features Overview');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var q = a(j, 2);
+					v(q, {
+						children: (e, r) => {
+							o();
+							var t = n(
+								'Our enhanced blog layout incorporates several modern design patterns that have become standard in technical writing platforms.'
+							);
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var K = a(q, 2);
+					C(K, {
+						children: (e, r) => {
+							o();
+							var t = n('Sticky Navigation Bar');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var G = a(K, 2);
+					v(G, {
+						children: (e, r) => {
+							o();
+							var t = n(
+								'The navigation bar remains accessible at all times, positioned in the top-left corner of the viewport. It includes:'
+							);
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var W = a(G, 2);
+					k(W, {
+						children: (e, r) => {
+							var t = Ae(),
+								$ = P(t);
+							u($, {
+								children: (i, c) => {
+									var l = He();
+									(o(), s(i, l));
+								},
+								$$slots: { default: !0 }
+							});
+							var p = a($, 2);
+							u(p, {
+								children: (i, c) => {
+									var l = Be();
+									(o(), s(i, l));
+								},
+								$$slots: { default: !0 }
+							});
+							var h = a(p, 2);
+							(u(h, {
+								children: (i, c) => {
+									var l = ze();
+									(o(), s(i, l));
+								},
+								$$slots: { default: !0 }
+							}),
+								s(e, t));
+						},
+						$$slots: { default: !0 }
+					});
+					var Q = a(W, 2);
+					C(Q, {
+						children: (e, r) => {
+							o();
+							var t = n('Dynamic Table of Contents');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var V = a(Q, 2);
+					v(V, {
+						children: (e, r) => {
+							o();
+							var t = n(
+								'The table of contents system provides excellent navigation for long-form content:'
+							);
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var Y = a(V, 2);
+					z(Y, {
+						children: (e, r) => {
+							o();
+							var t = n('Collapsible Design');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var Z = a(Y, 2);
+					k(Z, {
+						children: (e, r) => {
+							var t = Ie(),
+								$ = P(t);
+							u($, {
+								children: (i, c) => {
+									o();
+									var l = n('Hidden by default to maximize reading space');
+									s(i, l);
+								},
+								$$slots: { default: !0 }
+							});
+							var p = a($, 2);
+							u(p, {
+								children: (i, c) => {
+									o();
+									var l = n('Expandable via the right-side chevron button');
+									s(i, l);
+								},
+								$$slots: { default: !0 }
+							});
+							var h = a(p, 2);
+							(u(h, {
+								children: (i, c) => {
+									o();
+									var l = n('Smooth animations for showing/hiding');
+									s(i, l);
+								},
+								$$slots: { default: !0 }
+							}),
+								s(e, t));
+						},
+						$$slots: { default: !0 }
+					});
+					var J = a(Z, 2);
+					z(J, {
+						children: (e, r) => {
+							o();
+							var t = n('Smart Content Shifting');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var X = a(J, 2);
+					k(X, {
+						children: (e, r) => {
+							var t = Oe(),
+								$ = P(t);
+							u($, {
+								children: (i, c) => {
+									o();
+									var l = n('Content automatically shifts left when TOC is visible');
+									s(i, l);
+								},
+								$$slots: { default: !0 }
+							});
+							var p = a($, 2);
+							u(p, {
+								children: (i, c) => {
+									o();
+									var l = n('Maintains optimal reading width');
+									s(i, l);
+								},
+								$$slots: { default: !0 }
+							});
+							var h = a(p, 2);
+							(u(h, {
+								children: (i, c) => {
+									o();
+									var l = n('Smooth transitions prevent jarring layout changes');
+									s(i, l);
+								},
+								$$slots: { default: !0 }
+							}),
+								s(e, t));
+						},
+						$$slots: { default: !0 }
+					});
+					var tt = a(X, 2);
+					z(tt, {
+						children: (e, r) => {
+							o();
+							var t = n('Hierarchical Structure');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var et = a(tt, 2);
+					k(et, {
+						children: (e, r) => {
+							var t = Me(),
+								$ = P(t);
+							u($, {
+								children: (i, c) => {
+									o();
+									var l = n('Supports all heading levels (H1-H6)');
+									s(i, l);
+								},
+								$$slots: { default: !0 }
+							});
+							var p = a($, 2);
+							u(p, {
+								children: (i, c) => {
+									o();
+									var l = n('Proper indentation for nested sections');
+									s(i, l);
+								},
+								$$slots: { default: !0 }
+							});
+							var h = a(p, 2);
+							(u(h, {
+								children: (i, c) => {
+									o();
+									var l = n('Smooth scrolling to target sections');
+									s(i, l);
+								},
+								$$slots: { default: !0 }
+							}),
+								s(e, t));
+						},
+						$$slots: { default: !0 }
+					});
+					var st = a(et, 2);
+					m(st, {
+						children: (e, r) => {
+							o();
+							var t = n('Typography and Content Structure');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var at = a(st, 2);
+					v(at, {
+						children: (e, r) => {
+							o();
+							var t = n(
+								'The blog layout uses carefully crafted typography settings that enhance readability across different content types.'
+							);
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var ot = a(at, 2);
+					C(ot, {
+						children: (e, r) => {
+							o();
+							var t = n('Heading Hierarchy');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var rt = a(ot, 2);
+					v(rt, {
+						children: (e, r) => {
+							o();
+							var t = n('The heading system follows a clear visual hierarchy:');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var nt = a(rt, 2);
+					be(nt, {
+						children: (e, r) => {
+							o();
+							var t = n('Primary Headings (H1)');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var lt = a(nt, 2);
+					v(lt, {
+						children: (e, r) => {
+							o();
+							var t = n('Used for the main title and major section breaks.');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var it = a(lt, 2);
+					S(it, {
+						children: (e, r) => {
+							o();
+							var t = n('Secondary Headings (H2)');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var dt = a(it, 2);
+					v(dt, {
+						children: (e, r) => {
+							o();
+							var t = n('Perfect for main topic divisions within an article.');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var ct = a(dt, 2);
+					m(ct, {
+						children: (e, r) => {
+							o();
+							var t = n('Tertiary Headings (H3)');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var ut = a(ct, 2);
+					v(ut, {
+						children: (e, r) => {
+							o();
+							var t = n('Ideal for subsections and detailed topic exploration.');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var pt = a(ut, 2);
+					C(pt, {
+						children: (e, r) => {
+							o();
+							var t = n('Fourth Level (H4)');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var $t = a(pt, 2);
+					v($t, {
+						children: (e, r) => {
+							o();
+							var t = n('Useful for detailed breakdowns and specific points.');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var vt = a($t, 2);
+					z(vt, {
+						children: (e, r) => {
+							o();
+							var t = n('Fifth Level (H5)');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var ht = a(vt, 2);
+					v(ht, {
+						children: (e, r) => {
+							o();
+							var t = n('For fine-grained organization of complex topics.');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var ft = a(ht, 2);
+					Ce(ft, {
+						children: (e, r) => {
+							o();
+							var t = n('Sixth Level (H6)');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var gt = a(ft, 2);
+					v(gt, {
+						children: (e, r) => {
+							o();
+							var t = n('The most specific level of organization available.');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var _t = a(gt, 2);
+					m(_t, {
+						children: (e, r) => {
+							o();
+							var t = n('Content Formatting');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var mt = a(_t, 2);
+					v(mt, {
+						children: (e, r) => {
+							o();
+							var t = n('The layout supports various content types with appropriate styling:');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var Pt = a(mt, 2);
+					v(Pt, {
+						children: (e, r) => {
+							var t = Ee();
+							(o(3), s(e, t));
+						},
+						$$slots: { default: !0 }
+					});
+					var kt = a(Pt, 2);
+					v(kt, {
+						children: (e, r) => {
+							var t = Le();
+							(o(3), s(e, t));
+						},
+						$$slots: { default: !0 }
+					});
+					var xt = a(kt, 2);
+					v(xt, {
+						children: (e, r) => {
+							var t = De();
+							(o(), s(e, t));
+						},
+						$$slots: { default: !0 }
+					});
+					var yt = a(xt, 2);
+					xe(yt, {
+						children: (e, r) => {
+							v(e, {
+								children: (t, $) => {
+									o();
+									var p = n(
+										'Blockquotes for highlighting important information or quotes from external sources. The styling includes a left border and italic formatting for visual distinction.'
+									);
+									s(t, p);
+								},
+								$$slots: { default: !0 }
+							});
+						},
+						$$slots: { default: !0 }
+					});
+					var bt = a(yt, 2);
+					m(bt, {
+						children: (e, r) => {
+							o();
+							var t = n('Code Blocks');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var wt = a(bt, 2);
+					v(wt, {
+						children: (e, r) => {
+							o();
+							var t = n('Code blocks receive special formatting with syntax highlighting:');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var F = a(wt, 2),
+						he = H(F);
+					($e(
+						he,
+						() => `<code class="language-javascript"><span class="token keyword">function</span> <span class="token function">calculateReadingTime</span><span class="token punctuation">(</span><span class="token parameter">text</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">const</span> wordsPerMinute <span class="token operator">=</span> <span class="token number">200</span><span class="token punctuation">;</span>
+	<span class="token keyword">const</span> words <span class="token operator">=</span> text<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token regex">/s+/</span><span class="token punctuation">)</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+	<span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">ceil</span><span class="token punctuation">(</span>words <span class="token operator">/</span> wordsPerMinute<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code>`
+					),
+						B(F));
+					var R = a(F, 2),
+						fe = H(R);
+					($e(
+						fe,
+						() => `<code class="language-python"><span class="token keyword">def</span> <span class="token function">generate_toc</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""Generate table of contents from markdown headings."""</span>
+    headings <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> line <span class="token keyword">in</span> content<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'&#92;n'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> line<span class="token punctuation">.</span>startswith<span class="token punctuation">(</span><span class="token string">'#'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            level <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>line<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">' '</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            text <span class="token operator">=</span> line<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'#'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            headings<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">'level'</span><span class="token punctuation">:</span> level<span class="token punctuation">,</span> <span class="token string">'text'</span><span class="token punctuation">:</span> text<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> headings</code>`
+					),
+						B(R));
+					var Tt = a(R, 2);
+					S(Tt, {
+						children: (e, r) => {
+							o();
+							var t = n('Advanced Layout Features');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var St = a(Tt, 2);
+					m(St, {
+						children: (e, r) => {
+							o();
+							var t = n('Reading Time Estimation');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var Ct = a(St, 2);
+					v(Ct, {
+						children: (e, r) => {
+							o();
+							var t = n(
+								'The system automatically calculates reading time based on content length, using industry-standard metrics of approximately 200 words per minute.'
+							);
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var Ht = a(Ct, 2);
+					m(Ht, {
+						children: (e, r) => {
+							o();
+							var t = n('Responsive Design Considerations');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var Bt = a(Ht, 2);
+					v(Bt, {
+						children: (e, r) => {
+							o();
+							var t = n(
+								'The layout adapts to different screen sizes while maintaining functionality:'
+							);
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var zt = a(Bt, 2);
+					k(zt, {
+						children: (e, r) => {
+							var t = Ue(),
+								$ = P(t);
+							u($, {
+								children: (i, c) => {
+									var l = Fe();
+									(o(), s(i, l));
+								},
+								$$slots: { default: !0 }
+							});
+							var p = a($, 2);
+							u(p, {
+								children: (i, c) => {
+									var l = Re();
+									(o(), s(i, l));
+								},
+								$$slots: { default: !0 }
+							});
+							var h = a(p, 2);
+							(u(h, {
+								children: (i, c) => {
+									var l = Ne();
+									(o(), s(i, l));
+								},
+								$$slots: { default: !0 }
+							}),
+								s(e, t));
+						},
+						$$slots: { default: !0 }
+					});
+					var At = a(zt, 2);
+					m(At, {
+						children: (e, r) => {
+							o();
+							var t = n('Meta Information Display');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var It = a(At, 2);
+					v(It, {
+						children: (e, r) => {
+							o();
+							var t = n('Each blog post includes comprehensive metadata:');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var Ot = a(It, 2);
+					k(Ot, {
+						children: (e, r) => {
+							var t = We(),
+								$ = P(t);
+							u($, {
+								children: (c, l) => {
+									var f = je();
+									(o(), s(c, f));
+								},
+								$$slots: { default: !0 }
+							});
+							var p = a($, 2);
+							u(p, {
+								children: (c, l) => {
+									var f = qe();
+									(o(), s(c, f));
+								},
+								$$slots: { default: !0 }
+							});
+							var h = a(p, 2);
+							u(h, {
+								children: (c, l) => {
+									var f = Ke();
+									(o(), s(c, f));
+								},
+								$$slots: { default: !0 }
+							});
+							var i = a(h, 2);
+							(u(i, {
+								children: (c, l) => {
+									var f = Ge();
+									(o(), s(c, f));
+								},
+								$$slots: { default: !0 }
+							}),
+								s(e, t));
+						},
+						$$slots: { default: !0 }
+					});
+					var Mt = a(Ot, 2);
+					S(Mt, {
+						children: (e, r) => {
+							o();
+							var t = n('Content Organization Best Practices');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var Et = a(Mt, 2);
+					m(Et, {
+						children: (e, r) => {
+							o();
+							var t = n('Strategic Use of Headings');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var Lt = a(Et, 2);
+					v(Lt, {
+						children: (e, r) => {
+							o();
+							var t = n('Proper heading structure serves multiple purposes:');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var N = a(Lt, 2),
+						Dt = H(N);
+					u(Dt, {
+						children: (e, r) => {
+							var t = Qe();
+							(o(), s(e, t));
+						},
+						$$slots: { default: !0 }
+					});
+					var Ft = a(Dt, 2);
+					u(Ft, {
+						children: (e, r) => {
+							var t = Ve();
+							(o(), s(e, t));
+						},
+						$$slots: { default: !0 }
+					});
+					var Rt = a(Ft, 2);
+					u(Rt, {
+						children: (e, r) => {
+							var t = Ye();
+							(o(), s(e, t));
+						},
+						$$slots: { default: !0 }
+					});
+					var ge = a(Rt, 2);
+					(u(ge, {
+						children: (e, r) => {
+							var t = Ze();
+							(o(), s(e, t));
+						},
+						$$slots: { default: !0 }
+					}),
+						B(N));
+					var Nt = a(N, 2);
+					m(Nt, {
+						children: (e, r) => {
+							o();
+							var t = n('Content Chunking');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var Ut = a(Nt, 2);
+					v(Ut, {
+						children: (e, r) => {
+							o();
+							var t = n('Breaking content into digestible sections improves reader engagement:');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var jt = a(Ut, 2);
+					k(jt, {
+						children: (e, r) => {
+							var t = ss(),
+								$ = P(t);
+							u($, {
+								children: (c, l) => {
+									var f = Je();
+									(o(), s(c, f));
+								},
+								$$slots: { default: !0 }
+							});
+							var p = a($, 2);
+							u(p, {
+								children: (c, l) => {
+									var f = Xe();
+									(o(), s(c, f));
+								},
+								$$slots: { default: !0 }
+							});
+							var h = a(p, 2);
+							u(h, {
+								children: (c, l) => {
+									var f = ts();
+									(o(), s(c, f));
+								},
+								$$slots: { default: !0 }
+							});
+							var i = a(h, 2);
+							(u(i, {
+								children: (c, l) => {
+									var f = es();
+									(o(), s(c, f));
+								},
+								$$slots: { default: !0 }
+							}),
+								s(e, t));
+						},
+						$$slots: { default: !0 }
+					});
+					var qt = a(jt, 2);
+					S(qt, {
+						children: (e, r) => {
+							o();
+							var t = n('Technical Implementation Details');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var Kt = a(qt, 2);
+					m(Kt, {
+						children: (e, r) => {
+							o();
+							var t = n('SvelteKit Integration');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var Gt = a(Kt, 2);
+					v(Gt, {
+						children: (e, r) => {
+							o();
+							var t = n('The blog system leverages SvelteKit’s powerful features:');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var Wt = a(Gt, 2);
+					C(Wt, {
+						children: (e, r) => {
+							o();
+							var t = n('File-Based Routing');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var Qt = a(Wt, 2);
+					v(Qt, {
+						children: (e, r) => {
+							o();
+							var t = as();
+							(o(2), s(e, t));
+						},
+						$$slots: { default: !0 }
+					});
+					var Vt = a(Qt, 2);
+					C(Vt, {
+						children: (e, r) => {
+							o();
+							var t = n('Automatic Processing');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var Yt = a(Vt, 2);
+					v(Yt, {
+						children: (e, r) => {
+							o();
+							var t = n(
+								'The build system automatically processes frontmatter, generates routes, and optimizes content delivery.'
+							);
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var Zt = a(Yt, 2);
+					C(Zt, {
+						children: (e, r) => {
+							o();
+							var t = n('Component Integration');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var Jt = a(Zt, 2);
+					v(Jt, {
+						children: (e, r) => {
+							o();
+							var t = n(
+								'Svelte components can be embedded directly in Markdown for interactive content.'
+							);
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var Xt = a(Jt, 2);
+					m(Xt, {
+						children: (e, r) => {
+							o();
+							var t = n('Performance Optimizations');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var te = a(Xt, 2);
+					v(te, {
+						children: (e, r) => {
+							o();
+							var t = n('Several performance considerations are built into the system:');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var ee = a(te, 2);
+					k(ee, {
+						children: (e, r) => {
+							var t = is(),
+								$ = P(t);
+							u($, {
+								children: (c, l) => {
+									var f = os();
+									(o(), s(c, f));
+								},
+								$$slots: { default: !0 }
+							});
+							var p = a($, 2);
+							u(p, {
+								children: (c, l) => {
+									var f = rs();
+									(o(), s(c, f));
+								},
+								$$slots: { default: !0 }
+							});
+							var h = a(p, 2);
+							u(h, {
+								children: (c, l) => {
+									var f = ns();
+									(o(), s(c, f));
+								},
+								$$slots: { default: !0 }
+							});
+							var i = a(h, 2);
+							(u(i, {
+								children: (c, l) => {
+									var f = ls();
+									(o(), s(c, f));
+								},
+								$$slots: { default: !0 }
+							}),
+								s(e, t));
+						},
+						$$slots: { default: !0 }
+					});
+					var se = a(ee, 2);
+					S(se, {
+						children: (e, r) => {
+							o();
+							var t = n('Future Enhancement Possibilities');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var ae = a(se, 2);
+					v(ae, {
+						children: (e, r) => {
+							o();
+							var t = n('The current system provides a solid foundation for additional features:');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var oe = a(ae, 2);
+					m(oe, {
+						children: (e, r) => {
+							o();
+							var t = n('Enhanced Navigation');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var re = a(oe, 2);
+					k(re, {
+						children: (e, r) => {
+							var t = ps(),
+								$ = P(t);
+							u($, {
+								children: (i, c) => {
+									var l = ds();
+									(o(), s(i, l));
+								},
+								$$slots: { default: !0 }
+							});
+							var p = a($, 2);
+							u(p, {
+								children: (i, c) => {
+									var l = cs();
+									(o(), s(i, l));
+								},
+								$$slots: { default: !0 }
+							});
+							var h = a(p, 2);
+							(u(h, {
+								children: (i, c) => {
+									var l = us();
+									(o(), s(i, l));
+								},
+								$$slots: { default: !0 }
+							}),
+								s(e, t));
+						},
+						$$slots: { default: !0 }
+					});
+					var ne = a(re, 2);
+					m(ne, {
+						children: (e, r) => {
+							o();
+							var t = n('Interactive Elements');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var le = a(ne, 2);
+					k(le, {
+						children: (e, r) => {
+							var t = fs(),
+								$ = P(t);
+							u($, {
+								children: (i, c) => {
+									var l = $s();
+									(o(), s(i, l));
+								},
+								$$slots: { default: !0 }
+							});
+							var p = a($, 2);
+							u(p, {
+								children: (i, c) => {
+									var l = vs();
+									(o(), s(i, l));
+								},
+								$$slots: { default: !0 }
+							});
+							var h = a(p, 2);
+							(u(h, {
+								children: (i, c) => {
+									var l = hs();
+									(o(), s(i, l));
+								},
+								$$slots: { default: !0 }
+							}),
+								s(e, t));
+						},
+						$$slots: { default: !0 }
+					});
+					var ie = a(le, 2);
+					m(ie, {
+						children: (e, r) => {
+							o();
+							var t = n('Analytics Integration');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var de = a(ie, 2);
+					k(de, {
+						children: (e, r) => {
+							var t = Ps(),
+								$ = P(t);
+							u($, {
+								children: (i, c) => {
+									var l = gs();
+									(o(), s(i, l));
+								},
+								$$slots: { default: !0 }
+							});
+							var p = a($, 2);
+							u(p, {
+								children: (i, c) => {
+									var l = _s();
+									(o(), s(i, l));
+								},
+								$$slots: { default: !0 }
+							});
+							var h = a(p, 2);
+							(u(h, {
+								children: (i, c) => {
+									var l = ms();
+									(o(), s(i, l));
+								},
+								$$slots: { default: !0 }
+							}),
+								s(e, t));
+						},
+						$$slots: { default: !0 }
+					});
+					var ce = a(de, 2);
+					S(ce, {
+						children: (e, r) => {
+							o();
+							var t = n('Conclusion');
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var ue = a(ce, 2);
+					v(ue, {
+						children: (e, r) => {
+							o();
+							var t = n(
+								'This enhanced blog layout system provides a modern, accessible, and user-friendly reading experience. By combining thoughtful design with technical excellence, it creates an environment that encourages deep reading and easy navigation.'
+							);
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var pe = a(ue, 2);
+					v(pe, {
+						children: (e, r) => {
+							o();
+							var t = n(
+								'The system successfully balances functionality with aesthetics, ensuring that content remains the focus while providing powerful navigation and customization tools. Whether you’re writing technical tutorials, personal essays, or comprehensive guides, this layout system adapts to support your content goals.'
+							);
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					});
+					var _e = a(pe, 2);
+					(v(_e, {
+						children: (e, r) => {
+							o();
+							var t = n(
+								'The implementation demonstrates how modern web technologies can create reading experiences that rival traditional publishing platforms while maintaining the flexibility and performance advantages of static site generation.'
+							);
+							s(e, t);
+						},
+						$$slots: { default: !0 }
+					}),
+						s(T, x));
+				},
+				$$slots: { default: !0 }
+			}
+		)
+	);
+}
+export { Es as default, ve as metadata };

@@ -1,3 +1,5 @@
+@reference "../../../app.css";
+
 [data-theme] {
 	display: flex;
 	flex-direction: column;
@@ -10,7 +12,14 @@ code[data-theme*=' '] span {
 }
 
 .journey p {
-	@apply text-sm md:text-base;
+	@apply text-sm;
+}
+
+@media (min-width: 768px) {
+	.journey p {
+		font-size: 1rem;
+		line-height: 1.5rem;
+	}
 }
 
 [data-rehype-pretty-code-figure] [data-line-numbers] > [data-line]::before {
@@ -48,15 +57,15 @@ p > code {
 	white-space: pre-wrap;
 	word-break: break-all;
 	overflow-wrap: break-word;
-	@apply  h-5 rounded-md border border-primary bg-zinc-100 font-mono;
+	@apply h-5 rounded-md border border-primary bg-zinc-100 font-mono;
 }
 
 code:not(code[data-language]) {
-	@apply h-5 rounded-md border border-primary bg-zinc-100 font-mono px-1 mx-1;
+	@apply mx-1 h-5 rounded-md border border-primary bg-zinc-100 px-1 font-mono;
 }
 
 [data-metadata] [data-code-copy] {
-	@apply top-16 !important;
+	top: 4rem !important;
 }
 
 .mdsvex .code-add {
@@ -77,13 +86,13 @@ code:not(code[data-language]) {
 	}
 
 	& code {
-		@apply grid min-w-full break-words rounded-none border-0 bg-transparent p-0;
+		@apply grid min-w-full rounded-none border-0 bg-transparent p-0 break-words;
 		counter-reset: line;
 		box-decoration-break: clone;
 	}
 
 	& [data-line] {
-		@apply inline-block w-full basis-4 border-l-[3px] border-l-transparent py-0.5 pl-2 pr-5;
+		@apply inline-block w-full basis-4 border-l-[3px] border-l-transparent py-0.5 pr-5 pl-2;
 	}
 
 	& [data-highlighted-line] {
@@ -132,24 +141,24 @@ code:not(code[data-language]) {
 
 [data-comp-preview] [data-rehype-pretty-code-figure] {
 	& pre {
-		@apply mt-0 rounded-b-lg rounded-t-none;
+		@apply mt-0 rounded-t-none rounded-b-lg;
 	}
 }
 
 [data-chars-id='ul'] {
-	@apply border-b border-b-green-500 font-bold !important;
+	@apply border-b border-b-green-500 font-bold;
 }
 
 [data-chars-id='hi'] {
-	@apply rounded bg-teal-700/60 p-1 font-bold !important;
+	@apply rounded bg-teal-700/60 p-1 font-bold;
 }
 
 [data-chars-id='rb'] {
-	@apply rounded border border-red-600 p-[2px] font-bold !important;
+	@apply rounded border border-red-600 p-[2px] font-bold;
 }
 
 [data-chars-id='yb'] {
-	@apply rounded border border-yellow-600 p-[2px] font-bold !important;
+	@apply rounded border border-yellow-600 p-[2px] font-bold;
 }
 
 /* [data-rehype-pretty-code-title] {

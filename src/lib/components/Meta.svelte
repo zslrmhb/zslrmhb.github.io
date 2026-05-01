@@ -1,9 +1,9 @@
 <script>
 	export let title = "Hongbin's Personal Website";
-	export let description = "Personal Website of Hongbin Miao";
-	export let url = "https://github.com/zslrmhb/zslrmhb.github.io";
+	export let description = 'Personal Website of Hongbin Miao';
+	export let url = 'https://github.com/zslrmhb/zslrmhb.github.io';
 	export let keywords =
-		"Hongbin Miao, Hongbin, visual, interactive, visualization, tutorial, intuition, three.js, svelte, threlte, 3D, personal website";
+		'Hongbin Miao, Hongbin, visual, interactive, visualization, tutorial, intuition, three.js, svelte, threlte, 3D, personal website';
 </script>
 
 <svelte:head>
@@ -22,10 +22,12 @@
 	<link rel="canonical" href="{url}/" />
 
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-1BXPPS6M0S"></script>
-  	<script>
-    	    window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-1BXPPS6M0S');
-      </script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+		gtag('config', 'G-1BXPPS6M0S');
+	</script>
 </svelte:head>
