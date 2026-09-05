@@ -1,5 +1,6 @@
 import path from 'node:path';
 import visit from 'unist-util-visit';
+import remarkInteractive from './scripts/remark-interactive.js';
 
 const layoutPath = path.resolve(process.cwd(), 'src/lib/components/markdown/BlogLayout.svelte');
 
@@ -7,13 +8,19 @@ const layoutPath = path.resolve(process.cwd(), 'src/lib/components/markdown/Blog
 export default {
 	extensions: ['.md', '.svx'],
 	layout: { _: layoutPath }, // absolute FS path like /Users/you/.../src/lib/layouts/BlogLayout.svelte
-	remarkPlugins: [],
+	remarkPlugins: [remarkInteractive],
 	rehypePlugins: [rehypeCustomComponents]
 };
 
 function rehypeCustomComponents() {
 	return async (tree) => {
 		const hTags = [
+			'h1',
+			'h2',
+			'h3',
+			'h4',
+			'h5',
+			'h6',
 			'Components.h1',
 			'Components.h2',
 			'Components.h3',

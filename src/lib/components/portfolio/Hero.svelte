@@ -1,54 +1,25 @@
-<script lang="ts">
-	import { onMount, onDestroy } from 'svelte';
-	import * as Avatar from '../ui/avatar';
-	import { PERSONAL_INFO } from '@/data/personal_info';
-	import BlurFade from '../custom/BlurFade.svelte';
-	let BLUR_FADE_DELAY = 0.04;
-
-	let messages = [
-		'Hongbin Miao | Hi!',
-		'Hongbin Miao | 你好！',
-		'Hongbin Miao | こんにちは！',
-		'Hongbin Miao | Hola!'
-	];
-	let currentIndex = 0;
-	let currentMessage = messages[currentIndex];
-	let interval: ReturnType<typeof setInterval>;
-
-	onMount(() => {
-		interval = setInterval(() => {
-			currentIndex = (currentIndex + 1) % messages.length;
-			currentMessage = messages[currentIndex];
-		}, 3000);
-	});
-
-	onDestroy(() => {
-		clearInterval(interval);
-	});
-</script>
-
-<section id="hero">
-	<div class="mx-auto mt-10 w-full max-w-2xl space-y-8">
-		<div class="flex justify-between gap-2">
-			<div class="flex flex-1 flex-col space-y-1.5">
-				<BlurFade
-					delay={BLUR_FADE_DELAY}
-					class="font-bold tracking-tighter sm:text-xl md:text-2xl xl:text-4xl/none"
-					yOffset={8}>{currentMessage}</BlurFade
-				>
-				<BlurFade class="max-w-[600px] md:text-xl" delay={BLUR_FADE_DELAY}
-					>LOVE crafting intuition and learning new things!
-				</BlurFade>
-			</div>
-			<BlurFade delay={BLUR_FADE_DELAY}>
-				<Avatar.Root class="size-30">
-					<Avatar.Image
-						alt="My Photo"
-						src={PERSONAL_INFO.personal_portrait}
-						class="object-cover "
-					/>
-				</Avatar.Root>
-			</BlurFade>
-		</div>
+<section class="hero" aria-labelledby="intro-title">
+	<div class="hero-copy">
+		<p class="eyebrow">A PERSONAL SPACE · <span lang="zh">缪鸿彬</span></p>
+		<h1 id="intro-title">Hongbin<br /><em>Miao.</em></h1>
+		<p class="intro">
+			I learn from first principles and build to understand.<br class="desktop" /> Through projects,
+			notes, and photographs,<br class="desktop" /> I leave room for what I don’t yet know.
+		</p>
+		<a class="text-link" href="#projects">Explore my work</a>
+	</div>
+	<figure class="landscape-figure">
+		<img
+			src="/dao-landscape-calligraphy-v1.png"
+			alt="A sparse ink landscape with the calligraphy: 道可道，非常道."
+			width="1024"
+			height="1536"
+			fetchpriority="high"
+		/>
+	</figure>
+	<div class="hero-foot">
+		<span>Projects, notes, and a little space for the unknown.</span><a href="#projects"
+			>SCROLL TO EXPLORE ↓</a
+		>
 	</div>
 </section>

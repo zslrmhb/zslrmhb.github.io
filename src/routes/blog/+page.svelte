@@ -11,40 +11,28 @@
 	/>
 </svelte:head>
 
-<section class="mx-auto w-full max-w-2xl pt-16 pb-24 sm:pt-10">
-	<header class="mb-10">
-		<h1 class="text-3xl leading-tight font-semibold">Blog</h1>
-		<p class="mt-3 max-w-xl text-sm leading-6 text-muted-foreground">
-			Writing notes, technical references, and things worth revisiting.
-		</p>
+<main id="main" class="notes-page">
+	<header>
+		<h1>Notes.</h1>
 	</header>
 
 	{#if data.posts.length > 0}
-		<ul class="divide-y divide-border/70">
+		<div class="archive-label"><span>WRITING &amp; RESOURCES</span><span>NEWEST FIRST</span></div>
+		<ul>
 			{#each data.posts as post (post.slug)}
 				<li>
-					<a class="group block py-5" href="/blog/{post.slug}">
-						<div class="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
-							<h2 class="text-base leading-6 font-medium group-hover:underline">
-								{post.title}
-							</h2>
-							{#if post.date}
-								<time class="shrink-0 text-xs text-muted-foreground" datetime={post.date}>
-									{formatDate(post.date)}
-								</time>
-							{/if}
+					<a href="/blog/{post.slug}">
+						{#if post.date}<time datetime={post.date}>{formatDate(post.date, 'long')}</time>{/if}
+						<div>
+							<h2>{post.title}</h2>
+							{#if post.summary || post.description}<p>{post.summary ?? post.description}</p>{/if}
 						</div>
-
-						{#if post.summary || post.description}
-							<p class="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">
-								{post.summary ?? post.description}
-							</p>
-						{/if}
+						<span class="note-tag">{post.categories?.[0] ?? 'Note'}</span>
 					</a>
 				</li>
 			{/each}
 		</ul>
 	{:else}
-		<p class="text-sm text-muted-foreground">No published posts yet.</p>
+		<p class="empty-notes">No published posts yet.</p>
 	{/if}
-</section>
+</main>

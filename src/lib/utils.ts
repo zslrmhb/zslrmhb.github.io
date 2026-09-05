@@ -41,6 +41,6 @@ export function formatDate(
 	// Still invalid? return empty string to avoid runtime errors
 	if (isNaN(d.getTime())) return '';
 
-	const dateFormatter = new Intl.DateTimeFormat(locales, { dateStyle });
+	const dateFormatter = new Intl.DateTimeFormat(locales, { dateStyle, timeZone: 'UTC' });
 	return dateFormatter.format(d);
 }

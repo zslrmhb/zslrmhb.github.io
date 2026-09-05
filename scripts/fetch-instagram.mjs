@@ -6,7 +6,6 @@ import 'dotenv/config';
 const JSON_OUT = 'src/data/photos.json';
 const JSON_OUT_STATIC = 'static/photos.json';
 const IMG_DIR = 'static/ig';
-const COUNT = 60;
 
 const { IG_USER_ID, IG_LONG_LIVED_TOKEN } = process.env;
 
@@ -26,13 +25,13 @@ const FIELDS = [
 	'children{media_type,media_url,thumbnail_url}'
 ].join(',');
 
-async function fetchAll(limit = COUNT) {
+async function fetchAll() {
 	let url =
 		`https://graph.instagram.com/${IG_USER_ID}/media` +
 		`?fields=${encodeURIComponent(FIELDS)}&access_token=${IG_LONG_LIVED_TOKEN}&limit=25`;
 
 	const items = [];
-	while (url && items.length < limit) {
+	while (url) {
 		const res = await fetch(url, { method: 'GET' });
 		const data = await res.json();
 		if (!res.ok) {
@@ -48,7 +47,7 @@ async function fetchAll(limit = COUNT) {
 		if (Array.isArray(data?.data)) items.push(...data.data);
 		url = data?.paging?.next ?? null;
 	}
-	return items.slice(0, limit);
+	return items;
 }
 
 function normalize(items) {
@@ -114,7 +113,7 @@ async function cleanupImages(keepIds) {
 
 async function main() {
 	try {
-		const raw = await fetchAll(COUNT);
+		const raw = await fetchAll();
 		const photos = normalize(raw);
 
 		await mkdir(path.dirname(JSON_OUT), { recursive: true });

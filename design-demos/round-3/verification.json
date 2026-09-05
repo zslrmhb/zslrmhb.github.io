@@ -1,0 +1,12 @@
+{
+  "passed": [
+    "landscape image loaded",
+    "no orbit hero",
+    "theme across pages and reload",
+    "six consistent project entries",
+    "background before projects",
+    "mobile no overflow",
+    "no script errors"
+  ],
+  "errors": []
+}

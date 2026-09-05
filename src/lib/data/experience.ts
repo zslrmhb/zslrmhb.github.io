@@ -12,8 +12,29 @@ export let EXPERIENCE = {
 			location: 'Seattle',
 			title: 'Software Engineer Intern',
 			logoUrl: AwsSvg,
+			start: 'June 2026',
+			end: 'Sep 2026',
+			description: ''
+		},
+		{
+			company: 'Amazon Web Services',
+			href: 'https://aws.amazon.com',
+			badges: [],
+			location: 'Seattle',
+			title: 'Software Engineer Intern',
+			logoUrl: AwsSvg,
 			start: 'June 2025',
 			end: 'Sep 2025',
+			description: ''
+		},
+		{
+			company: 'The Tensor Lab for Computational Medicine ',
+			href: 'https://thetensorlab.org/index.html',
+			badges: [],
+			location: 'Remote',
+			title: 'Machine Learning Research Fellow',
+			start: 'June 2026',
+			end: 'Aug 2026',
 			description: ''
 		},
 		{
@@ -21,7 +42,7 @@ export let EXPERIENCE = {
 			href: 'https://www.salk.edu/',
 			badges: [],
 			location: 'UC San Diego',
-			title: 'Data Science Research Intern',
+			title: 'Software Development Engineer',
 			logoUrl: SiPng,
 			start: 'Jan 2024',
 			end: 'Aug 2024',

@@ -1,0 +1,304 @@
+.photo-intro {
+	display: flex;
+	justify-content: space-between;
+	align-items: end;
+	gap: 40px;
+	padding: 64px 0 46px;
+}
+.photo-intro h1 {
+	font-size: 76px;
+	letter-spacing: -3px;
+	line-height: 1.1;
+	margin: 20px 0 0;
+}
+.photo-intro .eyebrow {
+	margin: 0;
+}
+.photo-intro > p {
+	font:
+		italic 20px/1.6 Georgia,
+		serif;
+	color: var(--muted);
+	margin: 0 0 4px;
+}
+.photo-quote {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	max-width: 390px;
+}
+.photo-quote cite {
+	font:
+		normal 12px/1.5 -apple-system,
+		BlinkMacSystemFont,
+		'Segoe UI',
+		sans-serif;
+	letter-spacing: 0.04em;
+	color: var(--muted);
+}
+.gallery-meta {
+	border-top: 1px solid var(--ink);
+	padding: 18px 0;
+	font-size: 11px;
+	color: var(--muted);
+	letter-spacing: 1.3px;
+	display: flex;
+	justify-content: space-between;
+	scroll-margin-top: 24px;
+}
+.photo-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 42px 36px;
+	padding-top: 12px;
+}
+.photo-grid figure {
+	margin: 0;
+	min-width: 0;
+}
+.photo-card {
+	display: block;
+	width: 100%;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	cursor: zoom-in;
+}
+.photo-card img {
+	display: block;
+	width: 100%;
+	height: 390px;
+	object-fit: contain;
+}
+.photo-card:hover:not(:disabled) {
+	background: transparent;
+}
+.photo-card:hover img {
+	opacity: 0.9;
+}
+.photo-grid figcaption {
+	display: flex;
+	justify-content: space-between;
+	gap: 12px;
+	color: var(--muted);
+	border-top: 1px solid var(--line);
+	margin: 15px 24px 0;
+	padding: 12px 0 0;
+	font-size: 12px;
+}
+.gallery-pagination {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	margin: 42px 0 12px;
+	flex-wrap: wrap;
+}
+.gallery-pagination > div {
+	display: flex;
+	gap: 6px;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.gallery-pagination button {
+	min-width: 42px;
+}
+.gallery-pagination button[aria-current='page'] {
+	background: var(--ink);
+	color: var(--paper);
+	border-color: var(--ink);
+}
+.page-status {
+	text-align: center;
+	font-size: 13px;
+	color: var(--muted);
+	margin: 12px 0 24px;
+}
+.photo-viewer {
+	background: var(--paper);
+	color: var(--ink);
+	width: 100vw;
+	height: 100dvh;
+	max-width: none;
+	max-height: none;
+	margin: 0;
+	border: 0;
+	padding: 24px 40px;
+	overflow: auto;
+}
+.photo-viewer::backdrop {
+	background: var(--paper);
+}
+.photo-viewer[open] {
+	display: flex;
+	flex-direction: column;
+}
+.photo-viewer header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+	min-height: 54px;
+}
+.photo-viewer h2 {
+	font:
+		22px Georgia,
+		serif;
+	margin: 0;
+}
+.viewer-actions {
+	display: flex;
+	gap: 12px;
+}
+.photo-viewer header span {
+	font-size: 13px;
+	color: var(--muted);
+}
+.viewer-stage {
+	position: relative;
+	display: grid;
+	grid-template-columns: 44px minmax(0, 1fr) 44px;
+	gap: 24px;
+	align-items: center;
+	flex: 1;
+	min-height: 0;
+	padding: 24px 0;
+}
+.viewer-stage img {
+	width: 100%;
+	height: 100%;
+	max-height: calc(100dvh - 250px);
+	object-fit: contain;
+	min-height: 0;
+	touch-action: pan-y;
+}
+.viewer-stage button {
+	font-size: 20px;
+	padding: 0;
+	height: 44px;
+}
+.photo-viewer footer {
+	display: flex;
+	justify-content: space-between;
+	gap: 24px;
+	align-items: start;
+	font-size: 13px;
+	color: var(--muted);
+}
+.photo-viewer footer time {
+	display: block;
+}
+.photo-viewer footer p {
+	font-size: 13px;
+	margin: 6px 0 0;
+	max-width: 900px;
+	overflow-wrap: anywhere;
+}
+.photo-viewer footer a {
+	white-space: nowrap;
+}
+.viewer-hint {
+	font-size: 11px;
+	color: var(--muted);
+	text-align: center;
+	margin: 15px 0 0;
+}
+.image-error {
+	grid-column: 2;
+	text-align: center;
+}
+@media (max-width: 1000px) {
+	.photo-card img {
+		height: 310px;
+	}
+	.photo-grid {
+		gap: 30px 24px;
+	}
+	.photo-intro > p {
+		font-size: 18px;
+	}
+}
+@media (max-width: 760px) {
+	.photo-intro {
+		display: block;
+		padding: 40px 0 30px;
+	}
+	.photo-intro h1 {
+		font-size: clamp(42px, 10.5vw, 64px);
+		letter-spacing: -2px;
+	}
+	.photo-intro > p {
+		font-size: 17px;
+		margin-top: 22px;
+	}
+	.photo-quote {
+		max-width: 100%;
+		gap: 8px;
+	}
+	.photo-grid {
+		grid-template-columns: 1fr;
+		gap: 30px;
+	}
+	.photo-card img {
+		height: auto;
+		max-height: 560px;
+	}
+	.gallery-meta {
+		font-size: 10px;
+		gap: 20px;
+	}
+	.gallery-meta span:last-child {
+		max-width: 130px;
+		text-align: right;
+	}
+	.gallery-pagination {
+		gap: 12px;
+	}
+	.gallery-pagination > div {
+		order: 3;
+		flex-basis: 100%;
+	}
+	.gallery-pagination button {
+		font-size: 13px;
+		padding: 7px 10px;
+	}
+	.page-status {
+		font-size: 12px;
+	}
+	.photo-viewer {
+		padding: 16px;
+	}
+	.photo-viewer header {
+		flex-wrap: wrap;
+		gap: 12px;
+	}
+	.photo-viewer h2 {
+		font-size: 19px;
+	}
+	.viewer-actions {
+		gap: 8px;
+	}
+	.photo-viewer header button {
+		font-size: 12px;
+		min-width: 60px;
+		padding: 6px;
+	}
+	.viewer-stage {
+		grid-template-columns: 32px minmax(0, 1fr) 32px;
+		gap: 6px;
+		padding: 18px 0;
+	}
+	.viewer-stage button {
+		min-width: 32px;
+		width: 32px;
+	}
+	.viewer-stage img {
+		max-height: calc(100dvh - 260px);
+	}
+	.photo-viewer footer {
+		gap: 12px;
+		font-size: 12px;
+	}
+	.photo-viewer footer p {
+		font-size: 12px;
+	}
+}
