@@ -1,0 +1,1 @@
+function s(r,i="medium",a="en"){if(!r)return"";let e;if(r instanceof Date)e=r;else{const t=String(r),n=/\d{4}-\d{2}-\d{2}$/.test(t)?t.replaceAll("-","/"):t;e=new Date(n)}if(isNaN(e.getTime())){const t=Date.parse(String(r));isNaN(t)||(e=new Date(t))}return isNaN(e.getTime())?"":new Intl.DateTimeFormat(a,{dateStyle:i,timeZone:"UTC"}).format(e)}export{s as f};
