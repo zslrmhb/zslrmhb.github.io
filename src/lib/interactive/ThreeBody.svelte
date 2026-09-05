@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { onMount, tick } from 'svelte';
-	import Explorer from './Explorer.svelte';
 	import { INITIAL, integrate, STEP, type Snapshot, type CameraPosition } from './physics';
+	import { createOrbitScales } from './plot';
 	import type { InteractiveConfig } from './config';
+	import { RangeControl, WidgetFrame } from '$lib/components/interactive';
 	import './interactive.css';
 	let { config }: { config: InteractiveConfig } = $props();
 	let canvas: HTMLCanvasElement;
@@ -14,6 +15,9 @@
 		message = $state('Ready when you are');
 	let view = $state<CameraPosition>();
 	let snapshot = $state<Snapshot>({ state: INITIAL.slice(), speed: 1 });
+	type ExplorerComponent = typeof import('./Explorer.svelte').default;
+	let Explorer = $state<ExplorerComponent>();
+	let loadingExplorer = $state(false);
 	let frameId = 0,
 		last = 0,
 		accumulator = 0;
@@ -65,11 +69,20 @@
 		message = 'Ready when you are';
 		draw();
 	}
-	function explore() {
+	async function explore() {
 		pause();
 		savedScroll = scrollY;
 		snapshot = { state: simulation.slice(), speed };
 		exploring = true;
+		loadingExplorer = true;
+		try {
+			Explorer = (await import('./Explorer.svelte')).default;
+		} catch {
+			exploring = false;
+			message = 'The 3D view is unavailable. The article remains readable.';
+		} finally {
+			loadingExplorer = false;
+		}
 	}
 	async function returnToReading(result: Snapshot & { view?: CameraPosition }) {
 		simulation = result.state;
@@ -97,7 +110,7 @@
 			canvas.height = Math.round(height * ratio);
 			context.setTransform(ratio, 0, 0, ratio, 0, 0);
 			const css = getComputedStyle(document.documentElement),
-				scale = Math.min(width / 2.9, height / 1.7);
+				scales = createOrbitScales(width, height);
 			context.clearRect(0, 0, width, height);
 			context.strokeStyle = css.getPropertyValue('--line');
 			context.lineWidth = 1;
@@ -118,16 +131,16 @@
 				context.globalAlpha = 0.55;
 				context.beginPath();
 				trails[i].forEach(([x, y], index) => {
-					if (index) context.lineTo(width / 2 + x * scale, height / 2 - y * scale);
-					else context.moveTo(width / 2 + x * scale, height / 2 - y * scale);
+					if (index) context.lineTo(scales.x(x), scales.y(y));
+					else context.moveTo(scales.x(x), scales.y(y));
 				});
 				context.stroke();
 				context.globalAlpha = 1;
 				context.fillStyle = color;
 				context.beginPath();
 				context.arc(
-					width / 2 + simulation[i * 4] * scale,
-					height / 2 - simulation[i * 4 + 1] * scale,
+					scales.x(simulation[i * 4]),
+					scales.y(simulation[i * 4 + 1]),
 					6,
 					0,
 					2 * Math.PI
@@ -159,10 +172,12 @@
 	});
 </script>
 
-<figure class="experiment" aria-label="The figure-eight orbit">
-	<div class="figure-top">
-		<span>The figure-eight orbit</span><span class="figure-sub">Equal masses · Planar model</span>
-	</div>
+<WidgetFrame
+	id="three-body-widget"
+	class="experiment"
+	title="The figure-eight orbit"
+	subtitle="Equal masses · Planar model"
+>
 	<canvas bind:this={canvas} aria-label="A numerical figure-eight orbit of three equal masses"
 		>Three equal masses follow a shared figure-eight path.</canvas
 	>
@@ -171,8 +186,11 @@
 			><i class="three"></i>Body III</span
 		>
 	</div>
-	{#if config.explore}<button class="enter-explore" bind:this={entry} onclick={explore}
-			>Explore in 3D</button
+	{#if config.explore}<button
+			class="enter-explore"
+			bind:this={entry}
+			disabled={loadingExplorer}
+			onclick={explore}>{loadingExplorer ? 'Preparing 3D…' : 'Explore in 3D'}</button
 		>{/if}
 	<div class="experiment-controls">
 		{#if config.controls.includes('play')}<button
@@ -181,14 +199,16 @@
 				onclick={play}>{playing ? 'Pause' : 'Play'}</button
 			>{/if}
 		{#if config.controls.includes('reset')}<button onclick={reset}>Reset</button>{/if}
-		{#if config.controls.includes('speed')}<label
-				>Speed <input type="range" min="0.25" max="2" step="0.25" bind:value={speed} /><output
-					>{speed}×</output
-				></label
-			>{/if}
+		{#if config.controls.includes('speed')}<RangeControl
+				label="Speed"
+				min={0.25}
+				max={2}
+				step={0.25}
+				bind:value={speed}
+				suffix="×"
+			/>{/if}
 	</div>
-	<figcaption>
-		<span role="status">{message}</span><span>Numerical approximation · 2D</span>
-	</figcaption>
-</figure>
-{#if exploring}<Explorer {snapshot} {view} onclose={returnToReading} />{/if}
+	{#snippet footer()}<span role="status">{message}</span><span>Numerical approximation · 2D</span
+		>{/snippet}
+</WidgetFrame>
+{#if exploring && Explorer}<Explorer {snapshot} {view} onclose={returnToReading} />{/if}

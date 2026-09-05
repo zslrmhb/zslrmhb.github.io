@@ -1,16 +1,19 @@
 import visit from 'unist-util-visit';
 import katex from 'katex';
-import { parseInteractive } from '../src/lib/interactive/config.js';
+import { INTERACTIVE_COMPONENTS, parseInteractive } from '../src/lib/interactive/config.js';
 
 export default function remarkInteractive() {
 	return (tree, file) => {
 		let interactive = false;
+		const imports = new Map();
 		visit(tree, 'code', (node) => {
 			if (!['interactive', 'math'].includes(node.lang)) return;
 			try {
 				if (node.lang === 'interactive') {
 					const config = parseInteractive(node.value);
-					node.value = `<ThreeBody config={${JSON.stringify(config)}} />`;
+					const component = INTERACTIVE_COMPONENTS[config.component];
+					node.value = `<${component.exportName} config={${JSON.stringify(config)}} />`;
+					imports.set(component.exportName, component.module);
 					interactive = true;
 				} else {
 					const html = katex.renderToString(node.value, {
@@ -26,10 +29,14 @@ export default function remarkInteractive() {
 				file.fail(error.message, node.position);
 			}
 		});
-		if (interactive)
+		if (interactive) {
+			const declarations = [...imports]
+				.map(([name, module]) => `import ${name} from "${module}";`)
+				.join('');
 			tree.children.unshift({
 				type: 'html',
-				value: '<script>import ThreeBody from "$lib/interactive/ThreeBody.svelte";</script>'
+				value: `<script>${declarations}</script>`
 			});
+		}
 	};
 }

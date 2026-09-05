@@ -12,7 +12,9 @@
 	let mobile = $state(browser && window.matchMedia('(max-width: 760px)').matches);
 	let touchStart = $state<{ x: number; y: number } | null>(null);
 
-	const photos = [...data.photos].sort((a, b) => Date.parse(b.takenAt) - Date.parse(a.takenAt));
+	const photos = $derived(
+		[...data.photos].sort((a, b) => Date.parse(b.takenAt) - Date.parse(a.takenAt))
+	);
 	const pageSize = $derived(mobile ? 6 : 12);
 	const pageCount = $derived(Math.max(1, Math.ceil(photos.length / pageSize)));
 	const visiblePhotos = $derived(photos.slice((page - 1) * pageSize, page * pageSize));
@@ -96,7 +98,7 @@
 			<h1 id="photography-title">Photography.</h1>
 		</div>
 		<p class="photo-quote" lang="zh">
-			<span>我只能看到前面，看不到后面，这样不是就有一半的事情看不到了吗?</span>
+			<span>我（们）只能看到前面，看不到后面，这样不是就有一半的事情看不到了吗?</span>
 			<cite>《一一》·简洋洋</cite>
 		</p>
 	</header>

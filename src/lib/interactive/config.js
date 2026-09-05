@@ -1,6 +1,14 @@
 import { parseDocument } from 'yaml';
 
-/** @typedef {{ component: 'three-body', preset: 'figure-eight', controls: ('play'|'reset'|'speed')[], explore: boolean }} InteractiveConfig */
+export const INTERACTIVE_COMPONENTS = Object.freeze({
+	'three-body': {
+		exportName: 'ThreeBody',
+		module: '$lib/interactive/ThreeBody.svelte',
+		presets: ['figure-eight']
+	}
+});
+
+/** @typedef {{ component: keyof typeof INTERACTIVE_COMPONENTS, preset: string, controls: ('play'|'reset'|'speed')[], explore: boolean }} InteractiveConfig */
 
 /** Parse the author-facing configuration; no executable content is accepted.
  * @param {string} source
@@ -15,8 +23,13 @@ export function parseInteractive(source) {
 	const keys = ['component', 'preset', 'controls', 'explore'];
 	for (const key of Object.keys(value))
 		if (!keys.includes(key)) throw new Error(`Unknown interactive option: ${key}`);
-	if (value.component !== 'three-body') throw new Error('Supported component: three-body');
-	if (value.preset !== 'figure-eight') throw new Error('Supported preset: figure-eight');
+	/** @type {keyof typeof INTERACTIVE_COMPONENTS} */
+	const componentName = value.component;
+	const component = INTERACTIVE_COMPONENTS[componentName];
+	if (!component)
+		throw new Error(`Supported component: ${Object.keys(INTERACTIVE_COMPONENTS).join(', ')}`);
+	if (!component.presets.includes(value.preset))
+		throw new Error(`Supported ${componentName} preset: ${component.presets.join(', ')}`);
 	const controls = value.controls ?? ['play', 'reset', 'speed'];
 	if (
 		!Array.isArray(controls) ||
@@ -27,8 +40,8 @@ export function parseInteractive(source) {
 	if (value.explore !== undefined && typeof value.explore !== 'boolean')
 		throw new Error('explore must be a boolean.');
 	return {
-		component: 'three-body',
-		preset: 'figure-eight',
+		component: componentName,
+		preset: value.preset,
 		controls,
 		explore: value.explore ?? false
 	};

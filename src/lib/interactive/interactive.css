@@ -1,21 +1,4 @@
-.experiment {
-	margin: 36px 0 42px;
-	background: var(--panel);
-	border-top: 1px solid var(--line);
-	border-bottom: 1px solid var(--line);
-	padding: 20px 24px;
-}
-.figure-top {
-	display: flex;
-	justify-content: space-between;
-	gap: 12px;
-	font-size: 14px;
-}
-.figure-sub {
-	font-size: 12px;
-	color: var(--muted);
-}
-.experiment canvas {
+.widget-frame canvas {
 	display: block;
 	width: 100%;
 	height: 280px;
@@ -64,30 +47,6 @@ button.primary {
 	color: var(--paper);
 	border-color: var(--ink);
 	min-width: 76px;
-}
-.experiment-controls label {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	font-size: 13px;
-	margin-left: auto;
-}
-.experiment-controls input {
-	width: 100px;
-	accent-color: var(--accent);
-	min-height: 32px;
-}
-.experiment-controls output {
-	width: 32px;
-	text-align: right;
-}
-.experiment figcaption {
-	display: flex;
-	justify-content: space-between;
-	gap: 12px;
-	font-size: 11px;
-	color: var(--muted);
-	margin-top: 18px;
 }
 .explore-dialog {
 	margin: 0;
@@ -200,46 +159,6 @@ button.primary {
 .scene-buttons button {
 	flex: 1;
 }
-.scene-controls label {
-	display: block;
-	font-size: 14px;
-	margin: 20px 0;
-}
-.scene-controls output {
-	float: right;
-}
-.scene-controls input[type='range'] {
-	display: block;
-	width: 100%;
-	margin: 8px 0;
-	accent-color: var(--accent);
-}
-.scene-controls label.check {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-}
-.scene-controls input[type='checkbox'] {
-	width: 16px;
-	min-height: 16px;
-	accent-color: var(--accent);
-}
-.view-presets {
-	display: flex;
-	gap: 8px;
-	flex-wrap: wrap;
-}
-.view-presets span {
-	flex-basis: 100%;
-	font-size: 13px;
-	color: var(--muted);
-	margin-bottom: 4px;
-}
-.view-presets button {
-	font-size: 12px;
-	flex: 1;
-	padding: 8px;
-}
 .zoom-controls {
 	display: flex;
 	gap: 8px;
@@ -283,31 +202,8 @@ button.primary {
 	color: var(--muted);
 }
 @media (max-width: 760px) {
-	.experiment {
-		margin: 28px -8px;
-		padding: 16px;
-	}
-	.figure-top {
-		flex-wrap: wrap;
-		gap: 2px 12px;
-	}
-	.figure-sub {
-		font-size: 11px;
-	}
-	.experiment canvas {
+	.widget-frame canvas {
 		height: 220px;
-	}
-	.experiment-controls label {
-		flex-basis: 100%;
-		margin: 4px 0 0;
-	}
-	.experiment-controls input {
-		flex: 1;
-		max-width: 180px;
-	}
-	.experiment figcaption {
-		flex-direction: column;
-		gap: 0;
 	}
 	.explore-dialog[open] {
 		display: block;

@@ -1,15 +1,16 @@
 <script>
+	import { onMount } from 'svelte';
 	import '../app.css';
 	import Navbar from '@/components/portfolio/Navbar.svelte';
-	import { ModeWatcher } from 'mode-watcher';
 	import { page } from '$app/stores';
+	import { initializeTheme } from '$lib/theme';
 
 	let { children } = $props();
 
 	let reading = $derived($page.url.pathname.startsWith('/blog/'));
+	onMount(initializeTheme);
 </script>
 
-<ModeWatcher />
 <a class="skip" href="#main">Skip to content</a>
 <div id="top" class:reading-shell={reading} class="site-shell">
 	{#if !reading}

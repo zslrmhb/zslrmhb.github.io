@@ -26,11 +26,16 @@
 		let frame = 0;
 		const update = () => {
 			frame = 0;
-			active = headings[0]?.id ?? '';
+			let next = headings[0]?.id ?? '';
 			for (const element of elements) {
-				if (element.getBoundingClientRect().top <= innerHeight * 0.24) active = headingId(element);
+				if (element.getBoundingClientRect().top <= innerHeight * 0.24) next = headingId(element);
 				else break;
 			}
+			// The browser clamps the final anchor to the page bottom, so the last
+			// heading may never reach the normal activation line.
+			if (scrollY + innerHeight >= document.documentElement.scrollHeight - 8)
+				next = headings.at(-1)?.id ?? next;
+			active = next;
 		};
 		const scroll = () => {
 			if (!frame) frame = requestAnimationFrame(update);

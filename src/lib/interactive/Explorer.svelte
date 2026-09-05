@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 	import ModeToggle from '$lib/components/portfolio/ModeToggle.svelte';
+	import { RangeControl, SegmentedControl, ToggleControl } from '$lib/components/interactive';
+	import ThrelteScene, { type ThrelteSceneController } from './ThrelteScene.svelte';
+	import ThrelteCanvas from './ThrelteCanvas.svelte';
 	import type { Snapshot, CameraPosition } from './physics';
-	import type { SceneController } from './scene';
+
+	type ExplorerSnapshot = Snapshot & { view?: CameraPosition };
 	let {
 		snapshot,
 		view,
@@ -13,15 +17,15 @@
 		onclose: (result: Snapshot & { view?: CameraPosition }) => void;
 	} = $props();
 	let dialog: HTMLDialogElement;
-	let container: HTMLDivElement;
-	let controller: SceneController | undefined;
+	let controller = $state<ThrelteSceneController | undefined>();
 	let playing = $state(false),
-		speed = $state(snapshot.speed),
-		trails = $state(true);
+		speed = $state(1),
+		trails = $state(true),
+		cameraPreset = $state<'perspective' | 'top'>('perspective');
 	let status = $state<'loading' | 'ready' | 'error'>('loading');
 	let message = $state('');
 	let generation = 0;
-	let latest = { ...snapshot, view };
+	let latest = $state<ExplorerSnapshot>({ state: [], speed: 1 });
 	function release() {
 		if (controller) {
 			latest = controller.dispose();
@@ -32,27 +36,12 @@
 		const current = ++generation;
 		status = 'loading';
 		release();
-		try {
-			const { createScene } = await import('./scene');
-			if (current !== generation) return;
-			controller = createScene(
-				container,
-				latest,
-				latest.view,
-				(value) => (playing = value),
-				(error) => {
-					message = error;
-					status = 'error';
-					release();
-				}
-			);
-			status = 'ready';
-		} catch {
-			if (current === generation) {
-				status = 'error';
-				message = 'The 3D view isn’t available on this device right now.';
-			}
-		}
+		if (current === generation) status = 'ready';
+	}
+	function sceneError(error: string) {
+		message = error;
+		status = 'error';
+		release();
 	}
 	function close() {
 		generation++;
@@ -63,8 +52,11 @@
 		controller?.reset();
 		speed = 1;
 		trails = true;
+		cameraPreset = 'perspective';
 	}
 	onMount(() => {
+		speed = snapshot.speed;
+		latest = { ...snapshot, view };
 		dialog.showModal();
 		void load();
 	});
@@ -86,7 +78,19 @@
 	</header>
 	<div class="explore-layout">
 		<div class="scene-wrap">
-			<div class="scene" bind:this={container}></div>
+			<div class="scene">
+				{#if status === 'ready'}
+					<ThrelteCanvas>
+						<ThrelteScene
+							snapshot={latest}
+							view={latest.view}
+							onplaying={(value) => (playing = value)}
+							onerror={sceneError}
+							bind:controller
+						/>
+					</ThrelteCanvas>
+				{/if}
+			</div>
 			{#if status !== 'ready'}<div class="scene-message" role="status">
 					<h3>{status === 'loading' ? 'Preparing the scene…' : 'A quiet pause.'}</h3>
 					<p>{status === 'loading' ? 'Your reading position is saved.' : message}</p>
@@ -107,26 +111,32 @@
 						>{playing ? 'Pause' : 'Play'}</button
 					><button onclick={reset}>Reset</button>
 				</div>
-				<label
-					>Playback speed <output>{speed}×</output><input
-						type="range"
-						min="0.25"
-						max="2"
-						step="0.25"
-						bind:value={speed}
-						oninput={() => controller?.speed(speed)}
-					/></label
-				><label class="check"
-					><input
-						type="checkbox"
-						bind:checked={trails}
-						onchange={() => controller?.trails(trails)}
-					/> Show orbit</label
-				>
-				<div class="view-presets">
-					<span>Camera</span><button onclick={() => controller?.view(false)}>Perspective</button
-					><button onclick={() => controller?.view(true)}>Top view</button>
-				</div>
+				<RangeControl
+					label="Playback speed"
+					min={0.25}
+					max={2}
+					step={0.25}
+					bind:value={speed}
+					suffix="×"
+					class="my-5 block [&_input]:mt-2 [&_input]:block [&_input]:w-full"
+					oninput={() => controller?.speed(speed)}
+				/>
+				<ToggleControl
+					label="Show orbit"
+					bind:checked={trails}
+					class="my-5"
+					onchange={() => controller?.trails(trails)}
+				/>
+				<SegmentedControl
+					label="Camera"
+					options={[
+						{ value: 'perspective', label: 'Perspective' },
+						{ value: 'top', label: 'Top view' }
+					]}
+					bind:value={cameraPreset}
+					class="my-5"
+					onchange={() => controller?.view(cameraPreset === 'top')}
+				/>
 				<div class="zoom-controls">
 					<button aria-label="Zoom in" onclick={() => controller?.zoom(0.85)}>+</button><button
 						aria-label="Zoom out"
