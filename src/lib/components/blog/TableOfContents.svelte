@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	let headings = $state<{ id: string; text: string }[]>([]);
+	let headings = $state<{ id: string; text: string; level: 2 | 3 }[]>([]);
 	let active = $state('');
 	let expanded = $state(true);
 	function headingId(element: HTMLElement) {
@@ -20,7 +20,8 @@
 		);
 		headings = elements.map((element) => ({
 			id: headingId(element),
-			text: element.textContent?.trim() || ''
+			text: element.textContent?.trim() || '',
+			level: element.tagName === 'H3' ? 3 : 2
 		}));
 		let frame = 0;
 		const update = () => {
@@ -47,7 +48,7 @@
 	<details bind:open={expanded}>
 		<summary>ON THIS PAGE</summary>
 		<ol>
-			{#each headings as heading, index (heading.id)}<li>
+			{#each headings as heading, index (heading.id)}<li class:subsection={heading.level === 3}>
 					<a href={`#${heading.id}`} aria-current={active === heading.id ? 'location' : undefined}
 						><span>{String(index + 1).padStart(2, '0')}</span>{heading.text}</a
 					>

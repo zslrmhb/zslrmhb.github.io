@@ -58,6 +58,7 @@
 }
 html {
 	scroll-padding-top: 30px;
+	line-break: strict;
 }
 body {
 	margin: 0;
@@ -68,6 +69,8 @@ body {
 		BlinkMacSystemFont,
 		'Segoe UI',
 		sans-serif;
+	font-synthesis: none;
+	overflow-wrap: break-word;
 	-webkit-font-smoothing: antialiased;
 }
 a {
@@ -104,6 +107,7 @@ h2,
 h3 {
 	font-family: Georgia, 'Times New Roman', serif;
 	font-weight: 400;
+	text-wrap: balance;
 }
 p {
 	margin: 0 0 24px;

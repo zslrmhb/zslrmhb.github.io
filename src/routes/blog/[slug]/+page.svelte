@@ -12,11 +12,6 @@
 </svelte:head>
 
 {#key data.slug}
-	<div class="article-back">
-		<span>{data.meta.published ? 'NOTES' : 'LOCAL PREVIEW · NOT PUBLISHED'}</span><a href="/blog"
-			>← All notes</a
-		>
-	</div>
 	<main id="main">
 		<div class="title-block">
 			<p class="eyebrow">

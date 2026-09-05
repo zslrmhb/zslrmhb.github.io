@@ -62,15 +62,6 @@
 	max-width: none;
 	padding: 0;
 }
-.article-back {
-	max-width: 1200px;
-	margin: 24px auto 0;
-	padding: 0 24px;
-	display: flex;
-	justify-content: space-between;
-	font-size: 14px;
-	color: var(--muted);
-}
 .title-block {
 	max-width: 720px;
 	margin: 50px auto 44px;
@@ -105,9 +96,9 @@
 }
 .reading-layout {
 	display: grid;
-	grid-template-columns: 180px minmax(0, 672px);
+	grid-template-columns: 180px minmax(0, 672px) 180px;
 	gap: 48px;
-	max-width: 900px;
+	max-width: 1200px;
 	margin: auto;
 	padding: 0 24px;
 	align-items: start;
@@ -130,11 +121,7 @@
 	display: none;
 }
 .article-toc summary::after {
-	content: ' +';
-	float: right;
-}
-.article-toc details[open] summary::after {
-	content: ' −';
+	display: none;
 }
 .article-toc ol {
 	list-style: none;
@@ -150,6 +137,10 @@
 .article-toc a span {
 	font-size: 12px;
 	color: var(--accent);
+}
+.article-toc li.subsection a {
+	padding-left: 20px;
+	font-size: 12px;
 }
 .article-toc a[aria-current] {
 	color: var(--ink);
@@ -203,13 +194,14 @@
 }
 .markdown blockquote {
 	margin: 32px 0;
-	padding: 8px 22px;
+	padding: 4px 18px;
 	border-left: 1px solid var(--accent);
-	color: var(--accent);
 }
 .markdown blockquote p {
 	font-style: italic;
-	font-size: 22px;
+	font-size: 18px;
+	line-height: 1.7;
+	color: var(--muted);
 	margin: 0;
 }
 .markdown pre {
@@ -277,6 +269,7 @@
 	.reading-layout {
 		grid-template-columns: minmax(120px, 150px) minmax(0, 1fr);
 		gap: 28px;
+		max-width: 900px;
 	}
 	.title-block {
 		margin-left: 202px;
@@ -314,11 +307,6 @@
 	.reading-shell {
 		padding: 0;
 	}
-	.article-back {
-		font-size: 12px;
-		margin-top: 20px;
-		padding: 0 20px;
-	}
 	.title-block {
 		margin: 36px 0 32px;
 		padding: 0 24px;
@@ -348,9 +336,22 @@
 	.article-toc summary {
 		margin-bottom: 8px;
 	}
+	.article-toc summary::after {
+		display: block;
+		content: '+';
+		float: right;
+		color: var(--accent);
+	}
+	.article-toc details[open] summary::after {
+		content: '−';
+	}
 	.article-toc a {
 		padding: 5px 0;
 		font-size: 14px;
+	}
+	.article-toc li.subsection a {
+		padding-left: 20px;
+		font-size: 13px;
 	}
 	.markdown p,
 	.markdown li {
@@ -365,6 +366,6 @@
 		padding: 16px;
 	}
 	.markdown blockquote p {
-		font-size: 20px;
+		font-size: 18px;
 	}
 }
