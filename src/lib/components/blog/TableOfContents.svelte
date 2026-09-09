@@ -1,8 +1,15 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	let headings = $state<{ id: string; text: string; level: 2 | 3 }[]>([]);
+
+	let { title = 'This note' }: { title?: string } = $props();
+	let headings = $state<{ id: string; text: string; level: 2 | 3; number?: string }[]>([]);
 	let active = $state('');
-	let expanded = $state(true);
+	let mobileOpen = $state(false);
+
+	function isTerminalHeading(text: string) {
+		return /^(references|appendix)$/i.test(text.trim());
+	}
+
 	function headingId(element: HTMLElement) {
 		if (element.id) return element.id;
 		const id = (element.textContent ?? '')
@@ -13,16 +20,24 @@
 		if (id) element.id = id;
 		return id;
 	}
+
+	function activate(id: string) {
+		active = id;
+	}
+
 	onMount(() => {
-		expanded = !matchMedia('(max-width:760px)').matches;
-		const elements = Array.from(
-			document.querySelectorAll<HTMLElement>('.markdown h2, .markdown h3')
-		);
-		headings = elements.map((element) => ({
-			id: headingId(element),
-			text: element.textContent?.trim() || '',
-			level: element.tagName === 'H3' ? 3 : 2
-		}));
+		const elements = Array.from(document.querySelectorAll<HTMLElement>('.markdown h2, .markdown h3'));
+		let numberedHeadings = 0;
+		headings = elements.map((element) => {
+			const text = element.textContent?.trim() || '';
+			return {
+				id: headingId(element),
+				text,
+				level: element.tagName === 'H3' ? 3 : 2,
+				number: isTerminalHeading(text) ? undefined : String(++numberedHeadings).padStart(2, '0')
+			};
+		});
+
 		let frame = 0;
 		const update = () => {
 			frame = 0;
@@ -31,33 +46,65 @@
 				if (element.getBoundingClientRect().top <= innerHeight * 0.24) next = headingId(element);
 				else break;
 			}
-			// The browser clamps the final anchor to the page bottom, so the last
-			// heading may never reach the normal activation line.
 			if (scrollY + innerHeight >= document.documentElement.scrollHeight - 8)
 				next = headings.at(-1)?.id ?? next;
 			active = next;
 		};
-		const scroll = () => {
+		const schedule = () => {
 			if (!frame) frame = requestAnimationFrame(update);
 		};
 		update();
-		window.addEventListener('scroll', scroll, { passive: true });
+		window.addEventListener('scroll', schedule, { passive: true });
+		window.addEventListener('resize', schedule, { passive: true });
+		window.addEventListener('hashchange', schedule);
 		return () => {
 			cancelAnimationFrame(frame);
-			window.removeEventListener('scroll', scroll);
+			window.removeEventListener('scroll', schedule);
+			window.removeEventListener('resize', schedule);
+			window.removeEventListener('hashchange', schedule);
 		};
 	});
 </script>
 
 <aside class="article-toc" aria-label="On this page">
-	<details bind:open={expanded}>
-		<summary>ON THIS PAGE</summary>
+	<span class="toc-rail" aria-hidden="true">
+		<span class="toc-rail-marks" aria-hidden="true">
+			{#each headings as heading (heading.id)}
+				<i class:active-mark={active === heading.id}></i>
+			{/each}
+		</span>
+	</span>
+
+	<nav class="toc-panel" aria-label={`Contents for ${title}`}>
+		<div class="toc-panel-heading">
+			<span>CONTENTS</span>
+		</div>
+		<a class="toc-title" href="#main">{title}</a>
 		<ol>
-			{#each headings as heading, index (heading.id)}<li class:subsection={heading.level === 3}>
-					<a href={`#${heading.id}`} aria-current={active === heading.id ? 'location' : undefined}
-						><span>{String(index + 1).padStart(2, '0')}</span>{heading.text}</a
+			{#each headings as heading (heading.id)}
+				<li class:subsection={heading.level === 3} class:terminal={isTerminalHeading(heading.text)}>
+					<a href={`#${heading.id}`} aria-current={active === heading.id ? 'location' : undefined} onclick={() => activate(heading.id)}>
+						{#if heading.number}<span>{heading.number}</span>{/if}{heading.text}
+					</a>
+				</li>
+			{/each}
+		</ol>
+	</nav>
+
+	<details class="mobile-toc" bind:open={mobileOpen}>
+		<summary>CONTENTS <span>{headings.find((heading) => heading.id === active)?.text}</span></summary>
+		<ol>
+			{#each headings as heading (heading.id)}
+				<li class:subsection={heading.level === 3} class:terminal={isTerminalHeading(heading.text)}>
+					<a
+						href={`#${heading.id}`}
+						aria-current={active === heading.id ? 'location' : undefined}
+						onclick={() => { activate(heading.id); mobileOpen = false; }}
 					>
-				</li>{/each}
+						{#if heading.number}<span>{heading.number}</span>{/if}{heading.text}
+					</a>
+				</li>
+			{/each}
 		</ol>
 	</details>
 </aside>

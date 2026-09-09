@@ -22,7 +22,9 @@
 			{#each data.posts as post (post.slug)}
 				<li>
 					<a href="/blog/{post.slug}">
-						{#if post.date}<time datetime={post.date}>{formatDate(post.date, 'long')}</time>{/if}
+						<time class:undated={!post.date} datetime={post.date ?? undefined}
+							>{post.date ? formatDate(post.date, 'long') : 'Draft'}</time
+						>
 						<div>
 							<h2>{post.title}</h2>
 							{#if post.summary || post.description}<p>{post.summary ?? post.description}</p>{/if}

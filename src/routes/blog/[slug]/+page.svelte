@@ -30,7 +30,7 @@
 			</div>
 		</div>
 		<div class="reading-layout">
-			<TableOfContents />
+			<TableOfContents title={data.meta.title} />
 			<article class="markdown"><data.content /></article>
 		</div>
 	</main>

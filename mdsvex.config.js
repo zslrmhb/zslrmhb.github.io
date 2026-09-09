@@ -1,6 +1,7 @@
 import path from 'node:path';
 import visit from 'unist-util-visit';
 import remarkInteractive from './scripts/remark-interactive.js';
+import remarkReferences from './scripts/remark-references.js';
 
 const layoutPath = path.resolve(process.cwd(), 'src/lib/components/markdown/BlogLayout.svelte');
 
@@ -8,7 +9,7 @@ const layoutPath = path.resolve(process.cwd(), 'src/lib/components/markdown/Blog
 export default {
 	extensions: ['.md', '.svx'],
 	layout: { _: layoutPath }, // absolute FS path like /Users/you/.../src/lib/layouts/BlogLayout.svelte
-	remarkPlugins: [remarkInteractive],
+	remarkPlugins: [remarkReferences, remarkInteractive],
 	rehypePlugins: [rehypeCustomComponents]
 };
 
@@ -31,6 +32,12 @@ function rehypeCustomComponents() {
 		const seen = new Map();
 
 		visit(tree, (node) => {
+			if (node?.type === 'element' && node.tagName === 'a' && String(node.properties?.href ?? '').startsWith('#')) {
+				node.properties.className ??= [];
+				if (!node.properties.className.includes('citation'))
+					node.properties.className.push('in-page-reference');
+			}
+
 			// Check h tags, and pass some extra parameters to the custom components.
 			if (node?.type === 'element' && hTags.includes(node?.tagName)) {
 				const text = getTextContent(node);
