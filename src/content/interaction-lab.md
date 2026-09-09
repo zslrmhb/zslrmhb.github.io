@@ -1,6 +1,6 @@
 ---
 title: Interaction lab
-description: A private regression page for the reusable visual widgets used in future notes.
+description: A test page for the reusable visual widgets used in future notes.
 author: Hongbin Miao
 layout: explorable
 published: true
