@@ -4,35 +4,23 @@
 	grid-template-columns: 1.1fr 0.9fr;
 	align-items: center;
 	column-gap: 42px;
-	min-height: 728px;
-	padding: 28px 0 0;
+	min-height: min(790px, calc(100dvh - 88px));
+	padding: 18px 0 0;
 }
 .hero-copy {
 	z-index: 1;
 	padding-bottom: 24px;
 }
-.hero .eyebrow {
-	color: var(--accent);
-	margin-bottom: 27px;
-}
-.hero .eyebrow span {
-	font:
-		15px 'Songti SC',
-		SimSun,
-		serif;
-	letter-spacing: 3px;
-	margin-left: 8px;
-}
 .hero h1 {
 	font-size: clamp(76px, 8.6vw, 124px);
 	line-height: 0.94;
-	letter-spacing: -5px;
-	margin: 0 0 32px;
+	letter-spacing: -0.04em;
+	margin: 0 0 34px;
 }
 .hero h1 em {
 	font-style: italic;
 	color: var(--accent);
-	letter-spacing: -5px;
+	letter-spacing: -0.04em;
 }
 .intro {
 	color: var(--muted);
@@ -40,19 +28,19 @@
 	line-height: 1.9;
 }
 .landscape-figure {
-	margin: 10px 0 26px;
+	margin: 0;
 	justify-self: center;
-	width: min(100%, 400px);
+	width: min(100%, 405px);
+	background: #f0ede4;
 }
 .landscape-figure > img {
 	width: 100%;
 	height: auto;
 	display: block;
 	object-fit: contain;
-	mix-blend-mode: multiply;
 }
 .dark .landscape-figure {
-	background: #f8f7f2;
+	background: #f0ede4;
 }
 .hero-foot {
 	grid-column: 1/-1;
@@ -65,8 +53,7 @@
 	align-self: end;
 }
 .hero-foot a {
-	font-size: 11px;
-	letter-spacing: 1.2px;
+	font-size: 12px;
 }
 .section {
 	padding: 68px 0;
@@ -234,38 +221,27 @@
 	.hero-copy {
 		padding-bottom: 12px;
 	}
-	.hero .eyebrow {
-		font-size: 11px;
-		margin-bottom: 22px;
-	}
-	.hero .eyebrow span {
-		font-size: 13px;
-	}
 	.hero h1 {
-		font-size: clamp(70px, 19vw, 108px);
-		letter-spacing: -3px;
+		font-size: clamp(58px, 16vw, 64px);
+		letter-spacing: -0.04em;
 		line-height: 0.98;
 	}
 	.hero h1 em {
-		letter-spacing: -3px;
+		letter-spacing: -0.04em;
 	}
 	.intro {
 		font-size: 16px;
-	}
-	.desktop {
-		display: none;
+		line-height: 1.65;
 	}
 	.landscape-figure {
-		width: 100%;
-		margin: 26px 0 30px;
+		width: min(100%, 194px);
+		margin: 22px auto 20px;
 	}
 	.hero-foot {
-		display: block;
-		font-size: 11px;
-		padding: 18px 0;
-	}
-	.hero-foot a {
-		display: none;
+		flex-wrap: wrap;
+		gap: 8px 16px;
+		font-size: 12px;
+		padding: 13px 0;
 	}
 	.section {
 		padding: 42px 0;

@@ -1,7 +1,7 @@
 .notes-page {
-	max-width: 1120px;
+	max-width: 1240px;
 	margin: 0 auto;
-	padding: 76px 28px 64px;
+	padding: 76px 36px 64px;
 }
 .notes-page header {
 	max-width: 680px;
@@ -31,7 +31,6 @@
 	padding: 0;
 	margin: 0;
 	list-style: none;
-	min-height: 250px;
 }
 .notes-page li > a {
 	display: grid;
@@ -44,7 +43,7 @@
 .note-tag {
 	font-size: 14px;
 	color: var(--muted);
-	padding-top: 15px;
+	padding-top: 10px;
 }
 .notes-page h2 {
 	font-size: 35px;
@@ -68,7 +67,7 @@
 	padding: 0;
 }
 .title-block {
-	max-width: 800px;
+	max-width: 840px;
 	margin: 74px auto 54px;
 	padding: 0 24px;
 }
@@ -78,11 +77,9 @@
 	margin-bottom: 18px;
 }
 .title-block h1 {
-	font:
-		400 64px/1.06 Georgia,
-		serif;
-	letter-spacing: -2.6px;
-	max-width: 760px;
+	font: 400 clamp(48px, 5.2vw, 72px) / 1.06 var(--font-display);
+	letter-spacing: -0.035em;
+	max-width: 790px;
 	margin: 0 0 20px;
 	text-wrap: balance;
 }
@@ -100,9 +97,9 @@
 	margin-top: 26px;
 }
 .reading-layout {
-	max-width: 800px;
+	max-width: 840px;
 	margin: auto;
-	padding: 0 24px;
+	padding: 0 20px;
 }
 .article-toc {
 	position: fixed;
@@ -177,7 +174,9 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-.mobile-toc { display: none; }
+.mobile-toc {
+	display: none;
+}
 .article-toc summary {
 	cursor: pointer;
 	list-style: none;
@@ -242,9 +241,7 @@
 }
 .markdown p,
 .markdown li {
-	font:
-		19px/1.85 Georgia,
-		serif;
+	font: 19px/1.85 var(--font-reading);
 }
 .markdown p {
 	margin: 0 0 22px;
@@ -274,7 +271,11 @@
 	top: -0.3em;
 	margin-left: 2px;
 	color: var(--accent);
-	font: 600 0.7em/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+	font:
+		600 0.7em/1 ui-monospace,
+		SFMono-Regular,
+		Menlo,
+		monospace;
 	text-decoration: none;
 }
 .markdown h2#references {
@@ -293,15 +294,23 @@
 	grid-template-columns: 42px minmax(0, 1fr);
 	gap: 12px;
 	margin: 0;
-	padding: 10px 0;
+	padding: 18px 0;
 	border: 0;
 	counter-increment: source;
-	font: 18px/1.45 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	font: 18px/1.45 var(--font-reading);
+	border-bottom: 1px solid var(--line);
+}
+.markdown .references > li:first-child {
+	border-top: 1px solid var(--line);
 }
 .markdown .references > li::before {
 	content: '[' counter(source) ']';
 	color: var(--accent);
-	font: 14px/1.8 ui-monospace, SFMono-Regular, Menlo, monospace;
+	font:
+		14px/1.8 ui-monospace,
+		SFMono-Regular,
+		Menlo,
+		monospace;
 }
 .markdown .references p {
 	margin: 0;
@@ -415,6 +424,19 @@
 	.notes-page header {
 		padding-bottom: 48px;
 	}
+	.notes-page li > a {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) max-content;
+		gap: 0 12px;
+	}
+	.notes-page time {
+		grid-column: 1;
+		padding: 0;
+		font-size: 12px;
+	}
+	.notes-page li > a > div {
+		grid-column: 1 / -1;
+	}
 	.notes-page h1 {
 		font-size: 64px;
 	}
@@ -425,7 +447,6 @@
 		min-height: 0;
 	}
 	.notes-page li > a {
-		display: block;
 		padding-top: 16px;
 	}
 	.notes-page h2 {
@@ -433,8 +454,11 @@
 		margin-top: 12px;
 	}
 	.note-tag {
-		text-align: left;
-		display: block;
+		grid-column: 2;
+		grid-row: 1;
+		padding: 0;
+		text-align: right;
+		font-size: 12px;
 	}
 	.reading-shell {
 		padding: 0;
@@ -455,8 +479,12 @@
 		font-size: 12px;
 		gap: 16px;
 	}
-	.reading-layout { padding: 0 24px; }
-	.article-toc { margin-bottom: 28px; }
+	.reading-layout {
+		padding: 0 24px;
+	}
+	.article-toc {
+		margin-bottom: 28px;
+	}
 	.article-toc a {
 		padding: 5px 0;
 		font-size: 14px;

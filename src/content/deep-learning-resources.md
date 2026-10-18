@@ -7,20 +7,20 @@ summary: This page is a collection of AI-related resources that I personally fou
 categories: ['Deep Learning']
 ---
 
-## Youtube channels
+## YouTube channels
 
 - [DeepLearning.AI](https://www.youtube.com/@Deeplearningai)
   > This is superb!
 - [3Blue1Brown](https://www.youtube.com/@3blue1brown)
-  > Highly Recommended, very intuitive explaination!
+  > Highly recommended; the explanations are very intuitive.
 - [Welch Labs](https://www.youtube.com/@WelchLabs)
   > Similar to 3Blue1Brown.
 - [Andrej Karpathy](https://www.youtube.com/@AndrejKarpathy)
   > Understanding AI from scratch by one of the co-founders of OpenAI
 - [Umar Jamil](https://www.youtube.com/@umarjamilai)
-  > Paper implementation walk-thru.
+  > Walk-throughs of paper implementations.
 - [StatQuest with Josh Starmer](https://www.youtube.com/@statquest)
-  > Intuitive stat. tutorials
+  > Intuitive statistics tutorials.
 
 ## Blogs
 

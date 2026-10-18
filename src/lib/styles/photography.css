@@ -302,3 +302,18 @@
 		font-size: 12px;
 	}
 }
+
+@media (max-width: 360px) {
+	.gallery-meta {
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 8px 16px;
+	}
+	.gallery-meta span:first-child {
+		white-space: nowrap;
+	}
+	.gallery-meta span:last-child {
+		max-width: 100%;
+		margin-left: auto;
+	}
+}

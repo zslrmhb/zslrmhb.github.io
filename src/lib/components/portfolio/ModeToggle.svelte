@@ -9,5 +9,5 @@
 	class={`theme-toggle ${size === 'small' ? 'compact' : ''} ${className}`}
 	onclick={toggleTheme}
 	aria-label={`Switch to ${$theme === 'dark' ? 'light' : 'dark'} mode`}
-	>{$theme === 'dark' ? 'Light' : 'Dark'} ◐</button
+	>{$theme === 'dark' ? 'Light' : 'Dark'}</button
 >
