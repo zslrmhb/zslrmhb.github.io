@@ -67,7 +67,7 @@
 	padding: 0;
 }
 .title-block {
-	max-width: 840px;
+	max-width: 920px;
 	margin: 74px auto 54px;
 	padding: 0 24px;
 }
@@ -79,14 +79,14 @@
 .title-block h1 {
 	font: 400 clamp(48px, 5.2vw, 72px) / 1.06 var(--font-display);
 	letter-spacing: -0.035em;
-	max-width: 790px;
+	max-width: 870px;
 	margin: 0 0 20px;
 	text-wrap: balance;
 }
 .article-summary {
 	font-size: 18px;
 	color: var(--muted);
-	max-width: 680px;
+	max-width: 760px;
 	line-height: 1.7;
 }
 .article-byline {
@@ -97,16 +97,16 @@
 	margin-top: 26px;
 }
 .reading-layout {
-	max-width: 840px;
+	max-width: 920px;
 	margin: auto;
 	padding: 0 20px;
 }
 .article-toc {
 	position: fixed;
-	left: max(32px, calc(50vw - 760px));
+	left: max(20px, calc(50vw - 850px));
 	top: 50%;
 	z-index: 5;
-	width: 248px;
+	width: 24px;
 	transform: translateY(-50%);
 	font-size: 13px;
 	color: var(--muted);
@@ -115,34 +115,42 @@
 .toc-rail {
 	display: flex;
 	align-items: center;
-	border: 0;
-	padding: 10px 0;
+	width: 24px;
+	min-height: 24px;
+	padding: 8px 0;
+	cursor: default;
 }
 .toc-rail-marks {
 	display: grid;
 	gap: 7px;
-	padding: 5px 0;
 }
 .toc-rail-marks i {
 	display: block;
 	width: 18px;
 	border-top: 1px solid var(--line);
-	transition: width 180ms ease, border-color 180ms ease;
+	transform: scaleX(var(--toc-wave, 1));
+	transform-origin: left center;
+	transition:
+		transform 150ms ease,
+		border-color 150ms ease;
 }
 .toc-rail-marks i.active-mark {
-	width: 28px;
 	border-color: var(--accent);
 }
 .toc-panel {
 	position: absolute;
-	top: 50%;
-	left: 0;
-	width: 248px;
+	top: calc(50% + 32px);
+	left: 24px;
+	width: min(224px, calc(100vw - 76px));
+	max-height: calc(100dvh - 112px);
+	overflow-y: auto;
 	transform: translate(-10px, -50%);
-	padding: 0;
+	padding: 0 6px 0 0;
 	opacity: 0;
 	pointer-events: none;
-	transition: opacity 180ms ease, transform 180ms ease;
+	transition:
+		opacity 180ms ease,
+		transform 180ms ease;
 }
 .article-toc:hover .toc-panel,
 .article-toc:focus-within .toc-panel {
@@ -150,29 +158,19 @@
 	pointer-events: auto;
 	transform: translate(0, -50%);
 }
-.article-toc:hover .toc-rail,
 .article-toc:focus-within .toc-rail {
 	opacity: 0;
 	pointer-events: none;
 }
-.toc-panel-heading {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 12px;
-	font-size: 10px;
-	letter-spacing: 0.12em;
-}
 .toc-title {
 	display: block;
-	margin-bottom: 13px;
+	margin-bottom: 18px;
 	color: var(--ink);
-	font: 400 19px/1.2 Georgia, serif;
-	letter-spacing: -0.4px;
+	font: 400 22px/1.3 var(--font-display);
+	letter-spacing: -0.025em;
 	text-decoration: none;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+	white-space: normal;
+	overflow-wrap: anywhere;
 }
 .mobile-toc {
 	display: none;
@@ -198,16 +196,28 @@
 .article-toc ol a {
 	display: grid;
 	grid-template-columns: 28px 1fr;
-	padding: 8px 0;
+	gap: 8px;
+	padding: 7px 0;
 	line-height: 1.6;
+	text-decoration: none;
+	color: var(--muted);
 }
 .article-toc ol a span {
 	font-size: 12px;
 	color: var(--accent);
 }
 .article-toc li.subsection a {
+	grid-template-columns: 36px 1fr;
 	padding-left: 20px;
 	font-size: 12px;
+}
+.article-toc li.terminal a {
+	grid-template-columns: 1fr;
+	padding-left: 0;
+}
+.article-toc ol a:hover,
+.article-toc ol a[aria-current='location'] {
+	color: var(--ink);
 }
 .article-toc a[aria-current] {
 	color: var(--ink);
@@ -395,8 +405,12 @@
 		border-bottom: 1px solid var(--line);
 	}
 	.toc-rail,
-	.toc-panel { display: none; }
-	.mobile-toc { display: block; }
+	.toc-panel {
+		display: none;
+	}
+	.mobile-toc {
+		display: block;
+	}
 	.mobile-toc summary {
 		display: flex;
 		justify-content: space-between;
@@ -406,7 +420,9 @@
 		font-size: 11px;
 		letter-spacing: 0.12em;
 	}
-	.mobile-toc summary::-webkit-details-marker { display: none; }
+	.mobile-toc summary::-webkit-details-marker {
+		display: none;
+	}
 	.mobile-toc summary span {
 		overflow: hidden;
 		max-width: 68%;
@@ -415,7 +431,9 @@
 		font-size: 11px;
 		letter-spacing: 0;
 	}
-	.mobile-toc[open] summary { margin-bottom: 10px; }
+	.mobile-toc[open] summary {
+		margin-bottom: 10px;
+	}
 }
 @media (max-width: 760px) {
 	.notes-page {

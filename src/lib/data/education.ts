@@ -1,7 +1,7 @@
 import UciSvg from '$lib/imgs/uci.svg';
 import UcsdSvg from '$lib/imgs/ucsd.svg';
 
-export let EDUCATION = {
+export const EDUCATION = {
 	education: [
 		{
 			school: 'UC Irvine',

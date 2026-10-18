@@ -6,6 +6,36 @@ export const INITIAL = [
 export type Snapshot = { state: number[]; speed: number };
 export type CameraPosition = [number, number, number];
 
+export function isTopView(position: CameraPosition | undefined): boolean {
+	if (!position) return false;
+	const distance = Math.hypot(...position);
+	return distance > 0 && Math.hypot(position[0], position[2]) / distance < 0.15;
+}
+
+export function normalizeSnapshot(value: unknown): Snapshot {
+	const fallback = { state: INITIAL.slice(), speed: 1 };
+	if (!value || typeof value !== 'object') return fallback;
+	const candidate = value as Partial<Snapshot>;
+	if (
+		!Array.isArray(candidate.state) ||
+		candidate.state.length !== INITIAL.length ||
+		!candidate.state.every(Number.isFinite) ||
+		typeof candidate.speed !== 'number' ||
+		!Number.isFinite(candidate.speed) ||
+		candidate.speed < 0.25 ||
+		candidate.speed > 2
+	)
+		return fallback;
+	for (let first = 0; first < 3; first++) {
+		for (let second = first + 1; second < 3; second++) {
+			const dx = candidate.state[first * 4] - candidate.state[second * 4];
+			const dy = candidate.state[first * 4 + 1] - candidate.state[second * 4 + 1];
+			if (dx * dx + dy * dy < 1e-10) return fallback;
+		}
+	}
+	return { state: candidate.state.slice(), speed: candidate.speed };
+}
+
 function derivative(state: number[]): number[] {
 	const result = new Array<number>(12).fill(0);
 	for (let i = 0; i < 3; i++) {

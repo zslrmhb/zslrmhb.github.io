@@ -32,7 +32,11 @@ function rehypeCustomComponents() {
 		const seen = new Map();
 
 		visit(tree, (node) => {
-			if (node?.type === 'element' && node.tagName === 'a' && String(node.properties?.href ?? '').startsWith('#')) {
+			if (
+				node?.type === 'element' &&
+				node.tagName === 'a' &&
+				String(node.properties?.href ?? '').startsWith('#')
+			) {
 				node.properties.className ??= [];
 				if (!node.properties.className.includes('citation'))
 					node.properties.className.push('in-page-reference');

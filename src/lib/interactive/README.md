@@ -20,7 +20,7 @@ explore: true
 - **3D:** `ThrelteScene.svelte` owns the Three.js scene through `@threlte/core` and `@threlte/extras`. The local `ThrelteCanvas` wrapper creates the renderer context, while `T.*` and `OrbitControls` provide scene lifecycle and camera bindings; the physics module stays renderer-agnostic.
 - **Widgets:** `src/lib/components/interactive` contains the stable UI vocabulary: `WidgetFrame`, `RangeControl`, `ToggleControl`, and `SegmentedControl`. New experiments should compose these controls instead of creating one-off markup.
 
-The private `interaction-lab.md` page is the regression surface. Keep it unpublished and update it whenever a widget contract changes. Published notes should contain the explanation and a short interactive declaration only.
+The public `interaction-lab.md` page is the regression surface. Update it whenever a widget contract changes. Other published notes should contain the explanation and a short interactive declaration only.
 
 Do not add another renderer just because a library can draw the current example. Add D3 modules when a note needs scales, shapes, axes, layouts, or data joins. Add Threlte scene helpers when a 3D note needs reactive scene composition, shared camera state, or reusable controls. This keeps the bundle and mental model small while leaving both paths ready for richer work.
 ```

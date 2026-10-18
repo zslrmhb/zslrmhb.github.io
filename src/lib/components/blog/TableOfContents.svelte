@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { isTerminalHeading, numberHeadings, type TocHeading } from '$lib/blog/toc';
 
 	let { title = 'This note' }: { title?: string } = $props();
-	let headings = $state<{ id: string; text: string; level: 2 | 3; number?: string }[]>([]);
+	let headings = $state<TocHeading[]>([]);
 	let active = $state('');
 	let mobileOpen = $state(false);
-
-	function isTerminalHeading(text: string) {
-		return /^(references|appendix)$/i.test(text.trim());
-	}
+	let markNodes: HTMLElement[] = [];
+	let pointerY: number | null = null;
+	let proximityFrame = 0;
 
 	function headingId(element: HTMLElement) {
 		if (element.id) return element.id;
@@ -25,18 +25,60 @@
 		active = id;
 	}
 
+	function registerMark(node: HTMLElement, index: number) {
+		markNodes[index] = node;
+		return {
+			destroy() {
+				if (markNodes[index] === node) delete markNodes[index];
+			}
+		};
+	}
+
+	function scheduleProximity() {
+		if (proximityFrame) return;
+		proximityFrame = requestAnimationFrame(() => {
+			proximityFrame = 0;
+			if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+				markNodes.forEach((mark) => mark.style.removeProperty('--toc-wave'));
+				return;
+			}
+			const centers = markNodes.map((mark) => {
+				const rect = mark.getBoundingClientRect();
+				return rect.top + rect.height / 2;
+			});
+			const strengths = centers.map((center) =>
+				pointerY === null ? 0 : Math.exp(-Math.abs(pointerY - center) / 54)
+			);
+			markNodes.forEach((mark, index) => {
+				mark.style.setProperty('--toc-wave', String(1 + strengths[index] * 0.75));
+			});
+		});
+	}
+
+	function handlePointerMove(event: PointerEvent) {
+		if (event.pointerType !== 'mouse') return;
+		pointerY = event.clientY;
+		scheduleProximity();
+	}
+
+	function handlePointerLeave() {
+		pointerY = null;
+		scheduleProximity();
+	}
+
 	onMount(() => {
-		const elements = Array.from(document.querySelectorAll<HTMLElement>('.markdown h2, .markdown h3'));
-		let numberedHeadings = 0;
-		headings = elements.map((element) => {
+		const elements = Array.from(
+			document.querySelectorAll<HTMLElement>('.markdown h2, .markdown h3')
+		);
+		const headingData = elements.map((element) => {
 			const text = element.textContent?.trim() || '';
 			return {
 				id: headingId(element),
 				text,
-				level: element.tagName === 'H3' ? 3 : 2,
-				number: isTerminalHeading(text) ? undefined : String(++numberedHeadings).padStart(2, '0')
+				level: element.tagName === 'H3' ? (3 as const) : (2 as const)
 			};
 		});
+		headings = numberHeadings(headingData);
 
 		let frame = 0;
 		const update = () => {
@@ -57,33 +99,42 @@
 		window.addEventListener('scroll', schedule, { passive: true });
 		window.addEventListener('resize', schedule, { passive: true });
 		window.addEventListener('hashchange', schedule);
+		window.addEventListener('resize', scheduleProximity, { passive: true });
 		return () => {
 			cancelAnimationFrame(frame);
+			cancelAnimationFrame(proximityFrame);
 			window.removeEventListener('scroll', schedule);
 			window.removeEventListener('resize', schedule);
 			window.removeEventListener('hashchange', schedule);
+			window.removeEventListener('resize', scheduleProximity);
 		};
 	});
 </script>
 
 <aside class="article-toc" aria-label="On this page">
-	<span class="toc-rail" aria-hidden="true">
+	<span
+		class="toc-rail"
+		aria-hidden="true"
+		onpointermove={handlePointerMove}
+		onpointerleave={handlePointerLeave}
+	>
 		<span class="toc-rail-marks" aria-hidden="true">
-			{#each headings as heading (heading.id)}
-				<i class:active-mark={active === heading.id}></i>
+			{#each headings as heading, index (heading.id)}
+				<i use:registerMark={index} class:active-mark={active === heading.id}></i>
 			{/each}
 		</span>
 	</span>
 
 	<nav class="toc-panel" aria-label={`Contents for ${title}`}>
-		<div class="toc-panel-heading">
-			<span>CONTENTS</span>
-		</div>
 		<a class="toc-title" href="#main">{title}</a>
 		<ol>
 			{#each headings as heading (heading.id)}
 				<li class:subsection={heading.level === 3} class:terminal={isTerminalHeading(heading.text)}>
-					<a href={`#${heading.id}`} aria-current={active === heading.id ? 'location' : undefined} onclick={() => activate(heading.id)}>
+					<a
+						href={`#${heading.id}`}
+						aria-current={active === heading.id ? 'location' : undefined}
+						onclick={() => activate(heading.id)}
+					>
 						{#if heading.number}<span>{heading.number}</span>{/if}{heading.text}
 					</a>
 				</li>
@@ -92,14 +143,19 @@
 	</nav>
 
 	<details class="mobile-toc" bind:open={mobileOpen}>
-		<summary>CONTENTS <span>{headings.find((heading) => heading.id === active)?.text}</span></summary>
+		<summary
+			>On this page <span>{headings.find((heading) => heading.id === active)?.text}</span></summary
+		>
 		<ol>
 			{#each headings as heading (heading.id)}
 				<li class:subsection={heading.level === 3} class:terminal={isTerminalHeading(heading.text)}>
 					<a
 						href={`#${heading.id}`}
 						aria-current={active === heading.id ? 'location' : undefined}
-						onclick={() => { activate(heading.id); mobileOpen = false; }}
+						onclick={() => {
+							activate(heading.id);
+							mobileOpen = false;
+						}}
 					>
 						{#if heading.number}<span>{heading.number}</span>{/if}{heading.text}
 					</a>

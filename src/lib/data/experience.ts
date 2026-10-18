@@ -3,7 +3,7 @@ import BmPng from '$lib/imgs/breakout-mentors.png';
 import SiPng from '$lib/imgs/salk-institute.png';
 import TrPng from '$lib/imgs/triton-robotics.png';
 
-export let EXPERIENCE = {
+export const EXPERIENCE = {
 	experience: [
 		{
 			company: 'Amazon Web Services',

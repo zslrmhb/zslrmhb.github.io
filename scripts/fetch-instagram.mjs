@@ -1,18 +1,20 @@
-import { access, mkdir, readdir, unlink, writeFile } from 'node:fs/promises';
+import { access, mkdir, readdir, readFile, rename, unlink, writeFile } from 'node:fs/promises';
 import { constants as FS } from 'node:fs';
 import path from 'node:path';
 import 'dotenv/config';
+import { createPhotoVariants, imageDimensions, referencedImageFiles } from './photo-assets.mjs';
+import { writePhotoMetadata } from './photo-metadata.mjs';
+import {
+	archiveAfterRefreshFailure,
+	assertCompleteArchive,
+	fetchInstagramMedia,
+	updatePhotoArchive
+} from './photo-cache.mjs';
 
 const JSON_OUT = 'src/data/photos.json';
 const JSON_OUT_STATIC = 'static/photos.json';
+const ALT_OUT = 'src/data/photo-alt.json';
 const IMG_DIR = 'static/ig';
-
-const { IG_USER_ID, IG_LONG_LIVED_TOKEN } = process.env;
-
-if (!IG_USER_ID || !IG_LONG_LIVED_TOKEN) {
-	console.error('Missing IG_USER_ID or IG_LONG_LIVED_TOKEN in env. Photo cache was not changed.');
-	process.exit(1);
-}
 
 const FIELDS = [
 	'id',
@@ -25,29 +27,45 @@ const FIELDS = [
 	'children{media_type,media_url,thumbnail_url}'
 ].join(',');
 
-async function fetchAll() {
-	let url =
-		`https://graph.instagram.com/${IG_USER_ID}/media` +
-		`?fields=${encodeURIComponent(FIELDS)}&access_token=${IG_LONG_LIVED_TOKEN}&limit=25`;
+function localAsset(url) {
+	return typeof url === 'string' && url.startsWith('/ig/') && !url.includes('..');
+}
 
-	const items = [];
-	while (url) {
-		const res = await fetch(url, { method: 'GET' });
-		const data = await res.json();
-		if (!res.ok) {
-			const message = data?.error?.message || data?.error?.error_user_msg || res.statusText;
-			const code = data?.error?.code ? ` code ${data.error.code}` : '';
-			const type = data?.error?.type ? ` ${data.error.type}` : '';
-			const tokenHint =
-				res.status === 400 || res.status === 401
-					? ' The Instagram token may be missing, expired, or invalid.'
-					: '';
-			throw new Error(`IG HTTP ${res.status}${type}${code}: ${message}.${tokenHint}`);
-		}
-		if (Array.isArray(data?.data)) items.push(...data.data);
-		url = data?.paging?.next ?? null;
+async function fileExists(filePath) {
+	try {
+		await access(filePath, FS.F_OK);
+		return true;
+	} catch {
+		return false;
 	}
-	return items;
+}
+
+async function photoAssetsExist(photo) {
+	const urls = [photo.url, photo.thumb, photo.medium];
+	if (!urls.every(localAsset)) return false;
+	return (
+		await Promise.all(urls.map((url) => fileExists(path.join('static', url.slice(1)))))
+	).every(Boolean);
+}
+
+async function readUsableCache() {
+	try {
+		const photos = JSON.parse(await readFile(JSON_OUT_STATIC, 'utf8'));
+		if (!Array.isArray(photos) || photos.length === 0) return [];
+		const usable = [];
+		for (const photo of photos) if (await photoAssetsExist(photo)) usable.push(photo);
+		return usable.length === photos.length ? usable : [];
+	} catch {
+		return [];
+	}
+}
+
+async function fetchAll() {
+	return fetchInstagramMedia({
+		userId: process.env.IG_USER_ID,
+		token: process.env.IG_LONG_LIVED_TOKEN,
+		fields: FIELDS
+	});
 }
 
 function normalize(items) {
@@ -61,13 +79,10 @@ function normalize(items) {
 					item.children?.data?.[0];
 				best = child ?? item;
 			}
-			const url = best?.media_url || item.media_url;
-			const thumb = best?.thumbnail_url || url;
 			return {
 				id: item.id,
 				caption: item.caption ?? '',
-				url,
-				thumb,
+				remoteUrl: best?.media_url || item.media_url,
 				permalink: item.permalink,
 				takenAt: item.timestamp
 			};
@@ -75,78 +90,90 @@ function normalize(items) {
 		.sort((a, b) => +new Date(b.takenAt) - +new Date(a.takenAt));
 }
 
-async function fileExists(filePath) {
-	try {
-		await access(filePath, FS.F_OK);
-		return true;
-	} catch {
-		return false;
+async function downloadOriginal(url, id) {
+	const res = await fetch(url, {
+		headers: { Accept: 'image/*', Referer: 'https://www.instagram.com/' }
+	});
+	if (!res.ok) throw new Error(`download returned HTTP ${res.status}`);
+	const bytes = Buffer.from(await res.arrayBuffer());
+	const { width, height } = imageDimensions(bytes);
+	if (width < 1 || height < 1) throw new Error('downloaded image has invalid dimensions');
+	const type = (res.headers.get('content-type') || '').toLowerCase();
+	const extension = type.includes('webp') ? 'webp' : type.includes('png') ? 'png' : 'jpg';
+	const name = `${id}.${extension}`;
+	const destination = path.join(IMG_DIR, name);
+	const temporary = `${destination}.download`;
+	await writeFile(temporary, bytes);
+	await rename(temporary, destination);
+	return { url: `/ig/${name}`, width, height };
+}
+
+async function writeMetadata(photos) {
+	const json = `${JSON.stringify(photos, null, 2)}\n`;
+	await writePhotoMetadata([JSON_OUT, JSON_OUT_STATIC], json);
+}
+
+async function cleanupImages(photos) {
+	const keep = referencedImageFiles(photos);
+	for (const file of await readdir(IMG_DIR).catch(() => [])) {
+		if (!keep.has(file)) await unlink(path.join(IMG_DIR, file)).catch(() => {});
 	}
 }
 
-async function downloadImage(url, destBase) {
-	const res = await fetch(url, {
-		headers: {
-			Accept: 'image/*',
-			Referer: 'https://www.instagram.com/'
-		}
-	});
-	if (!res.ok) throw new Error(`download ${res.status}`);
-	const ab = await res.arrayBuffer();
-	const ct = (res.headers.get('content-type') || '').toLowerCase();
-	const ext = ct.includes('webp') ? 'webp' : ct.includes('png') ? 'png' : 'jpg';
-	const destPath = `${destBase}.${ext}`;
-	await writeFile(destPath, Buffer.from(ab));
-	return destPath;
-}
-
-async function cleanupImages(keepIds) {
-	await mkdir(IMG_DIR, { recursive: true });
-	const keep = new Set(keepIds);
-	const files = await readdir(IMG_DIR).catch(() => []);
-	await Promise.all(
-		files
-			.filter((file) => !keep.has(file.split('.')[0]))
-			.map((file) => unlink(path.join(IMG_DIR, file)).catch(() => {}))
-	);
+async function reportWarning(message) {
+	console.warn(`::warning::${message}`);
+	if (process.env.GITHUB_STEP_SUMMARY) {
+		await writeFile(
+			process.env.GITHUB_STEP_SUMMARY,
+			`\n> **Instagram refresh warning:** ${message}\n`,
+			{ flag: 'a' }
+		);
+	}
 }
 
 async function main() {
+	await mkdir(IMG_DIR, { recursive: true });
+	const previous = await readUsableCache();
+	let altDescriptions = {};
 	try {
-		const raw = await fetchAll();
-		const photos = normalize(raw);
+		altDescriptions = JSON.parse(await readFile(ALT_OUT, 'utf8'));
+	} catch {
+		// Descriptions are optional and are maintained separately from Instagram captions.
+	}
 
-		await mkdir(path.dirname(JSON_OUT), { recursive: true });
-		await mkdir(path.dirname(JSON_OUT_STATIC), { recursive: true });
-		await mkdir(IMG_DIR, { recursive: true });
-
-		const updated = [];
-		for (const photo of photos) {
-			const base = path.join(IMG_DIR, photo.id);
-			try {
-				const saved = await downloadImage(photo.thumb || photo.url, base);
-				const rel = '/' + path.posix.join('ig', path.basename(saved));
-				updated.push({ ...photo, url: rel, thumb: rel });
-			} catch (error) {
-				console.warn(`failed to cache ${photo.id}:`, error?.message || error);
-				updated.push(photo);
-			}
-		}
-
-		await cleanupImages(updated.map((photo) => photo.id));
-
-		const json = JSON.stringify(updated, null, 2);
-		await writeFile(JSON_OUT, json);
-		await writeFile(JSON_OUT_STATIC, json);
-
-		console.log(`Cached ${updated.length} photos -> ${IMG_DIR}`);
-		console.log(`Wrote metadata -> ${JSON_OUT} & ${JSON_OUT_STATIC}`);
+	let refreshed;
+	try {
+		refreshed = normalize(await fetchAll());
 	} catch (error) {
-		console.error('IG fetch failed:', error?.message || error);
-		if (!(await fileExists(JSON_OUT))) process.exit(1);
-		console.log('Using existing photos.json; photo cache was not changed.');
-		process.exit(1);
+		const fallback = await archiveAfterRefreshFailure(error, previous, async (photos) => {
+			for (const photo of photos) if (!(await photoAssetsExist(photo))) return false;
+			return true;
+		});
+		await reportWarning(fallback.warning);
+		return;
+	}
+
+	const { photos: updated, failures } = await updatePhotoArchive({
+		fresh: refreshed,
+		previous,
+		altDescriptions,
+		canReuse: photoAssetsExist,
+		downloadOriginal,
+		createVariants: (photo) => createPhotoVariants(photo, IMG_DIR)
+	});
+
+	assertCompleteArchive(previous.length, updated.length, failures);
+	await writeMetadata(updated);
+	await cleanupImages(updated);
+	console.log(`Validated ${updated.length} photos and updated local responsive assets.`);
+	if (failures.length) {
+		await reportWarning(
+			`Some new or refreshed images could not be cached; valid previous records were retained. ${failures.length} item(s) skipped.`
+		);
 	}
 }
 
-main();
+main().catch(async (error) => {
+	console.error('Instagram refresh failed:', error?.message || error);
+	process.exitCode = 1;
+});

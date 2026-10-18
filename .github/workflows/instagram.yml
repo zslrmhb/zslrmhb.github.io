@@ -28,6 +28,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install WebP encoder
+        run: sudo apt-get update && sudo apt-get install -y webp
+
       - name: Fetch Instagram media -> photos.json
         env:
           IG_APP_ID: ${{ secrets.IG_APP_ID }}

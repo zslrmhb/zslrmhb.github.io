@@ -3,7 +3,6 @@
 	import { EXPERIENCE } from '$lib/data/experience';
 	import { EDUCATION } from '$lib/data/education';
 	import { PROJECTS } from '$lib/data/projects';
-	import portrait from '$lib/imgs/personal-portrait.png';
 </script>
 
 <main id="main">
@@ -11,10 +10,12 @@
 	<section class="section background" id="experience">
 		<div class="about-intro">
 			<span class="eyebrow">01 / BACKGROUND</span><img
-				src={portrait}
+				src="/personal-portrait-144.webp"
+				srcset="/personal-portrait-144.webp 144w, /personal-portrait-288.webp 288w"
+				sizes="(max-width: 760px) 100px, 144px"
 				alt="Hongbin Miao"
 				width="144"
-				height="168"
+				height="160"
 				loading="lazy"
 			/>
 			<h2 lang="zh-Hant">觀己</h2>
@@ -25,7 +26,9 @@
 		</div>
 		<div class="resume">
 			<h3>Experience</h3>
-			{#each EXPERIENCE.experience as item (item.company + item.start + item.title)}<a class="resume-row" href={item.href}
+			{#each EXPERIENCE.experience as item (item.company + item.start + item.title)}<a
+					class="resume-row"
+					href={item.href}
 					><div><strong>{item.company}</strong><span>{item.title}</span></div>
 					<time>{item.start} — {item.end}</time></a
 				>{/each}
@@ -57,7 +60,7 @@
 			<h2 lang="zh-Hant">學而不厭</h2>
 		</div>
 		<div class="note-entry">
-			<a href="/blog"
+			<a href="/blog/deep-learning-resources"
 				><span class="meta">AUG 21, 2025 · DEEP LEARNING</span>
 				<h3>AI Resources</h3>
 				<p>A collection of AI resources I’ve found helpful.</p></a

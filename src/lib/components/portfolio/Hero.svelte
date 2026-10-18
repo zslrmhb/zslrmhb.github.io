@@ -9,7 +9,9 @@
 	</div>
 	<figure class="landscape-figure">
 		<img
-			src="/dao-landscape-calligraphy-v1.png"
+			src="/dao-landscape-calligraphy-v1-480.webp"
+			srcset="/dao-landscape-calligraphy-v1-480.webp 480w, /dao-landscape-calligraphy-v1-768.webp 768w, /dao-landscape-calligraphy-v1-1024.webp 1024w"
+			sizes="(max-width: 760px) 194px, (max-width: 1100px) 350px, 405px"
 			alt="A sparse ink landscape with the calligraphy: 道可道，非常道."
 			width="1024"
 			height="1536"

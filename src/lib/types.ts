@@ -13,6 +13,14 @@ export type Photo = {
 	caption: string;
 	url: string;
 	thumb: string;
+	medium: string;
+	width: number;
+	height: number;
+	thumbWidth: number;
+	thumbHeight: number;
+	mediumWidth: number;
+	mediumHeight: number;
+	alt?: string;
 	permalink: string;
 	takenAt: string;
 };

@@ -1,14 +1,15 @@
 ---
 title: Interaction lab
-description: A test page for the reusable visual widgets used in future notes.
+description: A public test bed for reusable 2D and 3D interactions in future notes.
 author: Hongbin Miao
 layout: explorable
+date: 2026-10-18
 published: true
 ---
 
 ## Overview
 
-This page is a testing surface, not a published note. It keeps the interaction contract visible while the visual language evolves. The controls below are described in [Building blocks](#building-blocks); the readable explanation remains the source of truth when motion is reduced.
+This public lab demonstrates the interaction system used in future notes. The controls are described in [Building blocks](#building-blocks); the written explanation remains available when motion is reduced or 3D is unavailable.
 
 ## Experiment
 
@@ -28,4 +29,4 @@ The lab currently exercises the same scene contract used by [@Threlte](https://t
 - reusable play, reset, range, toggle, segmented, and theme controls;
 - reduced-motion and WebGL failure paths that leave the written explanation readable.
 
-Keep this page unpublished. Add a new `preset` in the interactive registry when a future note needs a different experiment. The coordinate layer follows [@D3 scales](https://d3js.org/d3-scale) so a future explorable can keep its data and drawing concerns separate.
+Add a new `preset` in the interactive registry when a future note needs a different experiment. The coordinate layer follows [@D3 scales](https://d3js.org/d3-scale) so a future explorable can keep its data and drawing concerns separate.

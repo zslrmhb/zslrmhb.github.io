@@ -7,7 +7,7 @@ SvelteKit 5 portfolio and Markdown-first notes site with a quiet Chinese visual 
 - Add a note as `src/content/<slug>.md` with frontmatter and Markdown body.
 - Set `published: true` when it is ready for the public notes index.
 - Use a fenced `interactive` block only when the note needs a registered visual experiment.
-- Keep `src/content/interaction-lab.md` unpublished; it is the regression surface for the interaction system.
+- `src/content/interaction-lab.md` is the public regression surface for the interaction system; update it whenever a widget contract changes.
 
 ## Interaction architecture
 

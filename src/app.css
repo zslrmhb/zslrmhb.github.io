@@ -111,6 +111,13 @@ h3 {
 	font-weight: 400;
 	text-wrap: balance;
 }
+h1:lang(zh),
+h2:lang(zh),
+h3:lang(zh),
+[lang^='zh'] {
+	font-family: var(--font-cjk-serif);
+	font-style: normal;
+}
 p {
 	margin: 0 0 24px;
 	text-wrap: pretty;
@@ -147,6 +154,11 @@ img {
 	gap: clamp(16px, 2vw, 30px);
 	align-items: center;
 	font-size: 14px;
+}
+.site-nav nav a {
+	display: inline-flex;
+	align-items: center;
+	min-height: 44px;
 }
 .article-nav {
 	position: sticky;
@@ -260,6 +272,7 @@ body:has(dialog[open]) {
 		grid-row: 1;
 		margin-left: 0;
 		min-width: 64px;
+		min-height: 44px;
 		padding: 4px 8px;
 		font-size: 12px;
 	}
@@ -281,11 +294,13 @@ body:has(dialog[open]) {
 	}
 }
 @media (prefers-reduced-motion: reduce) {
-	*,
-	*::before,
-	*::after {
-		scroll-behavior: auto !important;
-		animation-duration: 0.01ms !important;
-		transition-duration: 0.01ms !important;
+	html {
+		scroll-behavior: auto;
+	}
+
+	/* Keep TOC motion decorative and immediate without flattening control feedback. */
+	.toc-rail-marks i,
+	.toc-panel {
+		transition: none;
 	}
 }

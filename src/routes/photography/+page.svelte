@@ -29,13 +29,14 @@
 		}).format(new Date(value));
 	}
 	function alt(photo: Photo) {
-		return photo.caption
-			? `Photograph: ${photo.caption}`
-			: `Photograph taken ${date(photo.takenAt, true)}`;
+		return photo.alt || `Photograph taken ${date(photo.takenAt, true)}`;
 	}
 	function goToPage(next: number, focus = true) {
 		page = Math.min(Math.max(next, 1), pageCount);
-		gallery?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		gallery?.scrollIntoView({
+			behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+			block: 'start'
+		});
 		if (focus)
 			requestAnimationFrame(() =>
 				document
@@ -118,6 +119,10 @@
 						><img
 							src={photo.thumb}
 							alt={alt(photo)}
+							width={photo.thumbWidth}
+							height={photo.thumbHeight}
+							srcset={`${photo.thumb} ${photo.thumbWidth}w, ${photo.medium} ${photo.mediumWidth}w`}
+							sizes="(max-width: 760px) calc(100vw - 3rem), (max-width: 1100px) calc((100vw - 5rem) / 3), 340px"
 							loading={index < 3 ? 'eager' : 'lazy'}
 						/></button
 					>
@@ -175,6 +180,8 @@
 			><img
 				src={current.url}
 				alt={alt(current)}
+				width={current.width}
+				height={current.height}
 				onpointerdown={(event) => (touchStart = { x: event.clientX, y: event.clientY })}
 				onpointerup={pointerUp}
 				onpointercancel={() => (touchStart = null)}

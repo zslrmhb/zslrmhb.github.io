@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { untrack } from 'svelte';
 	import { onDestroy, onMount } from 'svelte';
 	import { T, useTask } from '@threlte/core';
 	import { OrbitControls } from '@threlte/extras';
@@ -8,6 +9,7 @@
 		INITIAL,
 		integrate,
 		orbitPoints,
+		normalizeSnapshot,
 		STEP,
 		type CameraPosition,
 		type Snapshot
@@ -28,18 +30,21 @@
 		snapshot,
 		view,
 		onplaying,
+		onready,
 		onerror,
 		controller = $bindable<ThrelteSceneController | undefined>()
 	}: {
 		snapshot: Snapshot;
 		view?: CameraPosition;
 		onplaying: (value: boolean) => void;
+		onready: () => void;
 		onerror: (message: string) => void;
 		controller?: ThrelteSceneController;
 	} = $props();
 
-	let simulation: number[] = $state([]);
-	let playbackSpeed: number = $state(1);
+	const initial = untrack(() => normalizeSnapshot(snapshot));
+	let simulation: number[] = $state(initial.state);
+	let playbackSpeed: number = $state(initial.speed);
 	let playing: boolean = $state(false);
 	let showTrails: boolean = $state(true);
 	let camera: THREE.PerspectiveCamera | undefined = $state();
@@ -129,11 +134,14 @@
 	});
 
 	onMount(() => {
-		simulation = snapshot.state.slice();
-		playbackSpeed = snapshot.speed;
+		const normalized = normalizeSnapshot(snapshot);
+		simulation = normalized.state;
+		playbackSpeed = normalized.speed;
+		updateBodies();
 		syncTheme();
 		const theme = new MutationObserver(syncTheme);
 		theme.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+		onready();
 		return () => theme.disconnect();
 	});
 

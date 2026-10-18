@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { onMount, onDestroy } from 'svelte';
+	import { onMount, onDestroy, tick } from 'svelte';
 	import ModeToggle from '$lib/components/portfolio/ModeToggle.svelte';
 	import { RangeControl, SegmentedControl, ToggleControl } from '$lib/components/interactive';
 	import ThrelteScene, { type ThrelteSceneController } from './ThrelteScene.svelte';
 	import ThrelteCanvas from './ThrelteCanvas.svelte';
-	import type { Snapshot, CameraPosition } from './physics';
+	import { isTopView, type Snapshot, type CameraPosition } from './physics';
 
 	type ExplorerSnapshot = Snapshot & { view?: CameraPosition };
 	let {
@@ -24,6 +24,7 @@
 		cameraPreset = $state<'perspective' | 'top'>('perspective');
 	let status = $state<'loading' | 'ready' | 'error'>('loading');
 	let message = $state('');
+	let sceneMounted = $state(false);
 	let generation = 0;
 	let latest = $state<ExplorerSnapshot>({ state: [], speed: 1 });
 	function release() {
@@ -35,13 +36,27 @@
 	async function load() {
 		const current = ++generation;
 		status = 'loading';
+		message = '';
+		sceneMounted = false;
 		release();
-		if (current === generation) status = 'ready';
+		await tick();
+		if (current === generation) sceneMounted = true;
 	}
 	function sceneError(error: string) {
 		message = error;
 		status = 'error';
+		playing = false;
 		release();
+	}
+	async function retry(reset: () => void) {
+		const current = ++generation;
+		status = 'loading';
+		message = '';
+		sceneMounted = false;
+		await tick();
+		if (current !== generation) return;
+		reset();
+		sceneMounted = true;
 	}
 	function close() {
 		generation++;
@@ -56,6 +71,7 @@
 	}
 	onMount(() => {
 		speed = snapshot.speed;
+		cameraPreset = isTopView(view) ? 'top' : 'perspective';
 		latest = { ...snapshot, view };
 		dialog.showModal();
 		void load();
@@ -79,17 +95,33 @@
 	<div class="explore-layout">
 		<div class="scene-wrap">
 			<div class="scene">
-				{#if status === 'ready'}
-					<ThrelteCanvas>
-						<ThrelteScene
-							snapshot={latest}
-							view={latest.view}
-							onplaying={(value) => (playing = value)}
-							onerror={sceneError}
-							bind:controller
-						/>
-					</ThrelteCanvas>
-				{/if}
+				<svelte:boundary
+					onerror={(error) => sceneError(error instanceof Error ? error.message : String(error))}
+				>
+					{#if sceneMounted}
+						<ThrelteCanvas onerror={sceneError}>
+							<ThrelteScene
+								snapshot={latest}
+								view={latest.view}
+								onplaying={(value) => (playing = value)}
+								onready={() => (status = 'ready')}
+								onerror={sceneError}
+								bind:controller
+							/>
+						</ThrelteCanvas>
+					{/if}
+					{#snippet failed(error, reset)}
+						<div class="scene-message" role="status">
+							<h3>3D view unavailable.</h3>
+							<p>
+								{message ||
+									(error instanceof Error ? error.message : String(error)) ||
+									'The article remains available.'}
+							</p>
+							<button onclick={() => retry(reset)}>Try again</button>
+						</div>
+					{/snippet}
+				</svelte:boundary>
 			</div>
 			{#if status !== 'ready'}<div class="scene-message" role="status">
 					<h3>{status === 'loading' ? 'Preparing the scene…' : 'A quiet pause.'}</h3>

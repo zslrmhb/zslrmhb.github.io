@@ -11,17 +11,20 @@ import visit from 'unist-util-visit';
 export default function remarkReferences() {
 	return (tree, file) => {
 		const seen = new Map();
+		let referencesHeading;
 
 		visit(tree, 'heading', (node) => {
 			if (node.depth !== 2 && node.depth !== 3) return;
 			const label = textContent(node).trim();
+			if (node.depth === 2 && label.toLowerCase() === 'references' && !referencesHeading) {
+				referencesHeading = node;
+			}
 			const base = slugify(label) || 'section';
 			const count = seen.get(base) ?? 0;
 			seen.set(base, count + 1);
 			const id = count === 0 ? base : `${base}-${count + 1}`;
 			node.data ??= {};
 			node.data.hProperties = { ...(node.data.hProperties ?? {}), id };
-
 		});
 
 		const sources = new Map();
@@ -37,7 +40,7 @@ export default function remarkReferences() {
 			const key = `${node.url}::${sourceLabel}`;
 			let source = sources.get(key);
 			if (!source) {
-			source = { number: sources.size + 1, label: sourceLabel, url: node.url };
+				source = { number: sources.size + 1, label: sourceLabel, url: node.url };
 				sources.set(key, source);
 			}
 			parent.children.splice(index, 1, {
@@ -53,11 +56,49 @@ export default function remarkReferences() {
 			});
 		});
 
-		if (sources.size) appendReferences(tree, [...sources.values()]);
+		if (sources.size) appendReferences(tree, [...sources.values()], referencesHeading);
 	};
 }
 
-function appendReferences(tree, sources) {
+function referencesList(sources) {
+	return {
+		type: 'list',
+		ordered: true,
+		start: 1,
+		data: { hProperties: { className: ['references'] } },
+		children: sources.map((source) => ({
+			type: 'listItem',
+			data: { hProperties: { id: `reference-${source.number}` } },
+			children: [
+				{
+					type: 'paragraph',
+					children: [
+						{
+							type: 'link',
+							url: source.url,
+							data: {
+								hProperties: {
+									target: '_blank',
+									rel: ['noreferrer'],
+									className: ['reference-source']
+								}
+							},
+							children: [{ type: 'text', value: source.label }]
+						}
+					]
+				}
+			]
+		}))
+	};
+}
+
+function appendReferences(tree, sources, existingHeading) {
+	const list = referencesList(sources);
+	if (existingHeading) {
+		const index = tree.children.indexOf(existingHeading);
+		tree.children.splice(index + 1, 0, list);
+		return;
+	}
 	tree.children.push(
 		{
 			type: 'heading',
@@ -65,35 +106,7 @@ function appendReferences(tree, sources) {
 			data: { hProperties: { id: 'references' } },
 			children: [{ type: 'text', value: 'References' }]
 		},
-		{
-			type: 'list',
-			ordered: true,
-			start: 1,
-			data: { hProperties: { className: ['references'] } },
-			children: sources.map((source) => ({
-				type: 'listItem',
-				data: { hProperties: { id: `reference-${source.number}` } },
-				children: [
-					{
-						type: 'paragraph',
-						children: [
-							{
-								type: 'link',
-								url: source.url,
-								data: {
-									hProperties: {
-										target: '_blank',
-										rel: ['noreferrer'],
-										className: ['reference-source']
-									}
-								},
-								children: [{ type: 'text', value: source.label }]
-							},
-						]
-					}
-				]
-			}))
-		}
+		list
 	);
 }
 
