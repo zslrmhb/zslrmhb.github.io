@@ -43,9 +43,7 @@
 	flex-wrap: wrap;
 }
 button.primary {
-	background: var(--ink);
-	color: var(--paper);
-	border-color: var(--ink);
+	font-weight: 650;
 	min-width: 76px;
 }
 .explore-dialog {

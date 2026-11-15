@@ -16,9 +16,6 @@
 						? 'page'
 						: undefined}>{item.label === 'Blog' ? 'Notes' : item.label}</a
 				>{/each}
-			{#each Object.values(PERSONAL_INFO.contact.social) as social (social.url)}
-				<a href={social.url} target="_blank" rel="noreferrer">{social.name}</a>
-			{/each}
 		</nav>
 		<ModeToggle size="small" />
 	</header>

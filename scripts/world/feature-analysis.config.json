@@ -1,0 +1,16 @@
+{
+  "schema": "living-world/analysis-config@1",
+  "equations": "boundary-field-1.3.0",
+  "analysisLongEdge": 192,
+  "boundarySamples": 48,
+  "analysisAlphaMatte": "#e9e8df",
+  "supportPolicy": "inward-gradient-persistence-v1",
+  "supportDepthPixels": [
+    1,
+    3,
+    6
+  ],
+  "supportGradientLow": 0.018,
+  "supportGradientHigh": 0.1,
+  "supportActiveThreshold": 0.12
+}

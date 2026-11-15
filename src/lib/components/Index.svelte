@@ -1,78 +1,123 @@
 <script lang="ts">
-	import Hero from './portfolio/Hero.svelte';
+	import { homeIntroduction, homePhotograph, homeTitle } from '$lib/data/landing';
 	import { EXPERIENCE } from '$lib/data/experience';
 	import { EDUCATION } from '$lib/data/education';
 	import { PROJECTS } from '$lib/data/projects';
+	import { formatDate } from '$lib/utils';
+	import type { Photo, Post } from '$lib/types';
+	let { latestPhoto, latestPost }: { latestPhoto?: Photo; latestPost?: Post } = $props();
 </script>
 
-<main id="main">
-	<Hero />
+<main id="main" class="folio-home">
+	<section class="living-cover" aria-labelledby="living-title">
+		<div class="cover-scene">
+			<div class="living-title">
+				<h1 id="living-title" tabindex="-1">{homeTitle}</h1>
+				<p>
+					{homeIntroduction}
+				</p>
+				<a class="text-link cover-work" href="#projects">Explore my work</a>
+			</div>
+
+			<div class="world-window" aria-label="Ocean, in Hongbin’s photographic space">
+				<a href="/photography#colour-echoes" class="world-photo-link"
+					><img
+						src={homePhotograph}
+						alt="Ocean viewed from a shaded balcony"
+						width="960"
+						height="640"
+					/><span>Explore photography</span></a
+				>
+			</div>
+		</div>
+	</section>
+
 	<section class="section background" id="experience">
 		<div class="about-intro">
-			<span class="eyebrow">01 / BACKGROUND</span><img
-				src="/personal-portrait-144.webp"
-				srcset="/personal-portrait-144.webp 144w, /personal-portrait-288.webp 288w"
-				sizes="(max-width: 760px) 100px, 144px"
-				alt="Hongbin Miao"
-				width="144"
-				height="160"
-				loading="lazy"
-			/>
-			<h2 lang="zh-Hant">觀己</h2>
+			<h2>About <span lang="zh-Hant">觀己</span></h2>
 			<p>
 				I enjoy hands-on, intuitive learning — and communicating what I learn through projects and
 				writing.
 			</p>
+			<figure class="home-portrait m-0 mt-6">
+				<img
+					src="/personal-portrait-640.webp"
+					alt="Portrait of Hongbin Miao"
+					width="640"
+					height="709"
+					loading="lazy"
+				/>
+			</figure>
 		</div>
 		<div class="resume">
 			<h3>Experience</h3>
-			{#each EXPERIENCE.experience as item (item.company + item.start + item.title)}<a
-					class="resume-row"
-					href={item.href}
-					><div><strong>{item.company}</strong><span>{item.title}</span></div>
-					<time>{item.start} — {item.end}</time></a
-				>{/each}
+			{#each EXPERIENCE.experience as item (item.company + item.start + item.title)}
+				<a class="resume-row" href={item.href}>
+					<div><strong>{item.company}</strong><span>{item.title}</span></div>
+					<time>{item.start} — {item.end}</time>
+				</a>
+			{/each}
 			<h3 class="education-title">Education</h3>
-			{#each EDUCATION.education as item (item.school)}<a class="resume-row" href={item.href}
-					><div><strong>{item.school}</strong><span>{item.degree}</span></div>
-					<time>{item.start} — {item.end}</time></a
-				>{/each}
+			{#each EDUCATION.education as item (item.school)}
+				<a class="resume-row" href={item.href}>
+					<div><strong>{item.school}</strong><span>{item.degree}</span></div>
+					<time>{item.start} — {item.end}</time>
+				</a>
+			{/each}
 		</div>
 	</section>
-	<section id="projects" class="section">
+	<section id="projects" class="section work-section">
 		<div class="section-heading">
-			<span class="eyebrow">02 / PROJECTS</span>
-			<h2 lang="zh-Hant">知行合一</h2>
+			<h2>Projects <span lang="zh-Hant">知行合一</span></h2>
 		</div>
 		<div class="uniform-projects">
-			{#each PROJECTS.projects as project (project.title)}<a
-					class="uniform-project"
-					href={project.href}
-					><h3>{project.title}</h3>
+			{#each PROJECTS.projects as project (project.title)}
+				<article class="project-entry">
+					<h3><a href={project.href}>{project.title}</a></h3>
 					<p>{project.description}</p>
-					<span class="project-tech">{project.technologies.join(' · ')}</span></a
-				>{/each}
+					<p class="project-tech">{project.technologies.join(' · ')}</p>
+				</article>
+			{/each}
 		</div>
 	</section>
-	<section class="section notes-preview">
+
+	<section class="section notes-preview" id="writing">
 		<div class="section-heading">
-			<span class="eyebrow">03 / NOTES</span>
-			<h2 lang="zh-Hant">學而不厭</h2>
+			<h2>Notes <span lang="zh-Hant">學而不厭</span></h2>
 		</div>
 		<div class="note-entry">
-			<a href="/blog/deep-learning-resources"
-				><span class="meta">AUG 21, 2025 · DEEP LEARNING</span>
-				<h3>AI Resources</h3>
-				<p>A collection of AI resources I’ve found helpful.</p></a
-			><a class="text-link" href="/blog">All notes <span>→</span></a>
+			{#if latestPost}
+				<a href={`/blog/${latestPost.slug}`}>
+					<span class="meta"
+						>{formatDate(latestPost.date, 'long')}{#if latestPost.categories?.length}
+							· {latestPost.categories[0]}{/if}</span
+					>
+					<h3>{latestPost.title}</h3>
+					{#if latestPost.summary || latestPost.description}<p>
+							{latestPost.summary || latestPost.description}
+						</p>{/if}
+				</a>
+			{/if}
+			<a class="text-link" href="/blog">All notes</a>
 		</div>
 	</section>
-	<section id="photography" class="section elsewhere">
+
+	<section class="section elsewhere" id="photography">
 		<div>
-			<span class="eyebrow">04 / ELSEWHERE</span>
-			<h2 lang="zh-Hant">觀物</h2>
-			<!-- <p>Photography is another way I observe the world.</p> -->
-			<a class="text-link" href="/photography">View photography <span>→</span></a>
+			<h2>Photography <span lang="zh-Hant">觀物</span></h2>
+			<a class="text-link" href="/photography">View photography</a>
 		</div>
+		{#if latestPhoto}
+			<a class="home-photo-frame" href="/photography#photographs">
+				<img
+					src={latestPhoto.medium || latestPhoto.url}
+					alt={latestPhoto.alt || 'Latest photograph by Hongbin Miao'}
+					width={latestPhoto.mediumWidth || latestPhoto.width}
+					height={latestPhoto.mediumHeight || latestPhoto.height}
+					class="block h-auto w-full"
+					loading="lazy"
+				/>
+			</a>
+		{/if}
 	</section>
 </main>

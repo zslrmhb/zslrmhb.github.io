@@ -1,0 +1,162 @@
+.living-cover {
+	padding-block: clamp(2rem, 5vw, 5rem) clamp(3rem, 8vw, 7rem);
+}
+.living-title {
+	display: grid;
+	grid-template-columns: 1fr minmax(14rem, 29ch);
+	gap: 2rem;
+	align-items: end;
+	margin-bottom: clamp(1.5rem, 4vw, 3rem);
+}
+.living-title h1 {
+	font: normal clamp(3rem, 8vw, 6rem) / 1 var(--font-display);
+	letter-spacing: -0.04em;
+	margin: 0;
+}
+.living-title p {
+	color: var(--muted);
+	margin: 0;
+	font-size: 1rem;
+}
+.living-cover img {
+	width: 100%;
+	max-height: 59svh;
+	object-fit: contain;
+}
+.folio-home {
+	width: min(100% - 3rem, 76rem);
+	margin-inline: auto;
+}
+.folio-home .background {
+	grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+	gap: clamp(2rem, 7vw, 7rem);
+}
+.folio-home .background h2 span {
+	display: block;
+	margin-top: 1rem;
+	font-size: 1rem;
+}
+.notes-intro > p {
+	color: var(--muted);
+	max-width: 45ch;
+}
+.photo-page .photo-quote {
+	margin-block: 1.5rem 3rem;
+}
+@media (max-width: 760px) {
+	.living-title,
+	.folio-home .background {
+		grid-template-columns: 1fr;
+		gap: 1rem;
+	}
+	.folio-home {
+		width: min(100% - 2rem, 76rem);
+	}
+}
+.title-block {
+	margin-block: clamp(3rem, 8vw, 7rem) clamp(2rem, 5vw, 4rem);
+	padding-bottom: clamp(1.75rem, 4vw, 3rem);
+	border-bottom: 1px solid var(--line);
+}
+.article-byline {
+	flex-wrap: wrap;
+}
+.article-byline a {
+	text-decoration: underline;
+	text-underline-offset: 0.3em;
+}
+.notes-page header {
+	border-bottom: 1px solid var(--line);
+}
+.notes-page .archive-label {
+	border-top: 0;
+}
+.photo-page .photography-intro {
+	padding-bottom: 1.5rem;
+}
+.markdown li:has(> blockquote) > p:first-child {
+	margin-bottom: 0.5rem;
+}
+.markdown li > blockquote {
+	margin-block: 0.5rem 1.8rem;
+}
+
+.folio-home .home-portrait img {
+	width: min(100%, 14rem);
+	float: none;
+	height: auto;
+	margin: 0;
+	filter: none;
+}
+@media (max-width: 760px) {
+	.folio-home .home-portrait img {
+		width: min(100%, 10rem);
+	}
+}
+
+/* Spatial entrances keep their controls in the first viewport. */
+.folio-home .living-cover {
+	padding-top: clamp(1.5rem, 3vw, 3rem);
+}
+.folio-home .living-title {
+	margin-bottom: 0.5rem;
+}
+.notes-page {
+	padding-top: 2rem;
+}
+.notes-page header {
+	padding-bottom: 1rem;
+}
+
+/* The same environment persists while the HTML document stays native and readable. */
+.world-document {
+	position: relative;
+	z-index: 1;
+	background: color-mix(in srgb, var(--paper) 94%, transparent);
+	margin-block: 1rem;
+	box-shadow: 0 24px 60px -36px #0005;
+}
+body:has(.folio-home) .world-document {
+	background: transparent;
+	box-shadow: none;
+}
+.folio-home .section,
+.site-nav,
+.site-footer,
+.living-title {
+	background: var(--paper);
+}
+.folio-home .section {
+	padding-inline: clamp(1rem, 3vw, 3rem);
+}
+.world-window {
+	min-height: 52svh;
+	display: grid;
+	place-items: center;
+	margin-bottom: 2rem;
+}
+.world-photo-link {
+	display: block;
+	position: relative;
+	width: min(90%, 44rem);
+}
+.world-photo-link img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+.world-photo-link span {
+	display: block;
+	background: var(--paper);
+	padding: 0.5rem 0;
+}
+@media (min-width: 900px) {
+	.world-document {
+		width: calc(100% - 6rem);
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.world-document {
+		view-transition-name: none;
+	}
+}

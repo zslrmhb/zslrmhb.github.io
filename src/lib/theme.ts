@@ -23,10 +23,9 @@ export function initializeTheme() {
 	try {
 		saved = localStorage.getItem('theme');
 	} catch {
-		// Fall back to the system preference when storage is denied.
+		// Use light mode when storage is denied.
 	}
-	const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-	applyTheme(saved === 'dark' || saved === 'light' ? saved : preferred);
+	applyTheme(saved === 'dark' ? 'dark' : 'light');
 }
 
 export function toggleTheme() {

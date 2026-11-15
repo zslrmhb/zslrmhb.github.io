@@ -85,11 +85,10 @@
 <dialog bind:this={dialog} class="explore-dialog" onclose={close} aria-labelledby="explore-title">
 	<header class="explore-top">
 		<div>
-			<span class="explore-kicker">THREE BODY PROBLEM</span>
-			<h2 id="explore-title">A change of perspective.</h2>
+			<h2 id="explore-title">The figure-eight orbit</h2>
 		</div>
 		<div class="explore-actions">
-			<ModeToggle /><button onclick={() => dialog.close()}>← Back to reading</button>
+			<ModeToggle /><button onclick={() => dialog.close()}>Back to reading</button>
 		</div>
 	</header>
 	<div class="explore-layout">
@@ -132,7 +131,7 @@
 		</div>
 		<aside class="scene-controls">
 			<p class="explore-kicker">LOOK CLOSER</p>
-			<h3>One path. <br />Three perspectives.</h3>
+			<h3>Planar motion</h3>
 			<p>
 				The motion stays in a plane. Turning the camera changes your view, not the underlying
 				physics.

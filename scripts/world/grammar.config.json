@@ -1,0 +1,31 @@
+{
+  "version": "boundary-field-1.3.0",
+  "analysisLongEdge": 192,
+  "boundarySamples": 48,
+  "radialSegments": 16,
+  "extentMin": 0.6,
+  "extentMax": 0.6,
+  "reliefMax": 0.28,
+  "lineConfidenceMin": 0.6,
+  "maxStructuralAccents": 3,
+  "cameraYawMaxDegrees": 5,
+  "cameraPitchMaxDegrees": 2,
+  "openingMs": 1100,
+  "dayPaper": "#e9e8df",
+  "nightPaper": "#18221e",
+  "dayInk": "#273b34",
+  "nightInk": "#e8ebe2",
+  "dayMuted": "#4f6258",
+  "nightMuted": "#b7c5ba",
+  "supportPolicy": "inward-gradient-persistence-v1",
+  "supportDepthPixels": [
+    1,
+    3,
+    6
+  ],
+  "supportGradientLow": 0.018,
+  "supportGradientHigh": 0.1,
+  "supportActiveThreshold": 0.12,
+  "compositionPolicy": "tensor-light-sector-v1",
+  "basePitchDegrees": -9
+}

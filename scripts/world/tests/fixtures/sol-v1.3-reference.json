@@ -1,0 +1,231 @@
+{
+  "arrayFieldsHashed": [
+    "boundary",
+    "boundarySupport"
+  ],
+  "comparisonRounding": "Numeric measurements rounded to 5 decimals; aspect retains the source reference value.",
+  "photos": [
+    {
+      "arraySha256": {
+        "boundary": "83069e2c33f0a70615b312c1e80cbad54566e61920b0abfa4e9aa4553f878db5",
+        "boundarySupport": "0a7fba59b13d9979871df517ec8cd2203e9a905cabd1681b92945778e0b17a50"
+      },
+      "photoId": "17932757576922281",
+      "values": {
+        "aspect": 1.0,
+        "centroid": [
+          0.51883,
+          0.62326
+        ],
+        "coherence": 0.85004,
+        "complexity": 0.01573,
+        "concentration": 0.06657,
+        "confidence": 0.47955,
+        "dimensions": [
+          1440,
+          1440
+        ],
+        "histogram": [
+          0.95212,
+          0.01777,
+          0.00876,
+          0.0089,
+          0.00871,
+          0.00347,
+          0.00027,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean": 0.01137,
+        "quantiles": [
+          0.0,
+          0.00061,
+          0.05791,
+          0.26803
+        ],
+        "seed": 1635653923,
+        "sourceSha256": "617e192387eef1fc13572451260bf0430fc2b038cc502a0c2180d285b7c9364f",
+        "supportPolicy": "inward-gradient-persistence-v1",
+        "tangent": 1.70583
+      }
+    },
+    {
+      "arraySha256": {
+        "boundary": "9ed6810031261192e92524fdec72154377f2f5acecd0eaa8bf5891ce983d7a47",
+        "boundarySupport": "d6915807145bbe1c3ea0e2a213d2e4ca104706328c684e953d1dbd3422acd895"
+      },
+      "photoId": "17922110778324528",
+      "values": {
+        "aspect": 1.5,
+        "centroid": [
+          0.41995,
+          0.52372
+        ],
+        "coherence": 0.6194,
+        "complexity": 0.14181,
+        "concentration": 0.13468,
+        "confidence": 1,
+        "dimensions": [
+          1440,
+          960
+        ],
+        "histogram": [
+          0.08179,
+          0.38505,
+          0.26416,
+          0.06197,
+          0.04651,
+          0.02539,
+          0.02124,
+          0.06335,
+          0.02275,
+          0.01294,
+          0.01379,
+          0.00106,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean": 0.1853,
+        "quantiles": [
+          0.04961,
+          0.12904,
+          0.50203,
+          0.66141
+        ],
+        "seed": 4043925231,
+        "sourceSha256": "f10966ef2f921e52c38e5e079a3601a5a8366be1543a54cfbc3780fe4b7f8fef",
+        "supportPolicy": "inward-gradient-persistence-v1",
+        "tangent": 0.06337
+      }
+    },
+    {
+      "arraySha256": {
+        "boundary": "da62042ac6e6bdada4d308df78f499c9065b93333b5d7debedef2a5b45fcd1bf",
+        "boundarySupport": "37281742512b048cea42a919aec9c82b0023b7a7b93de275c07ae6be105d7cf4"
+      },
+      "photoId": "17987043974775766",
+      "values": {
+        "aspect": 0.75,
+        "centroid": [
+          0.53887,
+          0.54376
+        ],
+        "coherence": 0.09728,
+        "complexity": 0.60823,
+        "concentration": 0.05064,
+        "confidence": 1,
+        "dimensions": [
+          1440,
+          1920
+        ],
+        "histogram": [
+          0.03161,
+          0.15708,
+          0.17126,
+          0.17104,
+          0.21155,
+          0.11241,
+          0.09158,
+          0.01939,
+          0.01374,
+          0.0077,
+          0.00481,
+          0.00271,
+          0.00152,
+          0.00166,
+          0.00101,
+          0.0009
+        ],
+        "mean": 0.24467,
+        "quantiles": [
+          0.07333,
+          0.2392,
+          0.44612,
+          0.65498
+        ],
+        "seed": 4282215194,
+        "sourceSha256": "ff3d6b1ade0c6f6571d3a79079b52ef62cc834d6ef19025f1648010a3c302661",
+        "supportPolicy": "inward-gradient-persistence-v1",
+        "tangent": 1.62691
+      }
+    },
+    {
+      "arraySha256": {
+        "boundary": "b1ee4590475c1942977d94e0f216296fc48d23ece55d4750f949a98efdf16d90",
+        "boundarySupport": "0a7fba59b13d9979871df517ec8cd2203e9a905cabd1681b92945778e0b17a50"
+      },
+      "photoId": "18077209736220963",
+      "values": {
+        "aspect": 1.2131423757371524,
+        "centroid": [
+          0.50523,
+          0.63649
+        ],
+        "coherence": 0.02236,
+        "complexity": 0.27794,
+        "concentration": 0.0,
+        "confidence": 1,
+        "dimensions": [
+          1440,
+          1187
+        ],
+        "histogram": [
+          0.04875,
+          0.03049,
+          0.04473,
+          0.04124,
+          0.04091,
+          0.04308,
+          0.04045,
+          0.06616,
+          0.08683,
+          0.07424,
+          0.06913,
+          0.08353,
+          0.05248,
+          0.00999,
+          0.00422,
+          0.26378
+        ],
+        "mean": 0.60688,
+        "quantiles": [
+          0.06546,
+          0.61056,
+          1.0,
+          1.0
+        ],
+        "seed": 1297555450,
+        "sourceSha256": "4d571ffaff5c5b21361c39b72d2ec8fb099975d142d67776f50488adefab96c1",
+        "supportPolicy": "inward-gradient-persistence-v1",
+        "tangent": 3.04823
+      }
+    }
+  ],
+  "provenance": "Sol final-design boundary-field-1.3.0 reference outputs",
+  "scalarFields": [
+    "sourceSha256",
+    "seed",
+    "aspect",
+    "dimensions",
+    "mean",
+    "quantiles",
+    "histogram",
+    "coherence",
+    "tangent",
+    "complexity",
+    "confidence",
+    "centroid",
+    "concentration",
+    "supportPolicy"
+  ],
+  "schema": "living-world/reference-fixtures@1"
+}

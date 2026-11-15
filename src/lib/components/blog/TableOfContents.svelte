@@ -112,9 +112,14 @@
 </script>
 
 <aside class="article-toc" aria-label="On this page">
-	<span
+	<button
 		class="toc-rail"
-		aria-hidden="true"
+		type="button"
+		aria-label="On this page"
+		onclick={(event) => {
+			if (event.detail) event.currentTarget.blur();
+			else event.currentTarget.nextElementSibling?.querySelector('a')?.focus();
+		}}
 		onpointermove={handlePointerMove}
 		onpointerleave={handlePointerLeave}
 	>
@@ -123,17 +128,20 @@
 				<i use:registerMark={index} class:active-mark={active === heading.id}></i>
 			{/each}
 		</span>
-	</span>
+	</button>
 
 	<nav class="toc-panel" aria-label={`Contents for ${title}`}>
-		<a class="toc-title" href="#main">{title}</a>
+		<p class="toc-title">On this page</p>
 		<ol>
 			{#each headings as heading (heading.id)}
 				<li class:subsection={heading.level === 3} class:terminal={isTerminalHeading(heading.text)}>
 					<a
 						href={`#${heading.id}`}
 						aria-current={active === heading.id ? 'location' : undefined}
-						onclick={() => activate(heading.id)}
+						onclick={(event) => {
+							activate(heading.id);
+							if (event.detail) event.currentTarget.blur();
+						}}
 					>
 						{#if heading.number}<span>{heading.number}</span>{/if}{heading.text}
 					</a>

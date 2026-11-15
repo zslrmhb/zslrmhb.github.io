@@ -92,6 +92,7 @@
 		message = 'Paused';
 		trails = [[], [], []];
 		await tick();
+		if (!canvas?.isConnected) return;
 		draw();
 		window.scrollTo({ top: savedScroll, behavior: 'instant' });
 		entry?.focus({ preventScroll: true });
@@ -103,6 +104,7 @@
 			return;
 		}
 		draw = () => {
+			if (!canvas?.isConnected) return;
 			const { width, height } = canvas.getBoundingClientRect();
 			if (!width || !height) return;
 			const ratio = Math.min(devicePixelRatio, 2);

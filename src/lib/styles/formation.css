@@ -1,0 +1,376 @@
+.site-shell.world-document {
+	width: min(calc(100% - 2 * var(--site-gutter)), var(--site-measure));
+	max-width: none;
+	margin: 0 auto;
+	background: var(--paper);
+	box-shadow: none;
+}
+
+.site-nav,
+.site-footer {
+	width: min(calc(100% - 3rem), 76rem);
+	margin-inline: auto;
+	border: 0;
+}
+
+.site-nav .theme-toggle {
+	border-color: transparent;
+	background: transparent;
+}
+
+.footer-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem 1.25rem;
+}
+
+.folio-home .section {
+	padding-inline: 0;
+	border: 0;
+}
+
+.folio-home > .section {
+	border-block-start: 1px solid var(--section-rule);
+}
+
+.folio-home .note-entry > a:first-child {
+	border-block-start: 0;
+}
+
+.folio-home .uniform-projects {
+	display: block;
+	border: 0;
+}
+
+.folio-disclosure {
+	border: 0;
+}
+
+.folio-disclosure > summary {
+	cursor: pointer;
+	min-height: 44px;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	font-size: 1.05rem;
+	list-style: none;
+}
+
+.folio-disclosure > summary::-webkit-details-marker {
+	display: none;
+}
+.folio-disclosure > summary::after {
+	content: '+';
+	color: var(--muted);
+}
+.folio-disclosure[open] > summary::after {
+	content: '−';
+}
+.folio-home .living-cover {
+	padding: 0;
+}
+.cover-scene {
+	position: relative;
+	padding-block: clamp(2rem, 5vh, 4rem);
+}
+.folio-home .living-title {
+	margin-bottom: clamp(1rem, 3vh, 2rem);
+}
+.world-window {
+	min-height: 0;
+	margin-bottom: 0.75rem;
+}
+.world-photo-link {
+	width: min(100%, 65svh, 43rem);
+}
+.world-photo-link img {
+	height: auto;
+	max-height: none;
+}
+.cover-work {
+	display: inline-block;
+}
+
+.notes-page header,
+.notes-page li,
+.title-block,
+.photo-page .colour-walk {
+	border: 0;
+}
+.notes-page li a {
+	padding-block: 1rem;
+}
+.article-toc .toc-panel,
+.article-toc .toc-rail {
+	display: none;
+}
+.article-toc .mobile-toc {
+	display: block;
+}
+.photo-page .photography-intro h1 {
+	margin: 0 0 0.75rem;
+}
+
+@media (max-width: 760px) {
+	.site-nav,
+	.site-footer {
+		width: min(calc(100% - 2rem), 76rem);
+	}
+	.world-photo-link {
+		width: min(100%, 44rem);
+	}
+}
+
+.site-shell.world-document {
+	padding-inline: 0;
+}
+.site-nav,
+.site-footer {
+	width: min(100%, 76rem);
+}
+.article-toc {
+	position: static;
+	width: auto;
+	transform: none;
+	margin-bottom: 1.5rem;
+}
+.article-toc .mobile-toc {
+	max-width: 68ch;
+	margin-inline: auto;
+}
+@media (min-width: 1240px) and (hover: hover) {
+	.reading-layout {
+		--toc-width: min(11rem, calc((100vw - 920px) / 2 - 2rem));
+	}
+	.reading-layout .article-toc {
+		position: fixed;
+		inset-block-start: 50dvh;
+		inset-inline-start: calc(
+			(100% - min(920px, var(--site-measure))) / 2 + 20px - 1.5rem - var(--toc-width)
+		);
+		transform: translateY(-50%);
+		width: var(--toc-width);
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+	.reading-layout .article-toc .toc-panel {
+		display: block;
+		position: absolute;
+		inset: 50% 0 auto;
+		width: 100%;
+		max-height: calc(100dvh - 4rem);
+		transform: translateY(-50%);
+		visibility: hidden;
+		opacity: 0;
+		pointer-events: none;
+		transition: none;
+	}
+	.reading-layout .article-toc .toc-rail {
+		display: flex;
+		width: 44px;
+		min-height: 44px;
+		padding-inline: 0;
+		cursor: pointer;
+		opacity: 1;
+	}
+	.reading-layout .toc-rail-marks i {
+		border-color: var(--muted);
+		opacity: 0.55;
+	}
+	.reading-layout .toc-rail-marks .active-mark {
+		width: 26px;
+		border: 0;
+		border-top: 2px solid var(--accent);
+		opacity: 1;
+	}
+	.reading-layout .article-toc:is(:hover, :focus-within) .toc-panel {
+		visibility: visible;
+		opacity: 1;
+		pointer-events: auto;
+	}
+	.reading-layout .article-toc:is(:hover, :focus-within) .toc-rail {
+		opacity: 0;
+	}
+	.reading-layout .article-toc:has(.toc-rail:focus-visible) .toc-panel {
+		outline: 1px solid var(--accent);
+		outline-offset: 5px;
+	}
+	.reading-layout .toc-title {
+		margin: 0 0 0.75rem;
+		color: var(--muted);
+		font: inherit;
+		letter-spacing: 0.04em;
+	}
+	.reading-layout .article-toc .mobile-toc {
+		display: none;
+	}
+}
+.title-block .article-byline {
+	margin: 0 0 1.5rem;
+}
+.colour-walk .walk-trail {
+	border: 0;
+}
+.photo-page .photography-intro h1 {
+	font: normal clamp(2.75rem, 7vw, 5rem) / 1.05 var(--font-display);
+	letter-spacing: -0.035em;
+}
+.folio-home .text-link {
+	border: 0;
+}
+@media (max-width: 760px) {
+	.site-nav {
+		column-gap: 0.75rem;
+	}
+}
+.world-document > .site-nav,
+.reading-shell .site-nav {
+	position: sticky;
+	top: 0;
+	z-index: 4;
+	border: 0;
+	background: var(--paper);
+}
+.site-nav .theme-toggle:hover:not(:disabled) {
+	background: transparent;
+	text-decoration: underline;
+}
+.world-document .site-nav nav a[aria-current] {
+	text-decoration: none;
+}
+.site-nav nav a {
+	position: relative;
+}
+.site-nav nav a[aria-current]::after {
+	content: '';
+	position: absolute;
+	width: 4px;
+	height: 4px;
+	border-radius: 50%;
+	background: currentColor;
+	bottom: 4px;
+	left: calc(50% - 2px);
+}
+.world-document :is(.site-footer, .title-block, .notes-page ul li) {
+	border: 0;
+}
+.folio-disclosure > summary::after {
+	speak: never;
+}
+/* Establish hierarchy through alignment and space once the opening has formed. */
+.folio-home .resume-row {
+	border: 0;
+	padding-block: 0.75rem;
+	gap: 0.5rem 1.5rem;
+}
+.resume-row > div {
+	min-width: 0;
+}
+.resume-row strong {
+	overflow-wrap: anywhere;
+}
+.project-entry {
+	max-width: 65ch;
+	padding-block: 1rem 1.5rem;
+}
+.project-entry h3 {
+	margin: 0 0 0.4rem;
+	font: 1.4rem/1.25 var(--font-display);
+}
+.project-entry p {
+	margin: 0 0 0.35rem;
+}
+
+.folio-home,
+.notes-page,
+.photo-page {
+	width: min(100%, 76rem);
+	margin-inline: auto;
+}
+.photo-page .photography-intro {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 29ch);
+	align-items: end;
+	gap: 1rem 3rem;
+	margin-top: clamp(2rem, 5vw, 4rem);
+	padding-bottom: 0.5rem;
+}
+.photo-page .photo-quote {
+	margin: 0;
+	font-size: 0.95rem;
+	color: var(--muted);
+}
+@media (max-width: 760px) {
+	.photo-page .photography-intro {
+		grid-template-columns: minmax(0, 1fr);
+		margin-top: 1.25rem;
+		gap: 0.5rem;
+	}
+	.photo-page .photo-quote {
+		font-size: 0.88rem;
+		gap: 0.25rem;
+	}
+}
+.notes-page {
+	padding-inline: 0;
+}
+.living-title .cover-work,
+.world-photo-link span {
+	text-decoration: underline;
+	text-underline-offset: 0.25em;
+}
+@media (min-width: 761px) {
+	.folio-home .cover-scene {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+		align-content: center;
+		align-items: center;
+		gap: clamp(2rem, 6vw, 6rem);
+	}
+	.folio-home .living-title {
+		display: block;
+	}
+	.living-title p {
+		max-width: 35ch;
+		margin-top: 1.4rem;
+	}
+	.living-title .cover-work {
+		margin-top: 1rem;
+	}
+	.world-window {
+		margin: 0;
+	}
+	.world-photo-link {
+		width: 100%;
+	}
+}
+.photo-viewer {
+	padding-inline: max(var(--site-gutter), calc((100% - var(--site-measure)) / 2));
+}
+.photo-viewer .viewer-stage {
+	grid-template-columns: 44px minmax(0, 1fr) 44px;
+	gap: clamp(0.25rem, 2vw, 1.25rem);
+}
+.photo-viewer .viewer-stage button {
+	display: grid;
+	width: 44px;
+	min-width: 44px;
+	place-items: center;
+}
+.photo-viewer footer button,
+.photo-viewer footer a {
+	display: inline-flex;
+	align-items: center;
+	min-height: 44px;
+	padding-inline: 0;
+	margin-inline-end: 1rem;
+}
+.photo-viewer footer a {
+	text-decoration: underline;
+	text-underline-offset: 0.25em;
+}
+.photo-comparison h3 {
+	font: inherit;
+	color: var(--ink);
+}

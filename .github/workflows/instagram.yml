@@ -25,8 +25,20 @@ jobs:
           node-version: 24
           cache: npm
 
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12.14'
+          cache: pip
+          cache-dependency-path: scripts/world/requirements.txt
+
+      - name: Install pinned photo-analysis dependency
+        run: python -m pip install -r scripts/world/requirements.txt
+
       - name: Install dependencies
         run: npm ci
+
+      - name: Test deterministic photo-feature pipeline
+        run: npm run world:test
 
       - name: Install WebP encoder
         run: sudo apt-get update && sudo apt-get install -y webp
@@ -38,6 +50,12 @@ jobs:
           IG_LONG_LIVED_TOKEN: ${{ secrets.IG_LONG_LIVED_TOKEN }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
         run: npm run photos:fetch
+
+      - name: Generate and validate static photo features
+        run: |
+          npm run world:features
+          npm run world:check
+          python scripts/world/build_colour_echoes.py
 
       - name: Build site
         run: |

@@ -29,7 +29,7 @@
 		{#each options as option (option.value)}
 			<button
 				type="button"
-				class="flex-1 px-2 py-2 text-xs aria-pressed:border-[var(--ink)] aria-pressed:bg-[var(--ink)] aria-pressed:text-[var(--paper)]"
+				class="flex-1 px-2 py-2 text-xs"
 				aria-pressed={value === option.value}
 				onclick={(event) => select(option.value, event)}>{option.label}</button
 			>

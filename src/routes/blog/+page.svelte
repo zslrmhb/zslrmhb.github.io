@@ -1,10 +1,11 @@
 <script lang="ts">
+	import { notesIntroduction } from '$lib/data/landing';
 	import { formatDate } from '$lib/utils';
 	export let data;
 </script>
 
 <svelte:head>
-	<title>Blog</title>
+	<title>Notes — Hongbin Miao</title>
 	<meta
 		name="description"
 		content="Notes and resources from Hongbin Miao on AI, engineering, and learning."
@@ -12,12 +13,12 @@
 </svelte:head>
 
 <main id="main" class="notes-page">
-	<header>
-		<h1>Notes.</h1>
+	<header class="notes-intro">
+		<h1>Notes</h1>
+		<p>{notesIntroduction}</p>
 	</header>
 
 	{#if data.posts.length > 0}
-		<div class="archive-label"><span>WRITING &amp; RESOURCES</span><span>NEWEST FIRST</span></div>
 		<ul>
 			{#each data.posts as post (post.slug)}
 				<li>

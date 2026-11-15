@@ -1,24 +1,28 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
+	import ColourEchoes from '$lib/components/photography/ColourEchoes.svelte';
+	import { ChevronLeft, ChevronRight } from 'lucide-svelte';
 	import type { Photo } from '$lib/types';
+	import type { PageData } from './$types';
 
-	let { data }: { data: { photos: Photo[] } } = $props();
-	let gallery = $state<HTMLElement>();
+	let { data }: { data: PageData } = $props();
 	let viewer: HTMLDialogElement;
-	let origin: HTMLButtonElement | null = null;
-	let activeIndex = $state(0);
-	let page = $state(1);
-	let mobile = $state(browser && window.matchMedia('(max-width: 760px)').matches);
+	let origin: HTMLElement | null = null;
+	let echoPhoto = $state<Photo>();
+	let exploring = false;
+	let explorationOpen = $state(false);
+	let activeIndex = $state(-1);
 	let touchStart = $state<{ x: number; y: number } | null>(null);
 
 	const photos = $derived(
 		[...data.photos].sort((a, b) => Date.parse(b.takenAt) - Date.parse(a.takenAt))
 	);
-	const pageSize = $derived(mobile ? 6 : 12);
-	const pageCount = $derived(Math.max(1, Math.ceil(photos.length / pageSize)));
-	const visiblePhotos = $derived(photos.slice((page - 1) * pageSize, page * pageSize));
+	const years = $derived([...new Set(photos.map((photo) => yearOf(photo)))]);
 	const current = $derived(photos[activeIndex]);
+
+	function yearOf(photo: Photo) {
+		return new Date(photo.takenAt).getUTCFullYear();
+	}
 
 	function date(value: string, long = false) {
 		return new Intl.DateTimeFormat('en-US', {
@@ -31,24 +35,30 @@
 	function alt(photo: Photo) {
 		return photo.alt || `Photograph taken ${date(photo.takenAt, true)}`;
 	}
-	function goToPage(next: number, focus = true) {
-		page = Math.min(Math.max(next, 1), pageCount);
-		gallery?.scrollIntoView({
-			behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
-			block: 'start'
-		});
-		if (focus)
-			requestAnimationFrame(() =>
-				document
-					.querySelector<HTMLButtonElement>('[aria-current="page"]')
-					?.focus({ preventScroll: true })
-			);
-	}
-	function open(index: number, button: HTMLButtonElement) {
+	function open(index: number, button: HTMLElement) {
 		activeIndex = index;
 		origin = button;
 		viewer.showModal();
+		viewer.scrollTop = 0;
 		requestAnimationFrame(() => viewer.querySelector<HTMLButtonElement>('[data-close]')?.focus());
+	}
+	function exploreCurrent() {
+		echoPhoto = current;
+		explorationOpen = true;
+		exploring = true;
+		viewer.close();
+	}
+	function restoreViewerFocus() {
+		activeIndex = -1;
+		if (exploring) {
+			exploring = false;
+			const section = document.querySelector<HTMLDetailsElement>('.photo-exploration');
+			if (section) section.open = true;
+			document.getElementById('colour-echoes')?.scrollIntoView();
+			document.getElementById('echo-title')?.focus({ preventScroll: true });
+		} else {
+			origin?.focus({ preventScroll: true });
+		}
 	}
 	function close() {
 		viewer.close();
@@ -74,15 +84,14 @@
 		touchStart = null;
 	}
 	onMount(() => {
-		const query = matchMedia('(max-width: 760px)');
-		const update = () => {
-			const first = (page - 1) * pageSize;
-			mobile = query.matches;
-			page = Math.floor(first / (query.matches ? 6 : 12)) + 1;
+		const syncExploration = () => {
+			if (location.hash !== '#colour-echoes') return;
+			explorationOpen = true;
+			void tick().then(() => document.getElementById('colour-echoes')?.scrollIntoView());
 		};
-		update();
-		query.addEventListener('change', update);
-		return () => query.removeEventListener('change', update);
+		syncExploration();
+		window.addEventListener('hashchange', syncExploration);
+		return () => window.removeEventListener('hashchange', syncExploration);
 	});
 </script>
 
@@ -93,90 +102,98 @@
 	/></svelte:head
 >
 
-<main id="main" class="photo-page" aria-labelledby="photography-title">
-	<header class="photo-intro">
-		<div>
-			<h1 id="photography-title">Photography.</h1>
-		</div>
+{#snippet frame(photo: Photo, index: number)}
+	{@const year = yearOf(photo)}
+	{@const firstInYear = index === 0 || yearOf(photos[index - 1]) !== year}
+	<figure class:portrait={photo.thumbHeight > photo.thumbWidth}>
+		<a
+			href={photo.url}
+			id={firstInYear ? `photos-${year}` : undefined}
+			class="photo-card"
+			data-sveltekit-preload-data="off"
+			aria-label={`Open photograph: ${alt(photo)}`}
+			onclick={(event) => {
+				if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+				event.preventDefault();
+				open(index, event.currentTarget);
+			}}
+			><img
+				src={photo.thumb}
+				alt={alt(photo)}
+				width={photo.thumbWidth}
+				height={photo.thumbHeight}
+				srcset={`${photo.thumb} ${photo.thumbWidth}w, ${photo.medium} ${photo.mediumWidth}w`}
+				sizes={index < 2
+					? '(max-width: 760px) 46vw, min(36vw, 450px)'
+					: '(max-width: 760px) 46vw, (max-width: 1099px) 30vw, min(16vw, 305px)'}
+				loading={index === 0 ? 'eager' : 'lazy'}
+				fetchpriority={index === 0 ? 'high' : undefined}
+			/></a
+		>
+		<figcaption>
+			<time datetime={photo.takenAt}>{date(photo.takenAt)}</time>
+		</figcaption>
+	</figure>
+{/snippet}
+
+<main id="main" class="photo-page" aria-label="Photography">
+	<header class="photography-intro">
+		<h1>Photography</h1>
 		<p class="photo-quote" lang="zh">
 			<span>我（们）只能看到前面，看不到后面，这样不是就有一半的事情看不到了吗?</span>
 			<cite>《一一》·简洋洋</cite>
 		</p>
 	</header>
 	{#if photos.length}
-		<div class="gallery-meta" bind:this={gallery}>
-			<span>ALL PHOTOGRAPHS · {photos.length}</span><span>SELECT A FRAME TO LOOK CLOSER</span>
-		</div>
-		<div class="photo-grid" aria-label="Photographs">
-			{#each visiblePhotos as photo, offset (photo.id)}
-				{@const index = (page - 1) * pageSize + offset}
-				<figure>
-					<button
-						type="button"
-						class="photo-card"
-						aria-label={`Open photograph ${index + 1}: ${alt(photo)}`}
-						onclick={(event) => open(index, event.currentTarget)}
-						><img
-							src={photo.thumb}
-							alt={alt(photo)}
-							width={photo.thumbWidth}
-							height={photo.thumbHeight}
-							srcset={`${photo.thumb} ${photo.thumbWidth}w, ${photo.medium} ${photo.mediumWidth}w`}
-							sizes="(max-width: 760px) calc(100vw - 3rem), (max-width: 1100px) calc((100vw - 5rem) / 3), 340px"
-							loading={index < 3 ? 'eager' : 'lazy'}
-						/></button
-					>
-					<figcaption>
-						<span>{String(index + 1).padStart(2, '0')}</span><time datetime={photo.takenAt}
-							>{date(photo.takenAt)}</time
-						>
-					</figcaption>
-				</figure>
-			{/each}
-		</div>
-		<nav class="gallery-pagination" aria-label="Photo pages">
-			<button type="button" disabled={page === 1} onclick={() => goToPage(page - 1)}
-				>← Previous</button
-			>
-			<div>
-				{#each Array.from({ length: pageCount }, (_, index) => index) as index (index)}<button
-						type="button"
-						aria-label={`Page ${index + 1}`}
-						aria-current={page === index + 1 ? 'page' : undefined}
-						onclick={() => goToPage(index + 1)}>{index + 1}</button
-					>{/each}
+		<section class="photo-archive" id="photographs" aria-label="Photographs, newest first">
+			<div class="photo-tools">
+				<p>{photos.length} photographs</p>
+				<details class="photo-exploration folio-disclosure" bind:open={explorationOpen}>
+					<summary>Find visual echoes</summary>
+					<ColourEchoes
+						{photos}
+						photo={echoPhoto ??
+							photos.find((photo) => photo.id === '17922110778324528') ??
+							photos[0]}
+					/>
+				</details>
 			</div>
-			<button type="button" disabled={page === pageCount} onclick={() => goToPage(page + 1)}
-				>Next →</button
-			>
-		</nav>
-		<p class="page-status" aria-live="polite">
-			Page {page} of {pageCount} · Photos {(page - 1) * pageSize + 1}–{Math.min(
-				page * pageSize,
-				photos.length
-			)} of {photos.length}
-		</p>
-	{:else}<p class="empty-gallery">No cached photographs are available yet.</p>{/if}
+			{#if years.length > 1}
+				<nav class="photo-years" aria-label="Jump to year">
+					<span>Jump to</span>
+					{#each years as year (year)}
+						<a href={`#photos-${year}`}>{year}</a>
+					{/each}
+				</nav>
+			{/if}
+			<div class="photo-prints">
+				{#each photos as photo, index (photo.id)}
+					{@render frame(photo, index)}
+				{/each}
+			</div>
+		</section>
+	{:else}
+		<p class="empty-gallery">No cached photographs are available yet.</p>{/if}
 </main>
 
 <dialog
 	class="photo-viewer"
 	bind:this={viewer}
-	onclose={() => origin?.focus({ preventScroll: true })}
+	onclose={restoreViewerFocus}
 	onkeydown={handleKeydown}
 	aria-labelledby="viewer-title"
 >
 	{#if current}<header>
 			<h2 id="viewer-title">Photography</h2>
 			<span aria-live="polite">{String(activeIndex + 1).padStart(2, '0')} / {photos.length}</span
-			><button type="button" data-close onclick={close}>Close ×</button>
+			><button type="button" data-close onclick={close}>Close</button>
 		</header>
 		<div class="viewer-stage">
 			<button
 				type="button"
 				aria-label="Previous photograph"
 				disabled={activeIndex === 0}
-				onclick={() => move(-1)}>←</button
+				onclick={() => move(-1)}><ChevronLeft size={20} /></button
 			><img
 				src={current.url}
 				alt={alt(current)}
@@ -189,17 +206,21 @@
 				type="button"
 				aria-label="Next photograph"
 				disabled={activeIndex === photos.length - 1}
-				onclick={() => move(1)}>→</button
+				onclick={() => move(1)}><ChevronRight size={20} /></button
 			>
 		</div>
 		<footer>
-			<div>
-				<time datetime={current.takenAt}>{date(current.takenAt, true)}</time>{#if current.caption}<p
-					>
-						{current.caption}
-					</p>{/if}
-			</div>
-			<a href={current.permalink} target="_blank" rel="noreferrer">Original post</a>
+			<details class="folio-disclosure">
+				<summary>Photo details</summary>
+				<div>
+					<time datetime={current.takenAt}>{date(current.takenAt, true)}</time
+					>{#if current.caption}<p>
+							{current.caption}
+						</p>{/if}
+				</div>
+				<button type="button" onclick={exploreCurrent}>Find visual echoes</button>
+				<a href={current.permalink} target="_blank" rel="noreferrer">Original post</a>
+			</details>
 		</footer>
 		<p class="viewer-hint">Arrow keys or swipe to browse · Esc to close</p>{/if}
 </dialog>

@@ -139,7 +139,7 @@
 }
 .toc-panel {
 	position: absolute;
-	top: calc(50% + 32px);
+	top: 50%;
 	left: 24px;
 	width: min(224px, calc(100vw - 76px));
 	max-height: calc(100dvh - 112px);
@@ -158,9 +158,9 @@
 	pointer-events: auto;
 	transform: translate(0, -50%);
 }
+.article-toc:hover .toc-rail,
 .article-toc:focus-within .toc-rail {
 	opacity: 0;
-	pointer-events: none;
 }
 .toc-title {
 	display: block;

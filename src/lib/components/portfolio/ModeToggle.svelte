@@ -1,4 +1,9 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+	let ready = $state(false);
+	onMount(() => {
+		ready = true;
+	});
 	import { theme, toggleTheme } from '$lib/theme';
 	let { size = 'default', class: className = '' }: { size?: 'default' | 'small'; class?: string } =
 		$props();
@@ -6,6 +11,7 @@
 
 <button
 	type="button"
+	class:invisible={!ready}
 	class={`theme-toggle ${size === 'small' ? 'compact' : ''} ${className}`}
 	onclick={toggleTheme}
 	aria-label={`Switch to ${$theme === 'dark' ? 'light' : 'dark'} mode`}
