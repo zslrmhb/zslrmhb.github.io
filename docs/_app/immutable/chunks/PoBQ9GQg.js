@@ -1,0 +1,1 @@
+const n="A living world.",t="I learn by making. Writing keeps track of what I find; photography helps me look again.",o="17922110778324528",e=`/ig/${o}-960.webp`,a="Working notes on AI, engineering, and learning.";export{t as a,e as b,n as h,a as n};

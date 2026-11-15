@@ -1,58 +1,118 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-US">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<script>
 			try {
 				const savedTheme = localStorage.getItem('theme');
-				const useDark =
-					savedTheme === 'dark' ||
-					(savedTheme !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
+				const useDark = savedTheme === 'dark';
 				document.documentElement.classList.toggle('dark', useDark);
 				document.documentElement.style.colorScheme = useDark ? 'dark' : 'light';
 			} catch {}
+
+			if (
+				location.pathname === '/' &&
+				!location.hash &&
+				matchMedia('(prefers-reduced-motion: no-preference)').matches
+			) {
+				try {
+					if (!sessionStorage.getItem('folio:entrance-seen')) {
+						const root = document.documentElement;
+						root.dataset.entrance = 'pending';
+						setTimeout(() => {
+							if (root.dataset.entrance === 'pending') delete root.dataset.entrance;
+						}, 2500);
+					}
+				} catch {}
+			}
 		</script>
+		<style>
+			.page-entrance {
+				display: none;
+			}
+			@media (prefers-reduced-motion: no-preference) {
+				html[data-entrance] .page-entrance {
+					display: block;
+					position: fixed;
+					inset: 0;
+					z-index: 20;
+					pointer-events: none;
+				}
+				html[data-entrance='pending'] .page-entrance {
+					background: #fff;
+				}
+				.page-entrance canvas {
+					display: block;
+					position: absolute;
+					inset: 0;
+					z-index: 1;
+					width: 100%;
+					height: 100%;
+				}
+				.entrance-skip {
+					position: absolute;
+					z-index: 2;
+					inset: auto 1rem 1rem auto;
+					pointer-events: auto;
+					color: #242421;
+					background: #fff;
+					text-decoration: underline;
+					text-underline-offset: 0.25em;
+				}
+				html[data-entrance] [data-entrance-hero] {
+					opacity: 0;
+				}
+				html[data-entrance='pending'] .entrance-skip,
+				html[data-entrance='blank'] .entrance-skip {
+					visibility: hidden;
+				}
+			}
+		</style>
 		
-		<link href="../_app/immutable/assets/0.CTK-Agnh.css" rel="stylesheet">
-		<link rel="modulepreload" href="../_app/immutable/entry/start.Wd6GBogC.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/DECRqpO3.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/BDhq-Smb.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/Bgj9bwjN.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/Bwo5925s.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/CYgJF_JY.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/ST_L2r5P.js">
-		<link rel="modulepreload" href="../_app/immutable/entry/app.DUw9FTD0.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/CPN5WyIe.js">
+		<link href="../_app/immutable/assets/0.DTrnJxxs.css" rel="stylesheet">
+		<link rel="modulepreload" href="../_app/immutable/entry/start.DFTCmiyR.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/BqGQLW9v.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/DB6yj9-w.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/u5grfkyq.js">
+		<link rel="modulepreload" href="../_app/immutable/entry/app.CwseVaBr.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/D9Z9MdNV.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/DsnmJJEf.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/BA3h6cRZ.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/C7cwQV3Q.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/CxNpB_dG.js">
-		<link rel="modulepreload" href="../_app/immutable/nodes/0.Ca-WxxJX.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/CEyPMGHN.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/C7Fv-aVJ.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/BlnjdSR0.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/CRbE71Jg.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/B2E841vv.js">
-		<link rel="modulepreload" href="../_app/immutable/nodes/2.DwEcxKL2.js">
-		<link rel="modulepreload" href="../_app/immutable/nodes/5.ByIeVGm-.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/SgFc3hPG.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/DxAUNZmX.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/bF_iN_sp.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/CTq5OgsA.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/0.DLbJHvKy.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/YUbDy_n_.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/Bdh29fJd.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/yf2ImrLy.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/xbw6rOtk.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/stMc4nRA.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/Dz-KBhu9.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/2.Dt6AbwUL.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/5.dB-rDF8y.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/D5bv6XhM.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/DKKn9gH_.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/BMsBPgCx.js"><!--1teoznn--><meta property="og:type" content="article"/> <meta name="description" content="A public test bed for reusable 2D and 3D interactions in future notes."/> <!--[-1--><!--]--><!----><title>Interaction lab · Hongbin Miao</title>
 	</head>
 	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents"><!--[--><!--[0--><!--[--><a class="skip" href="#main">Skip to content</a> <div id="top" class="site-shell reading-shell"><!--[-1--><!--]--> <!--[0--><!--[--><!--[0--><header class="site-nav"><a class="nav-name" href="/">Hongbin Miao<span lang="zh">缪鸿彬</span></a> <nav aria-label="Primary"><!--[--><a href="/">Home</a><a href="/blog" aria-current="page">Notes</a><a href="/photography">Photography</a><!--]--> <!--[--><a href="https://github.com/zslrmhb" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/hongbinmiao/" target="_blank" rel="noreferrer">LinkedIn</a><!--]--></nav> <button type="button" class="theme-toggle compact " aria-label="Switch to dark mode">Dark</button><!----></header><!--]--><!----> <!--[--><!----><main id="main"><div class="title-block"><p class="eyebrow">NOTES / EXPLORABLE EXPLANATION</p> <h1>Interaction lab</h1> <p class="article-summary">A public test bed for reusable 2D and 3D interactions in future notes.</p> <div class="article-byline"><span>Hongbin Miao</span><span>October 18, 2026</span></div></div> <div class="reading-layout"><aside class="article-toc" aria-label="On this page"><span class="toc-rail" aria-hidden="true"><span class="toc-rail-marks" aria-hidden="true"><!--[--><!--]--></span></span> <nav class="toc-panel" aria-label="Contents for Interaction lab"><a class="toc-title" href="#main">Interaction lab</a> <ol><!--[--><!--]--></ol></nav> <details class="mobile-toc"><summary>On this page <span></span></summary> <ol><!--[--><!--]--></ol></details></aside><!----> <article class="markdown"><!--[--><h2 id="overview">Overview</h2> <p>This public lab demonstrates the interaction system used in future notes. The controls are described in <a href="#building-blocks" class="in-page-reference">Building blocks</a>; the written explanation remains available when motion is reduced or 3D is unavailable.</p> <h2 id="experiment">Experiment</h2> <figure id="three-body-widget" class="widget-frame my-9 border-y border-[var(--line)] bg-[var(--panel)] px-6 py-5 max-sm:mx-[-8px] max-sm:my-7 max-sm:px-4 experiment" aria-labelledby="three-body-widget-title"><header class="flex justify-between gap-3 text-sm max-sm:flex-wrap max-sm:gap-x-3 max-sm:gap-y-0.5"><span id="three-body-widget-title">The figure-eight orbit</span> <!--[0--><span class="text-xs text-[var(--muted)] max-sm:text-[11px]">Equal masses · Planar model</span><!--]--></header> <canvas aria-label="A numerical figure-eight orbit of three equal masses">Three equal masses follow a shared figure-eight path.</canvas> <div class="legend"><span><i class="one"></i>Body I</span><span><i class="two"></i>Body II</span><span><i class="three"></i>Body III</span></div> <!--[0--><button class="enter-explore">Explore in 3D</button><!--]--> <div class="experiment-controls"><!--[0--><button class="primary" aria-pressed="false">Play</button><!--]--> <!--[0--><button>Reset</button><!--]--> <!--[0--><label class="widget-range flex items-center gap-2.5 text-[13px] "><span>Speed</span> <output class="w-8 text-right">1×</output> <input class="min-h-8 w-[100px] accent-[var(--accent)]" type="range" min="0.25" max="2" step="0.25" value="1"/></label><!--]--></div><!----> <!--[0--><figcaption class="mt-[18px] flex justify-between gap-3 text-[11px] text-[var(--muted)] max-sm:flex-col max-sm:gap-0"><span role="status">Ready when you are</span><span>Numerical approximation · 2D</span><!----></figcaption><!--]--></figure><!----> <!--[-1--><!--]--><!----> <p>The lab currently exercises the same scene contract used by <a href="#reference-1" class="citation" aria-label="Reference 1: Threlte">[1]</a>: a written idea, a light 2D view, and an optional 3D view.</p> <h2 id="building-blocks">Building blocks</h2> <ul><li>a responsive 2D Canvas plot with D3 coordinate scales;</li> <li>a Threlte scene with OrbitControls and a preserved camera state;</li> <li>reusable play, reset, range, toggle, segmented, and theme controls;</li> <li>reduced-motion and WebGL failure paths that leave the written explanation readable.</li></ul> <p>Add a new <code>preset</code> in the interactive registry when a future note needs a different experiment. The coordinate layer follows <a href="#reference-2" class="citation" aria-label="Reference 2: D3 scales">[2]</a> so a future explorable can keep its data and drawing concerns separate.</p> <h2 id="references">References</h2> <ol class="references"><li id="reference-1"><a href="https://threlte.xyz/" target="_blank" rel="noreferrer" class="reference-source">Threlte</a></li> <li id="reference-2"><a href="https://d3js.org/d3-scale" target="_blank" rel="noreferrer" class="reference-source">D3 scales</a></li></ol><!--]--></article></div></main><!----><!--]--><!----><!--]--><!--]--><!----> <footer class="site-footer"><span>Hongbin Miao <span lang="zh">缪鸿彬</span></span><a href="#top">Back to top ↑</a></footer></div><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+		<div class="page-entrance">
+			<canvas aria-hidden="true"></canvas>
+			<p class="entrance-status sr-only" role="status"></p>
+			<button class="entrance-skip" type="button">Skip intro</button>
+		</div>
+		<div style="display: contents"><!--[--><!--[0--><!--[--><a class="skip" href="#main">Skip to content</a> <div id="top" class="site-shell world-document reading-shell"><!--[-1--><!--]--> <!--[0--><!--[--><!--[0--><header class="site-nav"><a class="nav-name" href="/">Hongbin Miao<span lang="zh">缪鸿彬</span></a> <nav aria-label="Primary"><!--[--><a href="/">Home</a><a href="/blog" aria-current="page">Notes</a><a href="/photography">Photography</a><!--]--></nav> <button type="button" class="theme-toggle compact  invisible" aria-label="Switch to dark mode">Dark</button><!----></header><!--]--><!----> <!--[--><!----><main id="main"><div class="title-block"><div class="article-byline"><a href="/blog">All notes</a> <span>Hongbin Miao</span><span>October 18, 2026</span></div> <h1>Interaction lab</h1> <p class="article-summary">A public test bed for reusable 2D and 3D interactions in future notes.</p></div> <div class="reading-layout"><aside class="article-toc" aria-label="On this page"><button class="toc-rail" type="button" aria-label="On this page"><span class="toc-rail-marks" aria-hidden="true"><!--[--><!--]--></span></button> <nav class="toc-panel" aria-label="Contents for Interaction lab"><p class="toc-title">On this page</p> <ol><!--[--><!--]--></ol></nav> <details class="mobile-toc"><summary>On this page <span></span></summary> <ol><!--[--><!--]--></ol></details></aside><!----> <article class="markdown"><!--[--><h2 id="overview">Overview</h2> <p>This public lab demonstrates the interaction system used in future notes. The controls are described in <a href="#building-blocks" class="in-page-reference">Building blocks</a>; the written explanation remains available when motion is reduced or 3D is unavailable.</p> <h2 id="experiment">Experiment</h2> <figure id="three-body-widget" class="widget-frame my-9 border-y border-[var(--line)] bg-[var(--panel)] px-6 py-5 max-sm:mx-[-8px] max-sm:my-7 max-sm:px-4 experiment" aria-labelledby="three-body-widget-title"><header class="flex justify-between gap-3 text-sm max-sm:flex-wrap max-sm:gap-x-3 max-sm:gap-y-0.5"><span id="three-body-widget-title">The figure-eight orbit</span> <!--[0--><span class="text-xs text-[var(--muted)] max-sm:text-[11px]">Equal masses · Planar model</span><!--]--></header> <canvas aria-label="A numerical figure-eight orbit of three equal masses">Three equal masses follow a shared figure-eight path.</canvas> <div class="legend"><span><i class="one"></i>Body I</span><span><i class="two"></i>Body II</span><span><i class="three"></i>Body III</span></div> <!--[0--><button class="enter-explore">Explore in 3D</button><!--]--> <div class="experiment-controls"><!--[0--><button class="primary" aria-pressed="false">Play</button><!--]--> <!--[0--><button>Reset</button><!--]--> <!--[0--><label class="widget-range flex items-center gap-2.5 text-[13px] "><span>Speed</span> <output class="w-8 text-right">1×</output> <input class="min-h-8 w-[100px] accent-[var(--accent)]" type="range" min="0.25" max="2" step="0.25" value="1"/></label><!--]--></div><!----> <!--[0--><figcaption class="mt-[18px] flex justify-between gap-3 text-[11px] text-[var(--muted)] max-sm:flex-col max-sm:gap-0"><span role="status">Ready when you are</span><span>Numerical approximation · 2D</span><!----></figcaption><!--]--></figure><!----> <!--[-1--><!--]--><!----> <p>The lab currently exercises the same scene contract used by <a href="#reference-1" class="citation" aria-label="Reference 1: Threlte">[1]</a>: a written idea, a light 2D view, and an optional 3D view.</p> <h2 id="building-blocks">Building blocks</h2> <ul><li>a responsive 2D Canvas plot with D3 coordinate scales;</li> <li>a Threlte scene with OrbitControls and a preserved camera state;</li> <li>reusable play, reset, range, toggle, segmented, and theme controls;</li> <li>reduced-motion and WebGL failure paths that leave the written explanation readable.</li></ul> <p>Add a new <code>preset</code> in the interactive registry when a future note needs a different experiment. The coordinate layer follows <a href="#reference-2" class="citation" aria-label="Reference 2: D3 scales">[2]</a> so a future explorable can keep its data and drawing concerns separate.</p> <h2 id="references">References</h2> <ol class="references"><li id="reference-1"><a href="https://threlte.xyz/" target="_blank" rel="noreferrer" class="reference-source">Threlte</a></li> <li id="reference-2"><a href="https://d3js.org/d3-scale" target="_blank" rel="noreferrer" class="reference-source">D3 scales</a></li></ol><!--]--></article></div></main><!----><!--]--><!----><!--]--><!--]--><!----> <footer class="site-footer"><span>Hongbin Miao <span lang="zh">缪鸿彬</span></span> <div class="footer-links"><!--[--><a href="https://github.com/zslrmhb" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/hongbinmiao/" target="_blank" rel="noreferrer">LinkedIn</a><!--]--> <a href="#top">Back to top</a></div></footer></div><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
 			
 			<script>
 				{
-					__sveltekit_yn964f = {
+					__sveltekit_xwonmd = {
 						base: new URL("..", location).pathname.slice(0, -1)
 					};
 
 					const element = document.currentScript.parentElement;
 
 					Promise.all([
-						import("../_app/immutable/entry/start.Wd6GBogC.js"),
-						import("../_app/immutable/entry/app.DUw9FTD0.js")
+						import("../_app/immutable/entry/start.DFTCmiyR.js"),
+						import("../_app/immutable/entry/app.CwseVaBr.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 2, 5],

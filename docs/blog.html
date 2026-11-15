@@ -1,57 +1,117 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-US">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<script>
 			try {
 				const savedTheme = localStorage.getItem('theme');
-				const useDark =
-					savedTheme === 'dark' ||
-					(savedTheme !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
+				const useDark = savedTheme === 'dark';
 				document.documentElement.classList.toggle('dark', useDark);
 				document.documentElement.style.colorScheme = useDark ? 'dark' : 'light';
 			} catch {}
+
+			if (
+				location.pathname === '/' &&
+				!location.hash &&
+				matchMedia('(prefers-reduced-motion: no-preference)').matches
+			) {
+				try {
+					if (!sessionStorage.getItem('folio:entrance-seen')) {
+						const root = document.documentElement;
+						root.dataset.entrance = 'pending';
+						setTimeout(() => {
+							if (root.dataset.entrance === 'pending') delete root.dataset.entrance;
+						}, 2500);
+					}
+				} catch {}
+			}
 		</script>
+		<style>
+			.page-entrance {
+				display: none;
+			}
+			@media (prefers-reduced-motion: no-preference) {
+				html[data-entrance] .page-entrance {
+					display: block;
+					position: fixed;
+					inset: 0;
+					z-index: 20;
+					pointer-events: none;
+				}
+				html[data-entrance='pending'] .page-entrance {
+					background: #fff;
+				}
+				.page-entrance canvas {
+					display: block;
+					position: absolute;
+					inset: 0;
+					z-index: 1;
+					width: 100%;
+					height: 100%;
+				}
+				.entrance-skip {
+					position: absolute;
+					z-index: 2;
+					inset: auto 1rem 1rem auto;
+					pointer-events: auto;
+					color: #242421;
+					background: #fff;
+					text-decoration: underline;
+					text-underline-offset: 0.25em;
+				}
+				html[data-entrance] [data-entrance-hero] {
+					opacity: 0;
+				}
+				html[data-entrance='pending'] .entrance-skip,
+				html[data-entrance='blank'] .entrance-skip {
+					visibility: hidden;
+				}
+			}
+		</style>
 		
-		<link href="./_app/immutable/assets/0.CTK-Agnh.css" rel="stylesheet">
-		<link rel="modulepreload" href="./_app/immutable/entry/start.Wd6GBogC.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/DECRqpO3.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/BDhq-Smb.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/Bgj9bwjN.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/Bwo5925s.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/CYgJF_JY.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/ST_L2r5P.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/app.DUw9FTD0.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/CPN5WyIe.js">
+		<link href="./_app/immutable/assets/0.DTrnJxxs.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.DFTCmiyR.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/BqGQLW9v.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/DB6yj9-w.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/u5grfkyq.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.CwseVaBr.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/D9Z9MdNV.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/DsnmJJEf.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/BA3h6cRZ.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/C7cwQV3Q.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/CxNpB_dG.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/0.Ca-WxxJX.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/CEyPMGHN.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/C7Fv-aVJ.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/BlnjdSR0.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/CRbE71Jg.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/B2E841vv.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/4.i0_i36vS.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/SgFc3hPG.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/BMsBPgCx.js"><!--u4k2t--><meta name="description" content="Notes and resources from Hongbin Miao on AI, engineering, and learning."/><!----><title>Blog</title>
+		<link rel="modulepreload" href="./_app/immutable/chunks/DxAUNZmX.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/bF_iN_sp.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/CTq5OgsA.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/0.DLbJHvKy.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/YUbDy_n_.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/Bdh29fJd.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/yf2ImrLy.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/xbw6rOtk.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/stMc4nRA.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/Dz-KBhu9.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/4.B6X54zFw.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/DKKn9gH_.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/PoBQ9GQg.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/BMsBPgCx.js"><!--u4k2t--><meta name="description" content="Notes and resources from Hongbin Miao on AI, engineering, and learning."/><!----><title>Notes — Hongbin Miao</title>
 	</head>
 	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents"><!--[--><!--[0--><!--[--><a class="skip" href="#main">Skip to content</a> <div id="top" class="site-shell"><!--[0--><!--[0--><header class="site-nav"><a class="nav-name" href="/">Hongbin Miao<span lang="zh">缪鸿彬</span></a> <nav aria-label="Primary"><!--[--><a href="/">Home</a><a href="/blog" aria-current="page">Notes</a><a href="/photography">Photography</a><!--]--> <!--[--><a href="https://github.com/zslrmhb" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/hongbinmiao/" target="_blank" rel="noreferrer">LinkedIn</a><!--]--></nav> <button type="button" class="theme-toggle compact " aria-label="Switch to dark mode">Dark</button><!----></header><!--]--><!--]--> <!--[-1--><!--[--><main id="main" class="notes-page"><header><h1>Notes.</h1></header> <!--[0--><div class="archive-label"><span>WRITING &amp; RESOURCES</span><span>NEWEST FIRST</span></div> <ul><!--[--><li><a href="/blog/interaction-lab"><time datetime="2026-10-18T00:00:00.000Z">October 18, 2026</time> <div><h2>Interaction lab</h2> <!--[0--><p>A public test bed for reusable 2D and 3D interactions in future notes.</p><!--]--></div> <span class="note-tag">Note</span></a></li><li><a href="/blog/deep-learning-resources"><time datetime="2025-08-21T00:00:00.000Z">August 21, 2025</time> <div><h2>AI Resources</h2> <!--[0--><p>This page is a collection of AI-related resources that I personally found helpful.</p><!--]--></div> <span class="note-tag">Deep Learning</span></a></li><!--]--></ul><!--]--></main><!--]--><!--]--><!----> <footer class="site-footer"><span>Hongbin Miao <span lang="zh">缪鸿彬</span></span><a href="#top">Back to top ↑</a></footer></div><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+		<div class="page-entrance">
+			<canvas aria-hidden="true"></canvas>
+			<p class="entrance-status sr-only" role="status"></p>
+			<button class="entrance-skip" type="button">Skip intro</button>
+		</div>
+		<div style="display: contents"><!--[--><!--[0--><!--[--><a class="skip" href="#main">Skip to content</a> <div id="top" class="site-shell world-document"><!--[0--><!--[0--><header class="site-nav"><a class="nav-name" href="/">Hongbin Miao<span lang="zh">缪鸿彬</span></a> <nav aria-label="Primary"><!--[--><a href="/">Home</a><a href="/blog" aria-current="page">Notes</a><a href="/photography">Photography</a><!--]--></nav> <button type="button" class="theme-toggle compact  invisible" aria-label="Switch to dark mode">Dark</button><!----></header><!--]--><!--]--> <!--[-1--><!--[--><main id="main" class="notes-page"><header class="notes-intro"><h1>Notes</h1> <p>Working notes on AI, engineering, and learning.</p></header> <!--[0--><ul><!--[--><li><a href="/blog/interaction-lab"><time datetime="2026-10-18T00:00:00.000Z">October 18, 2026</time> <div><h2>Interaction lab</h2> <!--[0--><p>A public test bed for reusable 2D and 3D interactions in future notes.</p><!--]--></div> <span class="note-tag">Note</span></a></li><li><a href="/blog/deep-learning-resources"><time datetime="2025-08-21T00:00:00.000Z">August 21, 2025</time> <div><h2>AI Resources</h2> <!--[0--><p>This page is a collection of AI-related resources that I personally found helpful.</p><!--]--></div> <span class="note-tag">Deep Learning</span></a></li><!--]--></ul><!--]--></main><!--]--><!--]--><!----> <footer class="site-footer"><span>Hongbin Miao <span lang="zh">缪鸿彬</span></span> <div class="footer-links"><!--[--><a href="https://github.com/zslrmhb" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/hongbinmiao/" target="_blank" rel="noreferrer">LinkedIn</a><!--]--> <a href="#top">Back to top</a></div></footer></div><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
 			
 			<script>
 				{
-					__sveltekit_yn964f = {
+					__sveltekit_xwonmd = {
 						base: new URL(".", location).pathname.slice(0, -1)
 					};
 
 					const element = document.currentScript.parentElement;
 
 					Promise.all([
-						import("./_app/immutable/entry/start.Wd6GBogC.js"),
-						import("./_app/immutable/entry/app.DUw9FTD0.js")
+						import("./_app/immutable/entry/start.DFTCmiyR.js"),
+						import("./_app/immutable/entry/app.CwseVaBr.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 4],
